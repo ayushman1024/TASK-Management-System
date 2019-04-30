@@ -19,7 +19,6 @@ import { GlobalService } from './framework/services/global.service';
 import { HomePageComponent } from './views/home-page/home-page.component';
 import { LoginFormComponent } from './views/login-form/login-form.component';
 import { NewTaskReviewComponent } from './views/tasks/new-task-review/new-task-review.component';
-import { ViewsComponent } from './views/views.component';
 import { MdashboardComponent } from './views/mdashboard/mdashboard.component';
 import { TdashboardComponent } from './views/tdashboard/tdashboard.component';
 import { MyTasksComponent } from './views/my-tasks/my-tasks.component';
@@ -37,7 +36,6 @@ import { MhomeComponent } from './views/mhome/mhome.component';
       LoginComponent,
       RegisterComponent,
       NewTaskReviewComponent,
-      ViewsComponent,
       MdashboardComponent,
       TdashboardComponent,
       MyTasksComponent,

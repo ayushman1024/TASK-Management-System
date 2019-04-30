@@ -1,0 +1,100 @@
+<div id="form-page">
+  <div class="button">
+    <button mat-button (click)="(toggleForm = false)">Register</button>
+    <button mat-button (click)="(toggleForm = true)">Login</button>
+    <mat-slide-toggle
+          class="example-margin"
+          (change)="userChange($event)"
+          >
+        {{user}}
+      </mat-slide-toggle>
+  </div>
+  <mat-card *ngIf="toggleForm === true">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form>
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Username"
+              [(ngModel)]="loginModel.username"
+            />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              [(ngModel)]="loginModel.password"
+            />
+          </mat-form-field>
+        </p>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button (click)="login()" mat-button>Login</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  <!-- #################  -->
+  <!-- ################# -->
+  <!-- ################# -->
+  <mat-card *ngIf="toggleForm === false">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-header> </mat-card-header>
+    <mat-card-content>
+      <form>
+        <p>
+          <mat-form-field>
+            <input
+              type="text"
+              matInput
+              placeholder="Username"
+              [(ngModel)]="registerModel.username"
+            />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input
+              type="email"
+              matInput
+              placeholder="Email"
+              formControlName="Email"
+              [(ngModel)]="registerModel.email"
+            />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field>
+            <input
+              type="password"
+              matInput
+              placeholder="Password"
+              [(ngModel)]="registerModel.password"
+            />
+          </mat-form-field>
+        </p>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button (click)="register()" mat-button>Register</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

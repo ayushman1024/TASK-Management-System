@@ -1,0 +1,51 @@
+<div id="page">
+  <!-- 1 -->
+  <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="stepChange($event)">
+    <br><mat-divider></mat-divider>
+    <mat-step>
+      <ng-template matStepLabel>Create New Program</ng-template>
+      <mat-form-field appearance="outline" id="pname">
+        <input [(ngModel)]="program.name" matInput type="text" name="name" id="name" placeholder="Program Name">
+      </mat-form-field><br>
+      <p-editor [(ngModel)]="program.description" [style]="{'height':'320px'}"></p-editor>
+      <div>
+        <button class="nxt-btn" mat-stroked-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+
+<!-- 3 -->
+<mat-step>
+  <form>
+    <ng-template matStepLabel>Assign Program</ng-template>
+    <div>
+      <p-pickList [source]= "sourceTrainee" [target]="assignedTrainee" sourceHeader="All Trainee" targetHeader="Trainees Assigned" [responsive]="true" filterBy="name"
+      dragdrop="true" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" [sourceStyle]="{'height':'800px'}" [targetStyle]="{'height':'300px'}">
+      <ng-template let-trainee pTemplate="item">
+        <div class="ui-helper-clearfix " style="display: flex;flex-wrap: nowrap;">
+          <div style="position: relative;display:flex;align-items:center;margin:2px 2px 2px 2px">
+          <mat-icon style="font-size: 35px;">person</mat-icon></div>
+          <ul><li matToolTip="Trainee ID">{{trainee.id}}</li>
+            <li matToolTip="Trainee Username">{{trainee.username}}</li>
+            <li matToolTip="Trainee Department">{{trainee.department}}</li>
+          </ul>
+        </div>
+      </ng-template>
+      </p-pickList>
+    </div>
+    <div>
+      <button mat-button matStepperNext (click)="initialize()">Done</button>
+    </div>
+  </form>
+</mat-step>
+<!-- 4 -->
+<mat-step>
+  <form>
+    <ng-template matStepLabel>Publish</ng-template>
+    <div>
+      <button (click)="onPublish()" mat-raised-button >Publish</button>
+    </div>
+  </form>
+</mat-step>
+  </mat-horizontal-stepper>
+</div>

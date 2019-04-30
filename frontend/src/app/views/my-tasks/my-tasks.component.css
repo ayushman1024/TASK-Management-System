@@ -1,0 +1,7 @@
+.task-row {
+  cursor: pointer;
+}
+#descBox {
+  cursor: -webkit-zoom-in;
+  cursor: zoom-in;
+}

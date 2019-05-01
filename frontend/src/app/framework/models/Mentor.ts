@@ -8,7 +8,6 @@ export class Mentor {
   password: string;
   isAdmin: string;
   profile: string;
-  program: number;
-
+  program: number[];
   constructor() {}
 }

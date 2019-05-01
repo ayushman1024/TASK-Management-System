@@ -1,5 +1,10 @@
 package com.ios.backend.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.ElementCollection;
+
 public class MentorDTO {
   private long id;
   private String username;
@@ -10,7 +15,9 @@ public class MentorDTO {
   private String password;
   private String isAdmin;
   private String profile;
-  private long program;
+ 
+  @ElementCollection
+  private Set<Long> program = new HashSet<>();
   
   public long getId() {
     return id;
@@ -84,12 +91,11 @@ public class MentorDTO {
     this.profile = profile;
   }
 
-  public long getProgram() {
+  public Set<Long> getProgram() {
     return program;
   }
 
-  public void setProgram(long program) {
+  public void setProgram(Set<Long> program) {
     this.program = program;
   }
-
 }

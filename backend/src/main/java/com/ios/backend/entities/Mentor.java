@@ -1,6 +1,10 @@
 package com.ios.backend.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +27,9 @@ public class Mentor {
   private String password;
   private String isAdmin;
   private String profile;
-  private long program;
+
+  @ElementCollection
+  private Set<Long> program = new HashSet<>();
   
   public long getId() {
     return id;
@@ -97,11 +103,11 @@ public class Mentor {
     this.profile = profile;
   }
 
-  public long getProgram() {
+  public Set<Long> getProgram() {
     return program;
   }
 
-  public void setProgram(long program) {
+  public void setProgram(Set<Long> program) {
     this.program = program;
   }
 

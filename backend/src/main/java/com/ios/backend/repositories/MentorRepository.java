@@ -1,6 +1,7 @@
 package com.ios.backend.repositories;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -15,4 +16,6 @@ public interface MentorRepository extends CrudRepository<Mentor, Long> {
   Mentor findByUsername(String username);
   
   String findPasswordByUsername(String username);
+  
+  Set<Long> findProgramById(long id);
 }

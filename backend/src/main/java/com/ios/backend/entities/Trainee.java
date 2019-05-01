@@ -22,7 +22,6 @@ public class Trainee {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
-  private String password;
   
   @Column(unique = true )
   private String username;
@@ -50,14 +49,6 @@ public class Trainee {
 
   public void setUsername(String username) {
     this.username = username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getName() {

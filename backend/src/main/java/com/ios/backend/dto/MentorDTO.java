@@ -12,7 +12,6 @@ public class MentorDTO {
   private String email;
   private String department;
   private String contacts;
-  private String password;
   private String isAdmin;
   private String profile;
  
@@ -65,14 +64,6 @@ public class MentorDTO {
 
   public void setContacts(String contacts) {
     this.contacts = contacts;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
   }
 
   public String getIsAdmin() {

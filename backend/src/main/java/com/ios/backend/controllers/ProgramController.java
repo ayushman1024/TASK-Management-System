@@ -6,12 +6,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ios.backend.dto.NewProgramDTO;
 import com.ios.backend.dto.ProgramListDTO;
+import com.ios.backend.services.MentorService;
 import com.ios.backend.services.ProgramService;
 import com.ios.backend.utils.Client;
 
@@ -22,11 +24,14 @@ public class ProgramController {
   @Autowired
   private ProgramService service;
   
-  @PostMapping("/createProgram")
+  @Autowired
+  private MentorService mentorService;
+  
+  @PostMapping("/createProgram/{mid}")
   @PreAuthorize("hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<Boolean> createTask(@RequestBody NewProgramDTO newProgramDto) {
-    service.createProgram(newProgramDto);
+  public ResponseEntity<Boolean> createProgram(@PathVariable("mid") Long id, @RequestBody NewProgramDTO newProgramDto) {
+    service.createProgram(newProgramDto, id);
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
   
@@ -35,5 +40,13 @@ public class ProgramController {
   @CrossOrigin(origins = clientUrl)
   public ResponseEntity<ProgramListDTO> getAllProgram() {
     return new ResponseEntity<ProgramListDTO>(service.getAll(), HttpStatus.OK);
+  }
+  
+  @GetMapping("/getAllProgramByMentor/{id}")
+  @PreAuthorize("hasRole('ADMIN')")
+  @CrossOrigin(origins = clientUrl)
+  public ResponseEntity<ProgramListDTO> getAllProgramByMentor(@PathVariable("id") Long id) {
+    ProgramListDTO dto = service.getAllByMentor(id);
+    return new ResponseEntity<ProgramListDTO>(dto, HttpStatus.OK);
   }
 }

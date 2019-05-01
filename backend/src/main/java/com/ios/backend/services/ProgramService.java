@@ -2,6 +2,8 @@ package com.ios.backend.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +54,7 @@ public class ProgramService {
     program.setMentors(mentors);
   }
 
-  public void createProgram(NewProgramDTO newProgramDto) {
+  public void createProgram(NewProgramDTO newProgramDto, long mid) {
     Program program = new Program();
     program.setId(newProgramDto.getId());
     program.setName(newProgramDto.getName());
@@ -60,11 +62,28 @@ public class ProgramService {
     addMentor(program, newProgramDto.getMentors());
     addTrainee(program, newProgramDto.getTrainees());
     Program savedProgram = programRepository.save(program);
+
+    Mentor mentor = mentorRepository.findById(mid).get();
+    Set<Long> prgmSet =  mentor.getProgram();
+    prgmSet.add(savedProgram.getId());
+    mentor.setProgram(prgmSet);
+    mentorRepository.save(mentor);
   }
   
   public ProgramListDTO getAll() {
     ProgramListDTO list = new ProgramListDTO();
     list.setProgramList((List<Program>)programRepository.findAll());
     return list;
+  }
+  
+  public ProgramListDTO getAllByMentor(long id) {
+    ProgramListDTO listDTO = new ProgramListDTO();
+    List<Program> programList = new ArrayList<>();
+    Set<Long> programSet = mentorRepository.findProgramById(id);
+    for( Long p: programSet) {
+      programList.add(programRepository.findById(p).get());
+    }
+    listDTO.setProgramList(programList);
+    return listDTO;
   }
 }

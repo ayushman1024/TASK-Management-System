@@ -1,6 +1,7 @@
 package com.ios.backend.services;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,27 +27,13 @@ public class MentorService {
   private TaskRecordRepository taskRecordRepository;
   @Autowired
   private ProgramRepository programRepository;
-  
-  
-  
+
   public void createMentor(Mentor mentor) {
     Mentor savedMentor = null;
-    if(AuthUtils.validatePassword(mentor.getPassword())) {
-      savedMentor = this.mentorRepository.save(mentor);
-    }
-    if(savedMentor.getIsAdmin().equals("Y") || savedMentor.getIsAdmin().equals("y")) {
-      // TODO
-    }
-  }
-  
-  public boolean login(LoginDTO loginInfo) {
-    String searchedPassword = mentorRepository.findPasswordByUsername(loginInfo.getUsername());
-    if(searchedPassword== null){
-      return false;
-    }else if(searchedPassword.equals(loginInfo.getPassword()) ){
-      return true;
-    }
-    return false;
+    savedMentor = mentorRepository.save(mentor);
+//    if(savedMentor.getIsAdmin().equals("Y") || savedMentor.getIsAdmin().equals("y")) {
+//      // TODO
+//    }
   }
   
   public List<Mentor> getAllMentorByProgram(long programId){
@@ -55,5 +42,13 @@ public class MentorService {
   
   public List<Mentor> getAllMentor() {
     return (List<Mentor>)this.mentorRepository.findAll();
+  }
+  
+  public void addProgramToMentor(long mid,long pid) {
+    Mentor mentor = mentorRepository.findById(mid).get();
+    Set<Long> programSet = mentor.getProgram();
+    programSet.add(pid);
+    mentor.setProgram(programSet);
+    mentorRepository.save(mentor);
   }
 }

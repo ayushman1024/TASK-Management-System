@@ -35,11 +35,4 @@ public class MentorController {
     service.createMentor(mentor);
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
-  
-  @PostMapping("/mentorLogin")
-  @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<Boolean> login(@RequestBody LoginDTO loginInfo) {
-    boolean loginStatus = service.login(loginInfo);
-    return new ResponseEntity<Boolean>(loginStatus,HttpStatus.OK);
-  }
 }

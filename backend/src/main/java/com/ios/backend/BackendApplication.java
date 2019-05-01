@@ -3,8 +3,6 @@ package com.ios.backend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.ios.backend.services.MailService;
-
 @SpringBootApplication
 public class BackendApplication {
 

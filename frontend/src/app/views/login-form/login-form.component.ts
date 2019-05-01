@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from 'src/app/framework/models/login';
 import { Register } from '../../framework/models/register';
+import { AuthLoginInfo } from 'src/app/framework/auth/login-info';
 
 @Component({
   selector: 'app-login-form',
@@ -12,19 +12,17 @@ export class LoginFormComponent implements OnInit {
   error;
   user = 'mentor';
   toggleForm = true;
-  loginModel = new Login();
+  loginModel = new AuthLoginInfo();
   registerModel = new Register();
   constructor() { }
   ngOnInit() {
   }
 
   login() {
-    this.loginModel.user = this.user;
     // service call
   }
 
   register() {
-    this.loginModel.user = this.user;
     // service call
   }
   userChange(event) {

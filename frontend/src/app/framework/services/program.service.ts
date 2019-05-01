@@ -19,4 +19,7 @@ export class ProgramService {
   getAll() {
     return this.http.get<ProgramList>(this.url + '/getAllProgram');
   }
+  getAllByMentor() {
+    return this.http.get<ProgramList>(this.url);
+  }
 }

@@ -5,7 +5,6 @@ export class Mentor {
   email: string;
   department: string;
   contacts: string;
-  password: string;
   isAdmin: string;
   profile: string;
   program: number[];

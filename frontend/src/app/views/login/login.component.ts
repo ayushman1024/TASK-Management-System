@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     this.loginInfo = new AuthLoginInfo();
     this.loginInfo.username = this.form.username;
     this.loginInfo.password = this.form.password;
+    this.loginInfo.user = this.form.user;
 
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {

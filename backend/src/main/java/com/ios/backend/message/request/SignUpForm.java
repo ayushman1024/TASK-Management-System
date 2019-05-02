@@ -19,10 +19,13 @@ public class SignUpForm {
     private String email;
     
     private Set<String> role;
-    
+
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
+    
+    @NotBlank
+    private String user;
 
     public String getName() {
         return name;
@@ -62,5 +65,12 @@ public class SignUpForm {
     
     public void setRole(Set<String> role) {
     	this.role = role;
+    }
+    public String getUser() {
+      return user;
+    }
+
+    public void setUser(String user) {
+      this.user = user;
     }
 }

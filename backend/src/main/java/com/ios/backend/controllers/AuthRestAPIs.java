@@ -79,13 +79,11 @@ public class AuthRestAPIs {
 
     s.sendPasscode("ayushman1024@gmail.com", "Demo-Program");
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
-					HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		}
 
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
-					HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		}
 
 		// Creating user's account
@@ -116,7 +114,6 @@ public class AuthRestAPIs {
 
 		user.setRoles(roles);
 		userRepository.save(user);
-
-		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
 }

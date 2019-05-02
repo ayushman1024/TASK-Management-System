@@ -3,7 +3,7 @@
 </div>
 
 <ng-template #loggedOut>
-  <div class="row col-sm-6" style="max-width:350px;">
+  <div class="form row col-sm-6" style="max-width:350px;">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="username">Username</label>
@@ -21,6 +21,15 @@
           <div *ngIf="password.errors.required">Password is required</div>
           <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
         </div>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Select Your Profile</mat-label>
+          <mat-select [(ngModel)]="form.user" name="user">
+            <mat-option value="M">MENTOR</mat-option>
+            <mat-option value="T">TRAINEE</mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
       <div class="form-group">
         <button class="btn btn-primary">Login</button>

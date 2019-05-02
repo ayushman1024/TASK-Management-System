@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/framework/auth/auth.service';
 })
 export class RegisterComponent implements OnInit {
   form: any = {};
-  signupInfo: SignUpInfo;
+  signupInfo = new SignUpInfo();
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
@@ -19,13 +19,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit() {
-    console.log(this.form);
-
-    this.signupInfo = new SignUpInfo(
-      this.form.name,
-      this.form.username,
-      this.form.email,
-      this.form.password);
+    if (this.signupInfo.user === 'M') {
+      this.signupInfo.role = ['user', 'admin'];
+    } else if (this.signupInfo.user === 'T') {
+      this.signupInfo.role = ['user'];
+    }
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {

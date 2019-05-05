@@ -21,19 +21,36 @@ public class TaskRecord {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
-  private long trainee;
+  private long user;
+  private long program;
   private long task;
   private String status;
   private double score;
   private double max;
   private String remarks;
 
+  public long getProgram() {
+    return program;
+  }
+
+  public void setProgram(long program) {
+    this.program = program;
+  }
+
   public long getId() {
     return id;
   }
 
-  public long getTrainee() {
-    return trainee;
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public long getUser() {
+    return user;
+  }
+
+  public void setUser(long user) {
+    this.user = user;
   }
 
   public long getTask() {
@@ -54,14 +71,6 @@ public class TaskRecord {
 
   public String getRemarks() {
     return remarks;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public void setTrainee(long trainee) {
-    this.trainee = trainee;
   }
 
   public void setTask(long task) {

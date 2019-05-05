@@ -1,16 +1,15 @@
 package com.ios.backend.dto;
 
 import java.util.List;
-import com.ios.backend.entities.Mentor;
-import com.ios.backend.entities.Trainee;
+import com.ios.backend.entities.User;
 
 public class ProgramDTO {
   
   private long id;
   private String name;
   private String description;
-  private List<Mentor> mentors;
-  private List<Trainee> trainees;
+  private List<User> users;
+  private long admin;
   
   public long getId() {
     return id;
@@ -36,19 +35,19 @@ public class ProgramDTO {
     this.description = description;
   }
 
-  public List<Mentor> getMentors() {
-    return mentors;
+  public List<User> getUsers() {
+    return users;
   }
 
-  public void setMentors(List<Mentor> mentors) {
-    this.mentors = mentors;
+  public void setUsers(List<User> users) {
+    this.users = users;
   }
 
-  public List<Trainee> getTrainees() {
-    return trainees;
+  public long getAdmin() {
+    return admin;
   }
 
-  public void setTrainees(List<Trainee> trainees) {
-    this.trainees = trainees;
+  public void setAdmin(long admin) {
+    this.admin = admin;
   }
 }

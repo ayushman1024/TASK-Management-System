@@ -1,29 +1,37 @@
 package com.ios.backend.resources;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-import com.ios.backend.entities.Trainee;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class TaskResource {
   private long id;
-  private long programId;
+  private long program;
   private String name;
   private long createdBy;
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
   private LocalDateTime createdTime;
+  
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+  private LocalDateTime startTime;
+  
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
   private LocalDateTime deadline;
+  
   private long modifiedBy;
+
+  @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
   private LocalDateTime modifiedTime;
   private String status;
-  private String description;
-  private List<Trainee> assignedTo;
 
+  private String description;
+  
   public long getId() {
     return id;
   }
 
-  public long getProgramId() {
-    return programId;
+  public long getProgram() {
+    return program;
   }
 
   public String getName() {
@@ -37,7 +45,11 @@ public class TaskResource {
   public LocalDateTime getCreatedTime() {
     return createdTime;
   }
-
+  
+  public LocalDateTime getStartTime() {
+    return startTime;
+  }
+  
   public LocalDateTime getDeadline() {
     return deadline;
   }
@@ -58,16 +70,12 @@ public class TaskResource {
     return description;
   }
 
-  public List<Trainee> getAssignedTo() {
-    return assignedTo;
-  }
-
   public void setId(long id) {
     this.id = id;
   }
 
-  public void setProgramId(long programId) {
-    this.programId = programId;
+  public void setProgram(long program) {
+    this.program = program;
   }
 
   public void setName(String name) {
@@ -80,6 +88,10 @@ public class TaskResource {
 
   public void setCreatedTime(LocalDateTime createdTime) {
     this.createdTime = createdTime;
+  }
+
+  public void setStartTime(LocalDateTime startTime) {
+    this.startTime = startTime;
   }
 
   public void setDeadline(LocalDateTime deadline) {
@@ -100,9 +112,5 @@ public class TaskResource {
 
   public void setDescription(String description) {
     this.description = description;
-  }
-
-  public void setAssignedTo(List<Trainee> assignedTo) {
-    this.assignedTo = assignedTo;
   }
 }

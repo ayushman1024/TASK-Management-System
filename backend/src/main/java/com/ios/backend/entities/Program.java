@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 import org.springframework.stereotype.Component;
 
@@ -21,10 +21,10 @@ public class Program {
   private String name;
   @Column(length = 65450, columnDefinition = "text")
   private String description;
-  @OneToMany
-  private List<Mentor> mentors;
-  @OneToMany
-  private List<Trainee> trainees;
+  @ManyToMany
+  private List<User> users;
+  
+  private long admin;
   
   public long getId() {
     return id;
@@ -50,20 +50,19 @@ public class Program {
     this.description = description;
   }
 
-  public List<Mentor> getMentors() {
-    return mentors;
+  public List<User> getUsers() {
+    return users;
   }
 
-  public void setMentors(List<Mentor> mentors) {
-    this.mentors = mentors;
+  public void setUsers(List<User> users) {
+    this.users = users;
   }
 
-  public List<Trainee> getTrainees() {
-    return trainees;
+  public long getAdmin() {
+    return admin;
   }
 
-  public void setTrainees(List<Trainee> trainees) {
-    this.trainees = trainees;
+  public void setAdmin(long admin) {
+    this.admin = admin;
   }
-
 }

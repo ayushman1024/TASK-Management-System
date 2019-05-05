@@ -2,21 +2,18 @@ package com.ios.backend.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ios.backend.dto.NewProgramDTO;
 import com.ios.backend.dto.ProgramListDTO;
-import com.ios.backend.entities.Mentor;
 import com.ios.backend.entities.Program;
-import com.ios.backend.entities.Trainee;
-import com.ios.backend.repositories.MentorRepository;
+import com.ios.backend.entities.User;
 import com.ios.backend.repositories.ProgramRepository;
 import com.ios.backend.repositories.TaskRecordRepository;
 import com.ios.backend.repositories.TaskRespository;
-import com.ios.backend.repositories.TraineeRepository;
+import com.ios.backend.repositories.UserRepository;
 
 @Service
 public class ProgramService {
@@ -24,34 +21,21 @@ public class ProgramService {
   @Autowired
   private TaskRespository taskRepository;
   @Autowired
-  private TraineeRepository traineeRepository;
-  @Autowired
-  private MentorRepository mentorRepository;
+  private UserRepository userRepository;
   @Autowired
   private TaskRecordRepository taskRecordRepository;
   @Autowired
   private ProgramRepository programRepository;
   
-  public void addTrainee(Program program, long[] traineeIdList) {
-    List<Trainee> trainees = new ArrayList<Trainee>();
-    for(long id: traineeIdList) {
-      Trainee t = traineeRepository.findById(id).get();
-      if(t != null) {
-        trainees.add(t);
+  public void addUser(Program program, long[] userIdList) {
+    List<User> users = new ArrayList<User>();
+    for(long id: userIdList) {
+      User u = userRepository.findById(id).get();
+      if(u != null) {
+        users.add(u);
       }
     }
-    program.setTrainees(trainees);
-  }
-
-  public void addMentor(Program program, long[] mentorIdList) {
-    List<Mentor> mentors = new ArrayList<Mentor>();
-    for(long id: mentorIdList) {
-      Mentor t = mentorRepository.findById(id).get();
-      if(t != null) {
-        mentors.add(t);
-      }
-    }
-    program.setMentors(mentors);
+    program.setUsers(users);
   }
 
   public void createProgram(NewProgramDTO newProgramDto, long mid) {
@@ -59,15 +43,8 @@ public class ProgramService {
     program.setId(newProgramDto.getId());
     program.setName(newProgramDto.getName());
     program.setDescription(newProgramDto.getDescription());
-    addMentor(program, newProgramDto.getMentors());
-    addTrainee(program, newProgramDto.getTrainees());
+    addUser(program, newProgramDto.getUsers());
     Program savedProgram = programRepository.save(program);
-
-    Mentor mentor = mentorRepository.findById(mid).get();
-    Set<Long> prgmSet =  mentor.getProgram();
-    prgmSet.add(savedProgram.getId());
-    mentor.setProgram(prgmSet);
-    mentorRepository.save(mentor);
   }
   
   public ProgramListDTO getAll() {
@@ -76,14 +53,9 @@ public class ProgramService {
     return list;
   }
   
-  public ProgramListDTO getAllByMentor(long id) {
+  public ProgramListDTO getAllByAdmin(long id) {
     ProgramListDTO listDTO = new ProgramListDTO();
-    List<Program> programList = new ArrayList<>();
-    Set<Long> programSet = mentorRepository.findProgramById(id);
-    for( Long p: programSet) {
-      programList.add(programRepository.findById(p).get());
-    }
-    listDTO.setProgramList(programList);
+    listDTO.setProgramList(programRepository.findByAdmin(id));
     return listDTO;
   }
 }

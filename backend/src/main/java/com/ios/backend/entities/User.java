@@ -1,6 +1,8 @@
 package com.ios.backend.entities;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -29,9 +31,9 @@ import org.hibernate.annotations.NaturalId;
         })
 })
 public class User{
-	@Id
+	  @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @NotBlank
     @Size(min=3, max = 50)
@@ -57,6 +59,9 @@ public class User{
     	inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    @ManyToMany(mappedBy = "users")
+    private List<Program> program = new ArrayList<>();
+    
     public User() {}
 
     public User(String name, String username, String email, String password) {
@@ -70,7 +75,7 @@ public class User{
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -112,5 +117,13 @@ public class User{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Program> getProgram() {
+      return program;
+    }
+
+    public void setProgram(List<Program> program) {
+      this.program = program;
     }
 }

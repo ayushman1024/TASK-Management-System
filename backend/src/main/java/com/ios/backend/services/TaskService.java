@@ -5,15 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ios.backend.entities.Program;
 import com.ios.backend.entities.Task;
 import com.ios.backend.entities.TaskRecord;
-import com.ios.backend.entities.Trainee;
-import com.ios.backend.repositories.MentorRepository;
 import com.ios.backend.repositories.ProgramRepository;
 import com.ios.backend.repositories.TaskRecordRepository;
 import com.ios.backend.repositories.TaskRespository;
-import com.ios.backend.repositories.TraineeRepository;
 import com.ios.backend.resources.TaskListResource;
 import com.ios.backend.resources.TaskRecordListResource;
 
@@ -22,25 +18,23 @@ public class TaskService {
   @Autowired
   private TaskRespository taskRepository;
   @Autowired
-  private TraineeRepository traineeRepository;
-  @Autowired
-  private MentorRepository mentorRepository;
-  @Autowired
   private TaskRecordRepository taskRecordRepository;
   @Autowired
   private ProgramRepository programRepository;
 
   public void createTask(Task task, long[] trainees) {
     Task savedTask = taskRepository.save(task);
-    this.initTaskRecords(trainees,savedTask.getId());
+    long program = savedTask.getProgram();
+    this.initTaskRecords(trainees,savedTask.getId(), program);
   }
 
-  public void initTaskRecords(long[] trainees, long taskId) {
+  public void initTaskRecords(long[] trainees, long taskId, long program) {
     // to be shifted to util
     for (long id : trainees) {
       TaskRecord taskRecord = new TaskRecord();
-      taskRecord.setTrainee(id);
+      taskRecord.setUser(id);
       taskRecord.setTask(taskId);
+      taskRecord.setProgram(program);
       taskRecordRepository.save(taskRecord);
     }
   }
@@ -68,22 +62,22 @@ public class TaskService {
   }
 
   public TaskListResource getAllTaskByProgram(long pid) {
-    List<Task> taskList = (List<Task>)taskRepository.findByProgramId(pid);
+    List<Task> taskList = (List<Task>)taskRepository.findByProgram(pid);
     TaskListResource tlr = new TaskListResource();
     tlr.setTaskList(taskList);
     return tlr;
   }
 
-  public TaskRecordListResource getAllTaskRecordOfTrainee(long id) {
+  public TaskRecordListResource getAllTaskRecordOfUserAndProgram(long uid, long pid) {
     TaskRecordListResource trlr = new TaskRecordListResource();
-    List<TaskRecord> trl = taskRecordRepository.getTaskRecordByTrainee(id);
+    List<TaskRecord> trl = taskRecordRepository.findByProgramAndUser(pid, uid);
     trlr.setTaskRecordList(trl);
     return trlr;
   }
   
-  public TaskListResource getAllTaskOfTrainee(long id) {
+  public TaskListResource getAllTaskOfUserAndProgram(long uid, long pid) {
     TaskListResource tlr = new TaskListResource();
-    List<Task> tl = this.getTasksFromTaskRecord(taskRecordRepository.getTaskRecordByTrainee(id));
+    List<Task> tl = this.getTasksFromTaskRecord(taskRecordRepository.findByProgramAndUser(pid, uid));
     tlr.setTaskList(tl);
     return tlr;
   }

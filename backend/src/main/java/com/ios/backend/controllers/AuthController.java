@@ -42,7 +42,7 @@ public class AuthController {
   
   @Autowired
   MailService s;
-  
+
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -69,8 +69,8 @@ public class AuthController {
 
 		String jwt = jwtProvider.generateJwtToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+		long id = userRepository.findIdByUsername(userDetails.getUsername());
+		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(), id));
 	}
 
 	@PostMapping("/signup")

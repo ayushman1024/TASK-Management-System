@@ -9,6 +9,7 @@ import { MyTasksComponent } from './views/my-tasks/my-tasks.component';
 import { CreateProgramComponent } from './views/create-program/create-program.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'signup', component: RegisterComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'errorPage', component: ErrorPageComponent },
+  { path: 'prg', component: SelectPrgmComponent },
   { path: 't',
     component: TdashboardComponent,
     children: [

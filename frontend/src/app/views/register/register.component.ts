@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SignUpInfo } from 'src/app/framework/auth/signup-info';
 import { AuthService } from 'src/app/framework/auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,22 +15,19 @@ export class RegisterComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() { }
 
   onSubmit() {
-    if (this.signupInfo.user === 'M') {
-      this.signupInfo.role = ['user', 'admin'];
-    } else if (this.signupInfo.user === 'T') {
-      this.signupInfo.role = ['user'];
-    }
-
+    this.signupInfo.user = 'U';
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
         console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
+        this.router.navigate(['./login']);
       },
       error => {
         console.log(error);

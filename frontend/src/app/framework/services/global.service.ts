@@ -9,8 +9,7 @@ export class GlobalService {
 
   private currentProgramId: number;
   private token: string;
-  private mid: number;
-  private tid: number;
+  private uid: number;
 
   getToken(): string {
     return this.token;
@@ -24,16 +23,10 @@ export class GlobalService {
   setCurrentProgramId(programId: number) {
     this.currentProgramId = programId;
   }
-  getMid(): number {
-    return this.mid;
+  getUid(): number {
+    return this.uid;
   }
-  setMid(mid: number) {
-    this.mid = mid;
-  }
-  getTid(): number {
-    return this.tid;
-  }
-  setTid(tid: number) {
-    this.tid = tid;
+  setUid(uid: number) {
+    this.uid = uid;
   }
 }

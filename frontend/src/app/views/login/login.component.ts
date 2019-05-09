@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
         this.global.setUid(data.uid);
-        this.router.navigate(['./prg']);
+        this.router.navigate(['./u/prg']);
       },
       error => {
         console.log(error);

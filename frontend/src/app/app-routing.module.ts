@@ -10,6 +10,7 @@ import { CreateProgramComponent } from './views/create-program/create-program.co
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
+import { UdashboardComponent } from './views/udashboard/udashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,7 +18,12 @@ const routes: Routes = [
   { path: 'signup', component: RegisterComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'errorPage', component: ErrorPageComponent },
-  { path: 'prg', component: SelectPrgmComponent },
+  { path: 'u',
+    component: UdashboardComponent,
+    children: [
+      { path: 'prg', component: SelectPrgmComponent },
+    ]
+   },
   { path: 't',
     component: TdashboardComponent,
     children: [

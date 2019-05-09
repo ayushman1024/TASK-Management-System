@@ -25,6 +25,7 @@ import { MyTasksComponent } from './views/my-tasks/my-tasks.component';
 import { CreateProgramComponent } from './views/create-program/create-program.component';
 import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
 import { MhomeComponent } from './views/mhome/mhome.component';
+import { UdashboardComponent } from './views/udashboard/udashboard.component';
 @NgModule({
    declarations: [
       AppComponent,
@@ -42,6 +43,7 @@ import { MhomeComponent } from './views/mhome/mhome.component';
       CreateProgramComponent,
       SelectPrgmComponent,
       MhomeComponent,
+      UdashboardComponent,
    ],
    imports: [
       BrowserModule,

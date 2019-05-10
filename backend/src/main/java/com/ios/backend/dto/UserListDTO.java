@@ -1,17 +1,16 @@
 package com.ios.backend.dto;
 
 import java.util.List;
-import com.ios.backend.entities.User;
 
 public class UserListDTO {
 
-  private List<User> userList;
+  private List<UserDTO> userList;
 
-  public List<User> getUserList() {
+  public List<UserDTO> getUserList() {
     return userList;
   }
 
-  public void setUserList(List<User> userList) {
+  public void setUserList(List<UserDTO> userList) {
     this.userList = userList;
   }
 }

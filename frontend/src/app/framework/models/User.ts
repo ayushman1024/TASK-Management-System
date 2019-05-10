@@ -1,8 +1,7 @@
-export class SignUpInfo {
+export class User {
+  id: number;
   name: string;
   username: string;
   email: string;
   password: string;
-  user: string;
-  constructor() {}
 }

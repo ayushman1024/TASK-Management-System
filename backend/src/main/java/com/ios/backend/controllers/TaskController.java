@@ -33,7 +33,7 @@ public class TaskController {
   public ResponseEntity<Boolean> createTask(@RequestBody NewTaskDTO newTaskDto) {
     Task task = new Task();
     BeanUtils.copyProperties(newTaskDto.getTask(), task);
-    service.createTask(task, newTaskDto.getTrainee());
+    service.createTask(task, newTaskDto.getUser());
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
 

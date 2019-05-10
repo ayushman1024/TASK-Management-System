@@ -37,11 +37,12 @@ export class LoginComponent implements OnInit {
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.authorities);
+        this.global.setUid(data.uid);
+        this.global.setCurrentProgramId(data.pid);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getAuthorities();
-        this.global.setUid(data.uid);
         this.router.navigate(['./u/prg']);
       },
       error => {

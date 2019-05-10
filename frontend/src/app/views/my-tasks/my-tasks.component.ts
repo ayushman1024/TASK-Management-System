@@ -23,7 +23,7 @@ export class MyTasksComponent implements OnInit {
   list = [];
   descDialogVisible = false;
   dialogDescData = '';
-  constructor(private service: TaskService, private traineeService: TraineeService,
+  constructor(private service: TaskService,
               private datePipe: DatePipe, private global: GlobalService) {
   }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { TraineeService } from 'src/app/framework/services/trainee.service';
 import { GlobalService } from 'src/app/framework/services/global.service';
 import { ProgramService } from '../../framework/services/program.service';
 import { NewProgram } from '../../framework/models/NewProgram';
@@ -15,7 +14,7 @@ export class CreateProgramComponent implements OnInit {
   newProgram = new NewProgram();
   isLinear = true;
 
-  constructor(private service: ProgramService, private traineeService: TraineeService,
+  constructor(private service: ProgramService,
               private datePipe: DatePipe, private global: GlobalService) {}
 
   ngOnInit() {

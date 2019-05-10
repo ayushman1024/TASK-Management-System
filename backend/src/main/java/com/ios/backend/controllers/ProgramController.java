@@ -38,7 +38,7 @@ public class ProgramController {
     return new ResponseEntity<ProgramListDTO>(service.getAll(), HttpStatus.OK);
   }
   
-  @GetMapping("/getAllProgramByMentor/{id}")
+  @GetMapping("/getAllProgramByAdmin/{id}")
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
   public ResponseEntity<ProgramListDTO> getAllProgramByAdmin(@PathVariable("id") Long id) {

@@ -15,11 +15,10 @@ export class ProgramService {
   create(newProgram: NewProgram) {
     return this.http.post<any>(this.url + '/createProgram', newProgram);
   }
-
   getAll() {
     return this.http.get<ProgramList>(this.url + '/getAllProgram');
   }
-  getAllByMentor() {
-    return this.http.get<ProgramList>(this.url);
+  getAllByAdmin(id: number) {
+    return this.http.get<ProgramList>(this.url + '/getAllProgramByAdmin/' + id);
   }
 }

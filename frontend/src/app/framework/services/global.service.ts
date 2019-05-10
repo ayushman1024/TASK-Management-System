@@ -10,6 +10,7 @@ export class GlobalService {
   private currentProgramId: number;
   private token: string;
   private uid: number;
+  private programName: string;
 
   getToken(): string {
     return this.token;

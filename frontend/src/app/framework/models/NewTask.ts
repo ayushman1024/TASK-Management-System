@@ -2,7 +2,7 @@ import { Task } from './Task';
 
 export class NewTask {
   public task: Task;
-  public trainee: number[] = [];
+  public user: number[] = [];
 
   constructor() {
     }

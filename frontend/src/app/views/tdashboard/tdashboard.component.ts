@@ -20,4 +20,7 @@ export class TdashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+  }
+
 }

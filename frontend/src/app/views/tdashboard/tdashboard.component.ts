@@ -21,6 +21,8 @@ export class TdashboardComponent implements OnInit {
   }
 
   logout() {
+    window.sessionStorage.clear();
+
   }
 
 }

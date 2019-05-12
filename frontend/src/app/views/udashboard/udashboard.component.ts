@@ -21,6 +21,6 @@ export class UdashboardComponent implements OnInit {
   }
 
   logout() {
-
+    window.sessionStorage.clear();
   }
 }

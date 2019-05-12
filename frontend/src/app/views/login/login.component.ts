@@ -1,16 +1,18 @@
 import { GlobalService } from 'src/app/framework/services/global.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthLoginInfo } from 'src/app/framework/auth/login-info';
 import { AuthService } from 'src/app/framework/auth/auth.service';
 import { TokenStorageService } from 'src/app/framework/auth/token-storage.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+  providers: [MessageService],
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit , AfterViewInit{
   form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   private loginInfo: AuthLoginInfo;
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+  constructor(private msg: MessageService, private authService: AuthService, private tokenStorage: TokenStorageService,
               private router: Router, private route: ActivatedRoute, private global: GlobalService) { }
 
   ngOnInit() {
@@ -26,6 +28,10 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
     }
+  }
+
+  ngAfterViewInit() {
+    this.msg.add({severity: 'success', summary: 'Service Message', detail: 'Via MessageService'});
   }
 
   onSubmit() {

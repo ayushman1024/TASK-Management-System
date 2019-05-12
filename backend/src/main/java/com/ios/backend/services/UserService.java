@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ios.backend.entities.Program;
 import com.ios.backend.entities.User;
 import com.ios.backend.repositories.ProgramRepository;
 import com.ios.backend.repositories.TaskRecordRepository;
@@ -29,6 +30,10 @@ public class UserService {
   
   public List<User> getAllUserByProgram(long programId) {
     return programRepository.findById(programId).get().getUsers();
+  }
+  
+  public List<Program> getAllProgramByUser(long uid) {
+    return userRepository.findProgramById(uid);
   }
   
   public User getUser(long id) {

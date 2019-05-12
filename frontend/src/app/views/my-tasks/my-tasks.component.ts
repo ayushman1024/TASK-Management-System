@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from '../../framework/services/task.service';
-import { TraineeService } from 'src/app/framework/services/trainee.service';
 import { DatePipe } from '@angular/common';
 import { GlobalService } from 'src/app/framework/services/global.service';
 import { TaskRecord } from '../../framework/models/TaskRecord';

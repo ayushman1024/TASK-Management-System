@@ -9,7 +9,6 @@ public class JwtResponse {
   private String type = "Bearer";
   private String username;
   public long uid;
-  public long pid;
   private Collection<? extends GrantedAuthority> authorities;
 
   public JwtResponse(String accessToken, String username, Collection<? extends GrantedAuthority> authorities,
@@ -54,13 +53,5 @@ public class JwtResponse {
 
   public void setId(long uid) {
     this.uid = uid;
-  }
-
-  public long getPid() {
-    return pid;
-  }
-
-  public void setPid(long pid) {
-    this.pid = pid;
   }
 }

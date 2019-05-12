@@ -26,6 +26,8 @@ import { CreateProgramComponent } from './views/create-program/create-program.co
 import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
 import { MhomeComponent } from './views/mhome/mhome.component';
 import { UdashboardComponent } from './views/udashboard/udashboard.component';
+import { EnterProgramComponent } from './views/enter-program/enter-program.component';
+import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth-interceptor';
 @NgModule({
    declarations: [
       AppComponent,
@@ -44,6 +46,7 @@ import { UdashboardComponent } from './views/udashboard/udashboard.component';
       SelectPrgmComponent,
       MhomeComponent,
       UdashboardComponent,
+      EnterProgramComponent,
    ],
    imports: [
       BrowserModule,
@@ -58,7 +61,7 @@ import { UdashboardComponent } from './views/udashboard/udashboard.component';
    ],
    exports: [FormsModule,
   ],
-   providers: [DatePipe, GlobalService],
+   providers: [DatePipe, GlobalService, httpInterceptorProviders],
    bootstrap: [
       AppComponent
    ]

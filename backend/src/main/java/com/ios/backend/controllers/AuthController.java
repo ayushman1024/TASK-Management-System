@@ -69,9 +69,8 @@ public class AuthController {
 
 		String jwt = jwtProvider.generateJwtToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		long id = userRepository.findIdByUsername(userDetails.getUsername());
+		long id = userRepository.getIdByUsername(userDetails.getUsername());
 		JwtResponse jwtRes = new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(), id);
-		jwtRes.setPid(userRepository.findProgramById(id).getId());
 		return ResponseEntity.ok(jwtRes);
 	}
 

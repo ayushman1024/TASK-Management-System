@@ -4,8 +4,8 @@ import { NewTask } from 'src/app/framework/models/NewTask';
 import { TaskService } from 'src/app/framework/services/task.service';
 import { DatePipe } from '@angular/common';
 import { GlobalService } from 'src/app/framework/services/global.service';
-import { TraineeService } from 'src/app/framework/services/trainee.service';
-import { Trainee } from 'src/app/framework/models/Trainee';
+import { User } from 'src/app/framework/models/user';
+import { UserService } from 'src/app/framework/services/user.service';
 
 @Component({
   selector: 'app-task-creator',
@@ -16,8 +16,8 @@ export class TaskCreatorComponent implements OnInit {
 
   showReview = false;
 ///
-  sourceTrainee: Trainee[];
-  assignedTrainee: Trainee[];
+  sourceUser: User[];
+  assignedUser: User[];
 ///
   taskModel = new Task();
   newTaskModel = new NewTask();
@@ -29,24 +29,24 @@ export class TaskCreatorComponent implements OnInit {
   assignIndex = 2;
 ///
   isLinear = true;
-  constructor(private service: TaskService, private traineeService: TraineeService,
+  constructor(private service: TaskService, private userService: UserService,
               private datePipe: DatePipe, private global: GlobalService) {
   }
 
   ngOnInit() {
     this.global.setCurrentProgramId(0);
-    this.traineeService.getAllTrainee(this.global.getCurrentProgramId()).subscribe( res => this.sourceTrainee = res.traineeList);
-    this.assignedTrainee = [];
+    this.userService.getAllUserByProgram(this.global.getCurrentProgramId()).subscribe( res => this.sourceUser = res.userList);
+    this.assignedUser = [];
     //
     this.lastStepIndex = 4;
     this.stepSize = 5;
   }
 
   prepareForReview() {
-    this.newTaskModel.trainee = [];
-    this.assignedTrainee.forEach(t => {console.log(this.newTaskModel.trainee); this.newTaskModel.trainee.push(t.id); });
+    this.newTaskModel.user = [];
+    this.assignedUser.forEach(t => {console.log(this.newTaskModel.user); this.newTaskModel.user.push(t.id); });
     this.taskModel.createdBy = 0;  // fake
-    this.taskModel.programId = 0;  // fake
+    this.taskModel.program = this.global.getCurrentProgramId();  // fake
     this.taskModel.modifiedBy = 0; // fake
     this.taskModel.status = 'created';
 
@@ -82,9 +82,9 @@ export class TaskCreatorComponent implements OnInit {
       this.showReview = false;
     }
     if ( ev.selectedIndex === this.assignIndex) {
-      this.assignedTrainee = [];
-      this.newTaskModel.trainee = [];
-      this.traineeService.getAllTrainee(this.global.getCurrentProgramId()).subscribe( res => this.sourceTrainee = res.traineeList);
+      this.assignedUser = [];
+      this.newTaskModel.user = [];
+      this.userService.getAllUserByProgram(this.global.getCurrentProgramId()).subscribe( res => this.sourceUser = res.userList);
     }
   }
 }

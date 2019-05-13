@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit , AfterViewInit{
         this.tokenStorage.saveAuthorities(data.authorities);
         this.global.setUid(data.uid);
         this.global.setCurrentProgramId(data.pid);
+        this.global.setLogged(true);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;

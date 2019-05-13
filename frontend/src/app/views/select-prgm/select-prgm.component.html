@@ -4,7 +4,7 @@
     <p class="card-text">Select the program from the list below to continue. You will be redirected to your dashboard.</p>
     <div class="list-group">
 <!--  -->
-      <div *ngFor="let p of prgms" (click)="selectPrgm(p)">
+      <div *ngFor="let p of prgmList.programList" (click)="selectPrgm(p)">
         <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{p.id}}</h5>
@@ -15,15 +15,6 @@
           <small>created By: {{'admin'}}</small>
         </a>
       </div>
-      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">id 1</h5>
-          <h5 class="mb-1">interns 2019</h5>
-          <small>program ID: 2</small>
-        </div>
-        <p class="mb-1"></p>
-        <small>created By: {{'admin'}}</small>
-      </a>
 <!--  -->
     </div>
   </div>

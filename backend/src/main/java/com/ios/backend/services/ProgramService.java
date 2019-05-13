@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ios.backend.dto.NewProgramDTO;
 import com.ios.backend.dto.ProgramListDTO;
+import com.ios.backend.entities.Invites;
 import com.ios.backend.entities.Program;
 import com.ios.backend.entities.User;
 import com.ios.backend.repositories.InvitesRepository;
@@ -81,6 +82,10 @@ public class ProgramService {
     for( long uid: users) {
       String email = userRepository.findById(uid).get().getEmail();
       mailService.sendPasscode(email, code, programRepository.findById(pid).get());
+      Invites invites = new Invites();
+      invites.setPid(pid);
+      invites.setUid(uid);
+      invitesRepository.save(invites);
     }
   }
   

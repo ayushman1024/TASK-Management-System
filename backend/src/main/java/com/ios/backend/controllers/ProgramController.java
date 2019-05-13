@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ios.backend.dto.CodeDTO;
 import com.ios.backend.dto.NewProgramDTO;
 import com.ios.backend.dto.ProgramListDTO;
 import com.ios.backend.services.MailService;
@@ -62,11 +63,11 @@ public class ProgramController {
     return new ResponseEntity<ProgramListDTO>(dto, HttpStatus.OK);
   }
   
-  @PostMapping("/enterPrg/{uid}")
+  @PostMapping("/enterPrg")
   @CrossOrigin(origins = clientUrl)
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-  public ResponseEntity<Boolean> enterProgram(@PathVariable("uid") Long uid, @RequestBody String code) {
-    service.addUser(uid, code);
+  public ResponseEntity<Boolean> enterProgram(@RequestBody CodeDTO code) {
+    service.addUser(code.getUid(), code.getCode());
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
   

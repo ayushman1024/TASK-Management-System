@@ -11,7 +11,7 @@ export class GlobalService {
   private token: string;
   private uid: number;
   private programName: string;
-
+  private logged = false;
   getToken(): string {
     return this.token;
   }
@@ -29,5 +29,17 @@ export class GlobalService {
   }
   setUid(uid: number) {
     this.uid = uid;
+  }
+  getProgramName(): string {
+    return this.programName;
+  }
+  setProgramName(programName: string) {
+    this.programName = programName;
+  }
+  setLogged(v: boolean) {
+    this.logged = v;
+  }
+  getLogged(): boolean {
+    return this.logged;
   }
 }

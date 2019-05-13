@@ -18,8 +18,8 @@ export class SelectPrgmComponent implements OnInit {
               private datePipe: DatePipe, private global: GlobalService) { }
 
   ngOnInit() {
-    this.service.getAll().subscribe( list => this.prgmList = list);
-    this.prgms = this.prgmList.programList;
+    this.service.getAllByAdmin(this.global.getUid()).subscribe( list => this.prgmList = list);
+    // this.prgms = this.prgmList.programList;
   }
 
   selectPrgm(p: Program) {

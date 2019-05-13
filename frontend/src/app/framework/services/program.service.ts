@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { NewProgram } from '../models/NewProgram';
 import { ProgramList } from '../models/ProgramList';
 import { GlobalService } from './global.service';
+import { CodeDTO } from '../models/CodeDTO';
+import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY_PROVIDER } from '@angular/cdk/overlay/typings/overlay-directives';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,9 @@ export class ProgramService {
     return this.http.get<ProgramList>(this.url + '/getAllProgramByAdmin/' + id);
   }
   enterPass(code: string) {
-    return this.http.post<any>(this.url + '/enterPrg/' + this.global.getUid(), code);
+    const dto: CodeDTO = new CodeDTO();
+    dto.code = code;
+    dto.uid = this.global.getUid();
+    return this.http.post<any>(this.url + '/enterPrg', dto);
   }
 }

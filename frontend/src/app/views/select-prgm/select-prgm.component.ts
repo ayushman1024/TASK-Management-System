@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Program } from '../../framework/models/Program';
 import { ProgramList } from '../../framework/models/ProgramList';
 import { ProgramService } from 'src/app/framework/services/program.service';
 import { DatePipe } from '@angular/common';
 import { GlobalService } from 'src/app/framework/services/global.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-select-prgm',
@@ -12,18 +13,21 @@ import { GlobalService } from 'src/app/framework/services/global.service';
 })
 export class SelectPrgmComponent implements OnInit {
 
+  @Output()
+  select = new EventEmitter();
+
   prgmList = new ProgramList();
   prgms: Program[];
-  constructor(private service: ProgramService,
+  constructor(private service: ProgramService, private router: Router, private route: ActivatedRoute,
               private datePipe: DatePipe, private global: GlobalService) { }
 
   ngOnInit() {
-    this.service.getAllByAdmin(this.global.getUid()).subscribe( list => this.prgmList = list);
-    // this.prgms = this.prgmList.programList;
+    this.service.getAllByUser().subscribe( list => this.prgmList = list);
   }
 
   selectPrgm(p: Program) {
-    console.log('Selected Program: ', p);
+    this.select.emit(p);
     this.global.setCurrentProgramId(p.id);
+    this.router.navigate(['./prg']);
   }
 }

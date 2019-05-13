@@ -17,7 +17,7 @@ export class UdashboardComponent implements OnInit {
       map(result => result.matches)
     );
 
-  constructor(private global: GlobalService,  private router: Router, private route: ActivatedRoute,
+  constructor(private global: GlobalService, private router: Router, private route: ActivatedRoute,
               private breakpointObserver: BreakpointObserver) { }
 
   ngOnInit() {

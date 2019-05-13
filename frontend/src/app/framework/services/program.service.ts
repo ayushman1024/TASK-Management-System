@@ -23,10 +23,15 @@ export class ProgramService {
   getAllByAdmin(id: number) {
     return this.http.get<ProgramList>(this.url + '/getAllProgramByAdmin/' + id);
   }
+
+  getAllByUser() {
+    return this.http.get<ProgramList>(this.url + '/getAllProgramByUser/' + this.global.getUid());
+  }
   enterPass(code: string) {
-    const dto: CodeDTO = new CodeDTO();
+    const dto = new CodeDTO();
     dto.code = code;
     dto.uid = this.global.getUid();
+    console.log(dto);
     return this.http.post<any>(this.url + '/enterPrg', dto);
   }
 }

@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Component
 public class Program {
@@ -22,6 +24,7 @@ public class Program {
   @Column(length = 65450, columnDefinition = "text")
   private String description;
   @ManyToMany
+  @JsonManagedReference
   private List<User> users;
   
   private long admin;

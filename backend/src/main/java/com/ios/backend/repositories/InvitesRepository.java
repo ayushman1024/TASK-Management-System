@@ -1,5 +1,7 @@
 package com.ios.backend.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +17,8 @@ public interface InvitesRepository extends CrudRepository<Invites, Long>{
   @Query("SELECT i.pid FROM Invites i WHERE i.uid=:uid")
   long getPidByUid(@Param("uid") long uid);
   
-  Invites findByUid(long uid);
-  Invites findByPid(long pid);
+  @Query("SELECT i.pid FROM Invites i WHERE i.uid=:uid")
+  List<Long> findByUid(long uid);
+
+  List<Invites> findByPid(long pid);
 }

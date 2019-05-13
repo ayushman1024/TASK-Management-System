@@ -1,12 +1,6 @@
 package com.ios.backend.resources;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import com.ios.backend.entities.Program;
-import com.ios.backend.entities.Role;
+import com.ios.backend.entities.User;
 
 public class UserResource {
   private long id;
@@ -17,19 +11,28 @@ public class UserResource {
 
   private String email;
 
-  private String password;
+  public UserResource() {}
 
-  private Set<Role> roles = new HashSet<>();
-
-  private List<Program> program = new ArrayList<>();
-
-  public List<Program> getProgram() {
-    return program;
+  public UserResource(User user) {
+    this.id = user.getId();
+    this.name= user.getName();
+    this.username = user.getUsername();
+    this.email = user.getEmail();
   }
 
-  public void setProgram(List<Program> program) {
-    this.program = program;
-  }
+//  private String password;
+
+//  private Set<Role> roles = new HashSet<>();
+//
+//  private List<Program> program = new ArrayList<>();
+
+//  public List<Program> getProgram() {
+//    return program;
+//  }
+//
+//  public void setProgram(List<Program> program) {
+//    this.program = program;
+//  }
 
   public Long getId() {
       return id;
@@ -63,19 +66,19 @@ public class UserResource {
       this.email = email;
   }
 
-  public String getPassword() {
-      return password;
-  }
+//  public String getPassword() {
+//      return password;
+//  }
+//
+//  public void setPassword(String password) {
+//      this.password = password;
+//  }
 
-  public void setPassword(String password) {
-      this.password = password;
-  }
-
-  public Set<Role> getRoles() {
-      return roles;
-  }
-
-  public void setRoles(Set<Role> roles) {
-      this.roles = roles;
-  }
+//  public Set<Role> getRoles() {
+//      return roles;
+//  }
+//
+//  public void setRoles(Set<Role> roles) {
+//      this.roles = roles;
+//  }
 }

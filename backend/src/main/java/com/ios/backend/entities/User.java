@@ -21,6 +21,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.NaturalId;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {
@@ -60,6 +62,7 @@ public class User{
     private Set<Role> roles = new HashSet<>();
 
     @ManyToMany(mappedBy = "users")
+    @JsonManagedReference
     private List<Program> program = new ArrayList<>();
     
     public User() {}

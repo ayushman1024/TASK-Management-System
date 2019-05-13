@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ios.backend.dto.CodeDTO;
 import com.ios.backend.dto.NewProgramDTO;
-import com.ios.backend.dto.ProgramListDTO;
-import com.ios.backend.services.MailService;
+import com.ios.backend.resources.ProgramListResource;
 import com.ios.backend.services.ProgramService;
 import com.ios.backend.services.UserService;
 import com.ios.backend.utils.Client;
@@ -40,27 +39,26 @@ public class ProgramController {
   @GetMapping("/getAllProgram")
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<ProgramListDTO> getAllProgram() {
-    return new ResponseEntity<ProgramListDTO>(service.getAll(), HttpStatus.OK);
+  public ResponseEntity<ProgramListResource> getAllProgram() {
+    return new ResponseEntity<ProgramListResource>(service.getAll(), HttpStatus.OK);
   }
   
   @GetMapping("/getAllProgramByAdmin/{id}")
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<ProgramListDTO> getAllProgramByAdmin(@PathVariable("id") Long id) {
-    
-    ProgramListDTO dto = service.getAllByAdmin(id);
-    return new ResponseEntity<ProgramListDTO>(dto, HttpStatus.OK);
+  public ResponseEntity<ProgramListResource> getAllProgramByAdmin(@PathVariable("id") Long id) {
+    ProgramListResource dto = service.getAllByAdmin(id);
+    return new ResponseEntity<ProgramListResource>(dto, HttpStatus.OK);
   }
   
   @GetMapping("/getAllProgramByUser/{uid}")
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<ProgramListDTO> getAllProgramByUser(@PathVariable("uid") Long uid) {
+  public ResponseEntity<ProgramListResource> getAllProgramByUser(@PathVariable("uid") Long uid) {
     
-    ProgramListDTO dto = new ProgramListDTO();
+    ProgramListResource dto = new ProgramListResource();
     dto.setProgramList(userService.getAllProgramByUser(uid));
-    return new ResponseEntity<ProgramListDTO>(dto, HttpStatus.OK);
+    return new ResponseEntity<ProgramListResource>(dto, HttpStatus.OK);
   }
   
   @PostMapping("/enterPrg")

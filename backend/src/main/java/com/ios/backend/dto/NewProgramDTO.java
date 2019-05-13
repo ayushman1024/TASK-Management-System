@@ -1,9 +1,5 @@
 package com.ios.backend.dto;
 
-import java.util.List;
-
-import com.ios.backend.entities.User;
-
 public class NewProgramDTO {
   private long id;
   private String name;

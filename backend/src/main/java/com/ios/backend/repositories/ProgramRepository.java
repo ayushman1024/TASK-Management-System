@@ -2,13 +2,12 @@ package com.ios.backend.repositories;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.ios.backend.entities.Program;
-import com.ios.backend.entities.Task;
 
 @Repository
-public interface ProgramRepository extends CrudRepository<Program, Long> {
+public interface ProgramRepository extends JpaRepository<Program, Long> {
 
   List<Program> findByAdmin(long admin);
 }

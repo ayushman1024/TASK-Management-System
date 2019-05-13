@@ -1,16 +1,15 @@
 package com.ios.backend.resources;
 
 import java.util.List;
-import com.ios.backend.entities.User;
 
 public class UserListResource {
-  private List<User> userList;
+  private List<UserResource> userList;
 
-  public List<User> getUserList() {
+  public List<UserResource> getUserList() {
     return userList;
   }
 
-  public void setUserList(List<User> userList) {
+  public void setUserList(List<UserResource> userList) {
     this.userList = userList;
   }
 }

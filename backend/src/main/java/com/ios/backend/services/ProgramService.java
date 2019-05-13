@@ -3,12 +3,12 @@ package com.ios.backend.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ios.backend.dto.NewProgramDTO;
-import com.ios.backend.dto.ProgramListDTO;
 import com.ios.backend.entities.Invites;
 import com.ios.backend.entities.Program;
 import com.ios.backend.entities.User;
@@ -18,6 +18,8 @@ import com.ios.backend.repositories.ProgramRepository;
 import com.ios.backend.repositories.TaskRecordRepository;
 import com.ios.backend.repositories.TaskRespository;
 import com.ios.backend.repositories.UserRepository;
+import com.ios.backend.resources.ProgramListResource;
+import com.ios.backend.resources.ProgramResource;
 
 @Service
 public class ProgramService {
@@ -44,9 +46,17 @@ public class ProgramService {
     if(! Objects.isNull(pidv)) {
       long pid = pidv.longValue();
       boolean ifInvited = invitesRepository.existsByUid(uid);
-      long invitedPid = invitesRepository.findByUid(uid).getPid();
-
-      if( ifInvited && pid == invitedPid) {
+      List<Long> invitedPid = invitesRepository.findByUid(uid);
+      boolean checked = false;
+      for(Long id: invitedPid) {
+        if(id == pid) {
+          checked = true;
+          break;
+        }
+      }
+      
+      if( ifInvited && checked) {
+        System.out.println("###########");
         invited = true;
         Program p = programRepository.findById(pid).get();
         List<User> users = p.getUsers();
@@ -68,6 +78,10 @@ public class ProgramService {
     program.setName(newProgramDto.getName());
     program.setDescription(newProgramDto.getDescription());
     program.setAdmin(admin);
+    User user = userRepository.findById(admin).get();
+    List<User> userList = new ArrayList();
+    userList.add(user);
+    program.setUsers(userList);
     Program savedProgram = programRepository.save(program);
 
     String code = mailService.generatePasscodeForProgram(savedProgram.getId());
@@ -89,15 +103,15 @@ public class ProgramService {
     }
   }
   
-  public ProgramListDTO getAll() {
-    ProgramListDTO list = new ProgramListDTO();
-    list.setProgramList((List<Program>)programRepository.findAll());
+  public ProgramListResource getAll() {
+    ProgramListResource list = new ProgramListResource();
+    list.setProgramList( (List<ProgramResource>) programRepository.findAll().stream().map(p -> new ProgramResource(p)).collect(Collectors.toList()));
     return list;
   }
   
-  public ProgramListDTO getAllByAdmin(long id) {
-    ProgramListDTO listDTO = new ProgramListDTO();
-    listDTO.setProgramList(programRepository.findByAdmin(id));
-    return listDTO;
+  public ProgramListResource getAllByAdmin(long id) {
+    ProgramListResource list = new ProgramListResource();
+    list.setProgramList( (List<ProgramResource>) programRepository.findByAdmin(id).stream().map(p -> new ProgramResource(p)).collect(Collectors.toList()));
+    return list;
   }
 }

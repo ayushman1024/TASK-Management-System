@@ -1,0 +1,42 @@
+<div class="row">
+<div class="col-4">
+  <mat-card #panel>
+    <mat-card-title>Description</mat-card-title>
+    <mat-card-content id="descBox" (click)="toggleDescDialog()">
+      <div #desc>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+<table class="table table-striped table-bordered col-8">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Task ID</th>
+        <th scope="col">Task Name</th>
+        <th scope="col">Started</th>
+        <th scope="col">Deadline</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="task-row" (click)="descHover(t)" *ngFor="let t of taskList;let i = index">
+        <th scope="row">{{i+1}}</th>
+        <th >{{t.id}}</th>
+        <td>{{t.name}}</td>
+        <td>{{t.startTime}}</td>
+        <td>{{t.deadline}}</td>
+        <td>{{t.status}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p-dialog header="Description" [style]="[{'max-width':'30vw'},{'max-width':'75vh'}]" [(visible)]="descDialogVisible" (onShow)="loadDialogData()">
+    <mat-card #panel>
+      <mat-card-title>Description</mat-card-title>
+      <mat-card-content id="descBox">
+        <div #dialog></div>
+        <!-- task description is appended over here  -->
+      </mat-card-content>
+    </mat-card>
+</p-dialog>

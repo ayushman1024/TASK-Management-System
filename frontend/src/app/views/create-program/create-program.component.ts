@@ -30,13 +30,11 @@ export class CreateProgramComponent implements OnInit {
     }
   }
 
-  onPublish() {
+  onSubmit() {
     this.newProgram.users = [];
     this.assignedUser.forEach(u => {this.newProgram.users.push(u.id); });
     this.newProgram.admin = this.global.getUid();
     this.service.create(this.newProgram).subscribe();
   }
 
-  initialize() {
-  }
 }

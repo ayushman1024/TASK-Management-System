@@ -13,9 +13,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SelectPrgmComponent implements OnInit {
 
-  @Output()
-  select = new EventEmitter();
-
   prgmList = new ProgramList();
   prgms: Program[];
   constructor(private service: ProgramService, private router: Router, private route: ActivatedRoute,
@@ -26,8 +23,8 @@ export class SelectPrgmComponent implements OnInit {
   }
 
   selectPrgm(p: Program) {
-    this.select.emit(p);
+    console.log(p);
     this.global.setCurrentProgramId(p.id);
-    this.router.navigate(['./prg']);
+    this.router.navigate(['./../../t', 'myTasks'], {relativeTo: this.route });
   }
 }

@@ -4,8 +4,8 @@
     <p class="card-text">Select the program from the list below to continue. You will be redirected to your dashboard.</p>
     <div class="list-group">
 <!--  -->
-      <div *ngFor="let p of prgmList.programList" (click)="selectPrgm(p)">
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div *ngFor="let p of prgmList.programList">
+        <a class="list-group-item list-group-item-action flex-column align-items-start" (click)="selectPrgm(p)">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">{{p.id}}</h5>
             <h5 class="mb-1">{{p.name}}</h5>

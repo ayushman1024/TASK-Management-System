@@ -34,10 +34,8 @@ export class TaskCreatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.global.setCurrentProgramId(0);
-    this.userService.getAllUserByProgram(this.global.getCurrentProgramId()).subscribe( res => this.sourceUser = res.userList);
+    this.userService.getAllUserByProgram().subscribe( res => this.sourceUser = res.userList);
     this.assignedUser = [];
-    //
     this.lastStepIndex = 4;
     this.stepSize = 5;
   }
@@ -45,9 +43,9 @@ export class TaskCreatorComponent implements OnInit {
   prepareForReview() {
     this.newTaskModel.user = [];
     this.assignedUser.forEach(t => {console.log(this.newTaskModel.user); this.newTaskModel.user.push(t.id); });
-    this.taskModel.createdBy = 0;  // fake
-    this.taskModel.program = this.global.getCurrentProgramId();  // fake
-    this.taskModel.modifiedBy = 0; // fake
+    this.taskModel.createdBy = this.global.getUid();  // The same user
+    this.taskModel.program = this.global.getCurrentProgramId();  // The program of this dashboard
+    this.taskModel.modifiedBy = this.global.getUid(); // The same user/ who created
     this.taskModel.status = 'created';
 
     this.taskModel.modifiedTime = this.datePipe.transform(Date.now(), 'yyyy-MM-dd HH:mm');
@@ -84,7 +82,7 @@ export class TaskCreatorComponent implements OnInit {
     if ( ev.selectedIndex === this.assignIndex) {
       this.assignedUser = [];
       this.newTaskModel.user = [];
-      this.userService.getAllUserByProgram(this.global.getCurrentProgramId()).subscribe( res => this.sourceUser = res.userList);
+      this.userService.getAllUserByProgram().subscribe( res => this.sourceUser = res.userList);
     }
   }
 }

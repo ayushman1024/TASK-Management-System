@@ -16,15 +16,11 @@ import { MaterialModuleImportModule } from './core/modules/material-module-impor
 import { PrimengModuleImportModule } from './core/modules/primeng-module-import.module';
 import { DatePipe } from '@angular/common';
 import { GlobalService } from './framework/services/global.service';
-import { HomePageComponent } from './views/home-page/home-page.component';
-import { LoginFormComponent } from './views/login-form/login-form.component';
 import { NewTaskReviewComponent } from './views/tasks/new-task-review/new-task-review.component';
-import { MdashboardComponent } from './views/mdashboard/mdashboard.component';
 import { TdashboardComponent } from './views/tdashboard/tdashboard.component';
-import { MyTasksComponent } from './views/my-tasks/my-tasks.component';
+import { MyTasksComponent } from './views/tasks/my-tasks/my-tasks.component';
 import { CreateProgramComponent } from './views/create-program/create-program.component';
 import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
-import { MhomeComponent } from './views/mhome/mhome.component';
 import { UdashboardComponent } from './views/udashboard/udashboard.component';
 import { EnterProgramComponent } from './views/enter-program/enter-program.component';
 import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth-interceptor';
@@ -34,17 +30,13 @@ import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth
       TaskDashboardComponent,
       TaskCreatorComponent,
       ErrorPageComponent,
-      HomePageComponent,
-      LoginFormComponent,
       LoginComponent,
       RegisterComponent,
       NewTaskReviewComponent,
-      MdashboardComponent,
       TdashboardComponent,
       MyTasksComponent,
       CreateProgramComponent,
       SelectPrgmComponent,
-      MhomeComponent,
       UdashboardComponent,
       EnterProgramComponent,
    ],

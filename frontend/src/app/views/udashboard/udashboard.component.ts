@@ -30,6 +30,6 @@ export class UdashboardComponent implements OnInit {
     window.sessionStorage.clear();
     this.router.navigate(['/login']);
     this.global.setLogged(false);
-    window.location.reload();
+    // window.location.reload();
   }
 }

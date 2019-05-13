@@ -5,13 +5,14 @@ import { NewTask } from './../models/NewTask';
 import { Task } from '../models/Task';
 import { TaskRecordList } from './../models/TaskRecordList';
 import { TaskList } from '../models/TaskList';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
   url = environment.baseURL;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private global: GlobalService) { }
 
   create(newTask: NewTask) {
     return this.http.post<any>(this.url + '/createTask', newTask);
@@ -20,10 +21,11 @@ export class TaskService {
   getTaskById(id: number) {
     return this.http.get<Task>(this.url + '/getTaskById/' + id);
   }
-  getallTaskByTrainee(id: number) {
-    return this.http.get<TaskList>(this.url + '/getAllTaskByTrainee/' + id);
+  getallTaskByUser() {
+    return this.http.get<TaskList>(this.url + '/getAllTaskByUser/' + this.global.getCurrentProgramId() + '/' + this.global.getUid());
   }
-  getallTaskRecordByTrainee(id: number) {
-    return this.http.get<TaskRecordList>(this.url + '/getAllTaskRecordByTrainee/' + id);
+  getallTaskRecordByUser(id: number) {
+    const path = this.url + '/getAllTaskRecordByUser/' + this.global.getCurrentProgramId() + '/' + this.global.getUid();
+    return this.http.get<TaskRecordList>(path);
   }
 }

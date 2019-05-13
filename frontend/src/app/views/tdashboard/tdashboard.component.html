@@ -4,11 +4,8 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar>Dashboard</mat-toolbar>
     <mat-nav-list class="nav-list">
-      <mat-list-item><a [routerLink]="['./#']">Account</a></mat-list-item>
       <mat-list-item><a [routerLink]="['./myTasks']">My Tasks</a></mat-list-item>
       <mat-list-item><a [routerLink]="['./taskCreate']">Create Task</a></mat-list-item>
-      <mat-list-item><a [routerLink]="['./#']">All tasks</a></mat-list-item>
-      <mat-list-item><a [routerLink]="['./#']">New Program</a></mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

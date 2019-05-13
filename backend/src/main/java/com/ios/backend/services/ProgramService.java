@@ -2,21 +2,22 @@ package com.ios.backend.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ios.backend.dto.NewProgramDTO;
 import com.ios.backend.dto.ProgramListDTO;
-import com.ios.backend.entities.Mentor;
+import com.ios.backend.entities.Invites;
 import com.ios.backend.entities.Program;
-import com.ios.backend.entities.Trainee;
-import com.ios.backend.repositories.MentorRepository;
+import com.ios.backend.entities.User;
+import com.ios.backend.repositories.InvitesRepository;
+import com.ios.backend.repositories.PasscodeRepository;
 import com.ios.backend.repositories.ProgramRepository;
 import com.ios.backend.repositories.TaskRecordRepository;
 import com.ios.backend.repositories.TaskRespository;
-import com.ios.backend.repositories.TraineeRepository;
+import com.ios.backend.repositories.UserRepository;
 
 @Service
 public class ProgramService {
@@ -24,50 +25,68 @@ public class ProgramService {
   @Autowired
   private TaskRespository taskRepository;
   @Autowired
-  private TraineeRepository traineeRepository;
-  @Autowired
-  private MentorRepository mentorRepository;
+  private UserRepository userRepository;
   @Autowired
   private TaskRecordRepository taskRecordRepository;
   @Autowired
   private ProgramRepository programRepository;
+  @Autowired
+  private PasscodeRepository passcodeRepository;
+  @Autowired
+  private InvitesRepository invitesRepository;
+  @Autowired
+  private MailService mailService;
   
-  public void addTrainee(Program program, long[] traineeIdList) {
-    List<Trainee> trainees = new ArrayList<Trainee>();
-    for(long id: traineeIdList) {
-      Trainee t = traineeRepository.findById(id).get();
-      if(t != null) {
-        trainees.add(t);
+  public boolean addUser(long uid, String code) {
+    boolean invited = false;
+    User user = userRepository.findById(uid).get();
+    Long pidv = passcodeRepository.getPidByCode(code);
+    if(! Objects.isNull(pidv)) {
+      long pid = pidv.longValue();
+      boolean ifInvited = invitesRepository.existsByUid(uid);
+      long invitedPid = invitesRepository.findByUid(uid).getPid();
+
+      if( ifInvited && pid == invitedPid) {
+        invited = true;
+        Program p = programRepository.findById(pid).get();
+        List<User> users = p.getUsers();
+        users.add(user);
+        p.setUsers(users);
+        programRepository.save(p);
+      } else {
+        invited = false;
       }
+    } else {
+      invited = false;
     }
-    program.setTrainees(trainees);
+    return invited;
   }
 
-  public void addMentor(Program program, long[] mentorIdList) {
-    List<Mentor> mentors = new ArrayList<Mentor>();
-    for(long id: mentorIdList) {
-      Mentor t = mentorRepository.findById(id).get();
-      if(t != null) {
-        mentors.add(t);
-      }
-    }
-    program.setMentors(mentors);
-  }
-
-  public void createProgram(NewProgramDTO newProgramDto, long mid) {
+  public long createProgram(NewProgramDTO newProgramDto, long admin) {
     Program program = new Program();
     program.setId(newProgramDto.getId());
     program.setName(newProgramDto.getName());
     program.setDescription(newProgramDto.getDescription());
-    addMentor(program, newProgramDto.getMentors());
-    addTrainee(program, newProgramDto.getTrainees());
+    program.setAdmin(admin);
     Program savedProgram = programRepository.save(program);
 
-    Mentor mentor = mentorRepository.findById(mid).get();
-    Set<Long> prgmSet =  mentor.getProgram();
-    prgmSet.add(savedProgram.getId());
-    mentor.setProgram(prgmSet);
-    mentorRepository.save(mentor);
+    String code = mailService.generatePasscodeForProgram(savedProgram.getId());
+    long[] users = newProgramDto.getUsers();
+    inviteUsers(users, code, savedProgram.getId());
+    
+    return savedProgram.getId();
+  }
+  
+  public void inviteUsers(long[] users, String code, long pid) {
+    
+    for( long uid: users) {
+      String email = userRepository.findById(uid).get().getEmail();
+      mailService.sendPasscode(email, code, programRepository.findById(pid).get());
+      Invites invites = new Invites();
+      invites.setPid(pid);
+      invites.setUid(uid);
+      invitesRepository.save(invites);
+    }
   }
   
   public ProgramListDTO getAll() {
@@ -76,14 +95,9 @@ public class ProgramService {
     return list;
   }
   
-  public ProgramListDTO getAllByMentor(long id) {
+  public ProgramListDTO getAllByAdmin(long id) {
     ProgramListDTO listDTO = new ProgramListDTO();
-    List<Program> programList = new ArrayList<>();
-    Set<Long> programSet = mentorRepository.findProgramById(id);
-    for( Long p: programSet) {
-      programList.add(programRepository.findById(p).get());
-    }
-    listDTO.setProgramList(programList);
+    listDTO.setProgramList(programRepository.findByAdmin(id));
     return listDTO;
   }
 }

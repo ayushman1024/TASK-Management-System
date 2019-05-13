@@ -1,6 +1,6 @@
 export class Task {
   public id: number;
-  public programId: number;
+  public program: number;
   public name: string;
   public createdBy: number;
   public startTime: string;

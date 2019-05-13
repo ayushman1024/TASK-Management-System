@@ -36,13 +36,13 @@ import com.ios.backend.utils.Client;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/auth")
-public class AuthRestAPIs {
+public class AuthController {
 
   final String clientUrl = Client.clientUrl;
   
   @Autowired
   MailService s;
-  
+
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -69,15 +69,15 @@ public class AuthRestAPIs {
 
 		String jwt = jwtProvider.generateJwtToken(authentication);
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-		return ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+		long id = userRepository.getIdByUsername(userDetails.getUsername());
+		JwtResponse jwtRes = new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(), id);
+		return ResponseEntity.ok(jwtRes);
 	}
 
 	@PostMapping("/signup")
 	@CrossOrigin(origins = clientUrl)
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-
-    s.sendPasscode("ayushman1024@gmail.com", "Demo-Program");
+//    s.sendPasscode("ayushman1024@gmail.com", "Demo-Program");
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		}
@@ -86,31 +86,40 @@ public class AuthRestAPIs {
 			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		}
 
-		// Creating user's account
 		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()));
 
-		Set<String> strRoles = signUpRequest.getRole();
+//		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
-		strRoles.forEach(role -> {
-			switch (role) {
-			case "admin":
-				Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-				roles.add(adminRole);
-				break;
-			case "user":
-			  Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-			  roles.add(userRole);
-				break;
-			default:
-			  Role pmRole = roleRepository.findByName(RoleName.ROLE_PUBLIC)
-        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Public Role not find."));
-			  roles.add(pmRole);
-			}
-		});
+		if( signUpRequest.getUser().equalsIgnoreCase("U")) {
+		  Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+	        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+	        roles.add(userRole);
+	    
+		} else if( signUpRequest.getUser().equalsIgnoreCase("A")) {
+		  Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+          .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+      roles.add(adminRole);
+		}
+//		strRoles.forEach(role -> {
+//			switch (role) {
+//			case "admin":
+//				Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+//						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+//				roles.add(adminRole);
+//				break;
+//			case "user":
+//			  Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+//        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+//			  roles.add(userRole);
+//				break;
+//			default:
+//			  Role pmRole = roleRepository.findByName(RoleName.ROLE_PUBLIC)
+//        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Public Role not find."));
+//			  roles.add(pmRole);
+//			}
+//		});
 
 		user.setRoles(roles);
 		userRepository.save(user);

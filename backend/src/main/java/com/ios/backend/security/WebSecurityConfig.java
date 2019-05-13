@@ -17,6 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.ios.backend.security.jwt.JwtAuthEntryPoint;
 import com.ios.backend.security.jwt.JwtAuthTokenFilter;
 import com.ios.backend.security.services.UserDetailsServiceImpl;
+import com.ios.backend.utils.Client;
 
 @Configuration
 @EnableWebSecurity
@@ -24,6 +25,8 @@ import com.ios.backend.security.services.UserDetailsServiceImpl;
 		prePostEnabled = true
 )
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    final String clientUrl = Client.clientUrl;
+
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
@@ -53,6 +56,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
     
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource()
+//    {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Arrays.asList(clientUrl));
+//        configuration.setAllowedMethods(Arrays.asList("GET","POST","PUT"));
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().

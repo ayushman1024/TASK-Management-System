@@ -2,23 +2,40 @@ package com.ios.backend.resources;
 
 public class TaskRecordResource {
   private long id;
-  private long traineeId;
-  private long taskId;
+  private long user;
+  private long program;
+  private long task;
   private String status;
   private double score;
   private double max;
   private String remarks;
 
+  public long getProgram() {
+    return program;
+  }
+
+  public void setProgram(long program) {
+    this.program = program;
+  }
+
   public long getId() {
     return id;
   }
 
-  public long getTraineeId() {
-    return traineeId;
+  public void setId(long id) {
+    this.id = id;
   }
 
-  public long getTaskId() {
-    return taskId;
+  public long getUser() {
+    return user;
+  }
+
+  public void setUser(long user) {
+    this.user = user;
+  }
+
+  public long getTask() {
+    return task;
   }
 
   public String getStatus() {
@@ -37,16 +54,8 @@ public class TaskRecordResource {
     return remarks;
   }
 
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public void setTraineeId(long traineeId) {
-    this.traineeId = traineeId;
-  }
-
-  public void setTaskId(long taskId) {
-    this.taskId = taskId;
+  public void setTask(long task) {
+    this.task = task;
   }
 
   public void setStatus(String status) {

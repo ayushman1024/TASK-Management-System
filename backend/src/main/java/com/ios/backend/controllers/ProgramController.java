@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ios.backend.dto.CodeDTO;
 import com.ios.backend.dto.NewProgramDTO;
 import com.ios.backend.dto.ProgramListDTO;
-import com.ios.backend.services.MentorService;
+import com.ios.backend.services.MailService;
 import com.ios.backend.services.ProgramService;
+import com.ios.backend.services.UserService;
 import com.ios.backend.utils.Client;
 
 @RestController
@@ -25,28 +27,48 @@ public class ProgramController {
   private ProgramService service;
   
   @Autowired
-  private MentorService mentorService;
+  private UserService userService;
   
-  @PostMapping("/createProgram/{mid}")
-  @PreAuthorize("hasRole('ADMIN')")
+  @PostMapping("/createProgram/{uid}")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<Boolean> createProgram(@PathVariable("mid") Long id, @RequestBody NewProgramDTO newProgramDto) {
-    service.createProgram(newProgramDto, id);
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<Boolean> createProgram(@PathVariable("uid") Long uid, @RequestBody NewProgramDTO newProgramDto) {
+    long pid = service.createProgram(newProgramDto, uid);
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
   
   @GetMapping("/getAllProgram")
-  @PreAuthorize("hasRole('ADMIN')")
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
   public ResponseEntity<ProgramListDTO> getAllProgram() {
     return new ResponseEntity<ProgramListDTO>(service.getAll(), HttpStatus.OK);
   }
   
-  @GetMapping("/getAllProgramByMentor/{id}")
-  @PreAuthorize("hasRole('ADMIN')")
+  @GetMapping("/getAllProgramByAdmin/{id}")
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<ProgramListDTO> getAllProgramByMentor(@PathVariable("id") Long id) {
-    ProgramListDTO dto = service.getAllByMentor(id);
+  public ResponseEntity<ProgramListDTO> getAllProgramByAdmin(@PathVariable("id") Long id) {
+    
+    ProgramListDTO dto = service.getAllByAdmin(id);
     return new ResponseEntity<ProgramListDTO>(dto, HttpStatus.OK);
   }
+  
+  @GetMapping("/getAllProgramByUser/{uid}")
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  @CrossOrigin(origins = clientUrl)
+  public ResponseEntity<ProgramListDTO> getAllProgramByUser(@PathVariable("uid") Long uid) {
+    
+    ProgramListDTO dto = new ProgramListDTO();
+    dto.setProgramList(userService.getAllProgramByUser(uid));
+    return new ResponseEntity<ProgramListDTO>(dto, HttpStatus.OK);
+  }
+  
+  @PostMapping("/enterPrg")
+  @CrossOrigin(origins = clientUrl)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<Boolean> enterProgram(@RequestBody CodeDTO code) {
+    service.addUser(code.getUid(), code.getCode());
+    return new ResponseEntity<Boolean>(true,HttpStatus.OK);
+  }
+  
 }

@@ -3,55 +3,47 @@
 </div>
 
 <ng-template #signupForm>
-  <div class="form row col-sm-6" style="max-width:350px;">
+  <div class="form row col-sm-6 auth" style="max-width:350px;">
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="name">Your name</label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="signupInfo.name" #name required />
-        <div *ngIf="f.submitted && name.invalid">
-          <div *ngIf="name.errors.required">Name is required</div>
+    <div><p class="h4">REGISTER</p></div>
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="signupInfo.name" #name required />
+          <div *ngIf="f.submitted && name.invalid">
+            <div *ngIf="name.errors.required">Name is required</div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="signupInfo.username" #username
-          required />
-        <div *ngIf="f.submitted && username.invalid">
-          <div *ngIf="username.errors.required">Username is required</div>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" [(ngModel)]="signupInfo.username" #username
+            required />
+          <div *ngIf="f.submitted && username.invalid">
+            <div *ngIf="username.errors.required">Username is required</div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" class="form-control" name="email" [(ngModel)]="signupInfo.email" #email required email />
-        <div *ngIf="f.submitted && email.invalid">
-          <div *ngIf="email.errors.required">Email is required</div>
-          <div *ngIf="email.errors.email">Email must be a valid email address</div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" name="email" [(ngModel)]="signupInfo.email" #email required email />
+          <div *ngIf="f.submitted && email.invalid">
+            <div *ngIf="email.errors.required">Email is required</div>
+            <div *ngIf="email.errors.email">Email must be a valid email address</div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="signupInfo.password" #password
-          required minlength="6" />
-        <div *ngIf="f.submitted && password.invalid">
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input pPassword type="password" class="form-control" name="password" [(ngModel)]="signupInfo.password" #password
+            required minlength="6" />
+          <div *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <mat-label>Select Your Profile</mat-label>
-          <mat-select [(ngModel)]="signupInfo.user" name="user">
-            <mat-option value="M">MENTOR</mat-option>
-            <mat-option value="T">TRAINEE</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" [routerLink]="['/signup']">Register</button>
-        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
-          Signup failed!<br/>{{errorMessage}}
+        <div class="form-group">
+          <button class="btn btn-primary" [routerLink]="['/signup']">Register</button>
+          <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+            Signup failed!<br/>{{errorMessage}}
+          </div>
         </div>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
 </ng-template>

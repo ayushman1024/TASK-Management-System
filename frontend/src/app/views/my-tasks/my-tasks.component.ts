@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { TaskService } from '../../framework/services/task.service';
-import { TraineeService } from 'src/app/framework/services/trainee.service';
 import { DatePipe } from '@angular/common';
 import { GlobalService } from 'src/app/framework/services/global.service';
 import { TaskRecord } from '../../framework/models/TaskRecord';
@@ -23,7 +22,7 @@ export class MyTasksComponent implements OnInit {
   list = [];
   descDialogVisible = false;
   dialogDescData = '';
-  constructor(private service: TaskService, private traineeService: TraineeService,
+  constructor(private service: TaskService,
               private datePipe: DatePipe, private global: GlobalService) {
   }
 

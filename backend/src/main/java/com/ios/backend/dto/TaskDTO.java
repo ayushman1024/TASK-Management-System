@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class TaskDTO {
   private long id;
-  private long programId;
+  private long program;
   private String name;
   private long createdBy;
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -29,8 +29,8 @@ public class TaskDTO {
     return id;
   }
 
-  public long getProgramId() {
-    return programId;
+  public long getProgram() {
+    return program;
   }
 
   public String getName() {
@@ -73,8 +73,8 @@ public class TaskDTO {
     this.id = id;
   }
 
-  public void setProgramId(long programId) {
-    this.programId = programId;
+  public void setProgram(long program) {
+    this.program = program;
   }
 
   public void setName(String name) {

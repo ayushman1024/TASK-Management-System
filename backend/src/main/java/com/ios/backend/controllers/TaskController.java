@@ -4,6 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,31 +29,35 @@ public class TaskController {
 
   @PostMapping("/createTask")
   @CrossOrigin(origins = clientUrl)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<Boolean> createTask(@RequestBody NewTaskDTO newTaskDto) {
     Task task = new Task();
     BeanUtils.copyProperties(newTaskDto.getTask(), task);
-    service.createTask(task, newTaskDto.getTrainee());
+    service.createTask(task, newTaskDto.getUser());
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
 
-  @GetMapping("/getAllTaskRecordByTrainee/{id}")
+  @GetMapping("/getAllTaskRecordByUser/{pid}/{uid}")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<TaskRecordListResource> getAllTaskRecordByTrainee(@PathVariable("id") Long id) {
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<TaskRecordListResource> getAllTaskRecordByUser(@PathVariable("pid") Long pid, @PathVariable("uid") Long uid) {
     // service call
-    TaskRecordListResource trlr = service.getAllTaskRecordOfTrainee(id);
+    TaskRecordListResource trlr = service.getAllTaskRecordOfUserAndProgram(uid, pid);
     return new ResponseEntity<TaskRecordListResource>(trlr, HttpStatus.OK);
   }
   
-  @GetMapping("/getAllTaskByTrainee/{id}")
+  @GetMapping("/getAllTaskByUser/{pid}/{uid}")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity<TaskListResource> getAllTaskByTrainee(@PathVariable("id") Long id) {
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<TaskListResource> getAllTaskByTrainee(@PathVariable("pid") Long pid, @PathVariable("uid") Long uid) {
     // service call
-    TaskListResource tlr = service.getAllTaskOfTrainee(id);
+    TaskListResource tlr = service.getAllTaskOfUserAndProgram(uid, pid);
     return new ResponseEntity<TaskListResource>(tlr, HttpStatus.OK);
   }
   
   @GetMapping("/getAllTaskRecord")
   @CrossOrigin(origins = clientUrl)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<TaskRecordListResource> getAllTaskRecord() {
     // service call
     TaskRecordListResource trlr = service.getAllTaskRecord();
@@ -61,6 +66,7 @@ public class TaskController {
 
   @GetMapping("/getAllTaskByProgram/{pid}")
   @CrossOrigin(origins = clientUrl)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<TaskListResource> getAllTaskByProgram(@PathVariable("pid") Long pid) {
     // service call
     TaskListResource tlr = service.getAllTaskByProgram(pid);
@@ -69,7 +75,8 @@ public class TaskController {
   
   @PostMapping("/updateTaskStatus/{status}")
   @CrossOrigin(origins = clientUrl)
-  public ResponseEntity updateTaskStatus(@PathVariable("status") String status) {
-    return new ResponseEntity(HttpStatus.OK);
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<?> updateTaskStatus(@PathVariable("status") String status) {
+    return new ResponseEntity<>(HttpStatus.OK);
   }
 }

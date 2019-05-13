@@ -15,7 +15,8 @@ import {DialogModule} from 'primeng/dialog';
 import {DataViewModule} from 'primeng/dataview';
 import {PanelModule} from 'primeng/panel';
 import {DropdownModule} from 'primeng/dropdown';
-
+import {ToastModule} from 'primeng/toast';
+import {PasswordModule} from 'primeng/password';
 @NgModule({
   declarations: [],
   imports: [
@@ -34,7 +35,9 @@ import {DropdownModule} from 'primeng/dropdown';
     DialogModule,
     DataViewModule,
     PanelModule,
-    DropdownModule
+    DropdownModule,
+    ToastModule,
+    PasswordModule
   ],
   exports: [
     PanelMenuModule,
@@ -51,7 +54,9 @@ import {DropdownModule} from 'primeng/dropdown';
     DialogModule,
     DataViewModule,
     PanelModule,
-    DropdownModule
+    DropdownModule,
+    ToastModule,
+    PasswordModule
   ]
 })
 export class PrimengModuleImportModule { }

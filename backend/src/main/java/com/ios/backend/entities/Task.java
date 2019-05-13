@@ -21,7 +21,7 @@ public class Task {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
-  private long programId;
+  private long program;
   private String name;
   private long createdBy;
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
@@ -34,6 +34,7 @@ public class Task {
   private LocalDateTime deadline;
   
   private long modifiedBy;
+
   @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
   private LocalDateTime modifiedTime;
   private String status;
@@ -45,8 +46,8 @@ public class Task {
     return id;
   }
 
-  public long getProgramId() {
-    return programId;
+  public long getProgram() {
+    return program;
   }
 
   public String getName() {
@@ -89,8 +90,8 @@ public class Task {
     this.id = id;
   }
 
-  public void setProgramId(long programId) {
-    this.programId = programId;
+  public void setProgram(long program) {
+    this.program = program;
   }
 
   public void setName(String name) {

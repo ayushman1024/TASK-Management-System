@@ -1,7 +1,6 @@
 package com.ios.backend.resources;
 
 import java.util.List;
-
 import com.ios.backend.entities.TaskRecord;
 
 public class TaskRecordListResource {

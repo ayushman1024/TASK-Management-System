@@ -2,7 +2,7 @@ package com.ios.backend.dto;
 
 public class NewTaskDTO {
   private TaskDTO task;
-  private long[] trainee;
+  private long[] user;
 
   public TaskDTO getTask() {
     return task;
@@ -12,11 +12,11 @@ public class NewTaskDTO {
     this.task = task;
   }
 
-  public long[] getTrainee() {
-    return trainee;
+  public long[] getUser() {
+    return user;
   }
 
-  public void setTrainee(long[] trainee) {
-    this.trainee = trainee;
+  public void setTrainee(long[] user) {
+    this.user = user;
   }
 }

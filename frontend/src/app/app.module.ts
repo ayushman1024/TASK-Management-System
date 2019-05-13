@@ -25,6 +25,9 @@ import { MyTasksComponent } from './views/my-tasks/my-tasks.component';
 import { CreateProgramComponent } from './views/create-program/create-program.component';
 import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
 import { MhomeComponent } from './views/mhome/mhome.component';
+import { UdashboardComponent } from './views/udashboard/udashboard.component';
+import { EnterProgramComponent } from './views/enter-program/enter-program.component';
+import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth-interceptor';
 @NgModule({
    declarations: [
       AppComponent,
@@ -42,6 +45,8 @@ import { MhomeComponent } from './views/mhome/mhome.component';
       CreateProgramComponent,
       SelectPrgmComponent,
       MhomeComponent,
+      UdashboardComponent,
+      EnterProgramComponent,
    ],
    imports: [
       BrowserModule,
@@ -56,7 +61,7 @@ import { MhomeComponent } from './views/mhome/mhome.component';
    ],
    exports: [FormsModule,
   ],
-   providers: [DatePipe, GlobalService],
+   providers: [DatePipe, GlobalService, httpInterceptorProviders],
    bootstrap: [
       AppComponent
    ]

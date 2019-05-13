@@ -3,4 +3,6 @@ export class JwtResponse {
     type: string;
     username: string;
     authorities: string[];
+    uid: number;
+    pid: number;
 }

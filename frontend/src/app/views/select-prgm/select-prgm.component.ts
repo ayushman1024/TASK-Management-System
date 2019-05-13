@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Program } from '../../framework/models/Program';
 import { ProgramList } from '../../framework/models/ProgramList';
 import { ProgramService } from 'src/app/framework/services/program.service';
-import { TraineeService } from 'src/app/framework/services/trainee.service';
 import { DatePipe } from '@angular/common';
 import { GlobalService } from 'src/app/framework/services/global.service';
 
@@ -15,12 +14,12 @@ export class SelectPrgmComponent implements OnInit {
 
   prgmList = new ProgramList();
   prgms: Program[];
-  constructor(private service: ProgramService, private traineeService: TraineeService,
+  constructor(private service: ProgramService,
               private datePipe: DatePipe, private global: GlobalService) { }
 
   ngOnInit() {
-    this.service.getAll().subscribe( list => this.prgmList = list);
-    this.prgms = this.prgmList.programList;
+    this.service.getAllByAdmin(this.global.getUid()).subscribe( list => this.prgmList = list);
+    // this.prgms = this.prgmList.programList;
   }
 
   selectPrgm(p: Program) {

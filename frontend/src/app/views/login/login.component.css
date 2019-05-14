@@ -11,3 +11,7 @@
 .form{
   margin: 25px auto;
 }
+
+label {
+  margin-bottom: 0.3rem !important;
+}

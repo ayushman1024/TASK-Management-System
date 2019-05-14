@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorPageComponent } from './views/error-page/error-page.component';
-import { TaskDashboardComponent } from './views/tasks/task-dashboard/task-dashboard.component';
 import { TaskCreatorComponent } from './views/tasks/task-creator/task-creator.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
@@ -27,7 +26,6 @@ import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth
 @NgModule({
    declarations: [
       AppComponent,
-      TaskDashboardComponent,
       TaskCreatorComponent,
       ErrorPageComponent,
       LoginComponent,

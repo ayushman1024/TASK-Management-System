@@ -25,6 +25,7 @@ export class SelectPrgmComponent implements OnInit {
   selectPrgm(p: Program) {
     console.log(p);
     this.global.setCurrentProgramId(p.id);
+    this.global.setProgramName(p.name);
     this.router.navigate(['./../../t', 'myTasks'], {relativeTo: this.route });
   }
 }

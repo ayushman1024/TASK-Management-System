@@ -13,7 +13,7 @@
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="title">Trainee Dashboard</span>
+      <span class="title">[ {{data.prgmName | uppercase}} ] Dashboard</span>
       <div matTooltip="LOGOUT"style="cursor:pointer; font-size: 25px;" class="topright" (click)="logout()"><mat-icon aria-label="Side nav toggle icon">input</mat-icon></div>
     </mat-toolbar>
     <router-outlet></router-outlet>

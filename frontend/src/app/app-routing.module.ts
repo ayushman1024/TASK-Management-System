@@ -10,6 +10,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
 import { UdashboardComponent } from './views/udashboard/udashboard.component';
 import { EnterProgramComponent } from './views/enter-program/enter-program.component';
+import { TaskCalendarComponent } from './views/tasks/task-calendar/task-calendar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -29,7 +30,8 @@ const routes: Routes = [
     component: TdashboardComponent,
     children: [
       { path: 'taskCreate', component: TaskCreatorComponent },
-      { path: 'myTasks', component: MyTasksComponent }
+      { path: 'myTasks', component: MyTasksComponent },
+      { path: 'cal', component: TaskCalendarComponent }
     ]
    }
 ];

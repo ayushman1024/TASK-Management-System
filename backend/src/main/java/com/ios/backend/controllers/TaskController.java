@@ -1,5 +1,8 @@
 package com.ios.backend.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ios.backend.dto.NewTaskDTO;
 import com.ios.backend.entities.Task;
+import com.ios.backend.resources.CalendarListResource;
+import com.ios.backend.resources.CalendarResource;
 import com.ios.backend.resources.TaskListResource;
 import com.ios.backend.resources.TaskRecordListResource;
 import com.ios.backend.services.TaskService;
@@ -49,7 +54,7 @@ public class TaskController {
   @GetMapping("/getAllTaskByUser/{pid}/{uid}")
   @CrossOrigin(origins = clientUrl)
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
-  public ResponseEntity<TaskListResource> getAllTaskByTrainee(@PathVariable("pid") Long pid, @PathVariable("uid") Long uid) {
+  public ResponseEntity<TaskListResource> getAllTaskByUser(@PathVariable("pid") Long pid, @PathVariable("uid") Long uid) {
     // service call
     TaskListResource tlr = service.getAllTaskOfUserAndProgram(uid, pid);
     return new ResponseEntity<TaskListResource>(tlr, HttpStatus.OK);
@@ -78,5 +83,26 @@ public class TaskController {
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<?> updateTaskStatus(@PathVariable("status") String status) {
     return new ResponseEntity<>(HttpStatus.OK);
+  }
+  
+  @GetMapping("/getTaskCalendar/{pid}/{uid}")
+  @CrossOrigin(origins = clientUrl)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<CalendarListResource> getTaskCalendar(@PathVariable("pid") Long pid, @PathVariable("uid") Long uid) {
+    // service call
+    TaskListResource tlr =  service.getAllTaskOfUserAndProgram(uid, pid);
+    List<CalendarResource> cl = new ArrayList<CalendarResource>();
+    List<Task> tl = tlr.getTaskList();
+    for(Task t: tl) {
+      CalendarResource cr = new CalendarResource();
+      cr.setTitle(t.getName());
+      cr.setStart(t.getStartTime());
+      cr.setEnd(t.getDeadline());
+      cl.add(cr);
+    }
+    CalendarListResource clr = new CalendarListResource();
+    clr.setEvents(cl);
+    
+    return new ResponseEntity<CalendarListResource>(clr, HttpStatus.OK);
   }
 }

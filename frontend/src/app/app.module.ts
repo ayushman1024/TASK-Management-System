@@ -23,6 +23,9 @@ import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
 import { UdashboardComponent } from './views/udashboard/udashboard.component';
 import { EnterProgramComponent } from './views/enter-program/enter-program.component';
 import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth-interceptor';
+import { HomeComponent } from './views/home/home.component';
+import { TaskCalendarComponent } from './views/tasks/task-calendar/task-calendar.component';
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -37,6 +40,8 @@ import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth
       SelectPrgmComponent,
       UdashboardComponent,
       EnterProgramComponent,
+      HomeComponent,
+      TaskCalendarComponent,
    ],
    imports: [
       BrowserModule,

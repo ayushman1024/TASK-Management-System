@@ -17,6 +17,8 @@ import {PanelModule} from 'primeng/panel';
 import {DropdownModule} from 'primeng/dropdown';
 import {ToastModule} from 'primeng/toast';
 import {PasswordModule} from 'primeng/password';
+import {FullCalendarModule} from 'primeng/fullcalendar';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -37,7 +39,8 @@ import {PasswordModule} from 'primeng/password';
     PanelModule,
     DropdownModule,
     ToastModule,
-    PasswordModule
+    PasswordModule,
+    FullCalendarModule
   ],
   exports: [
     PanelMenuModule,
@@ -56,7 +59,8 @@ import {PasswordModule} from 'primeng/password';
     PanelModule,
     DropdownModule,
     ToastModule,
-    PasswordModule
+    PasswordModule,
+    FullCalendarModule
   ]
 })
 export class PrimengModuleImportModule { }

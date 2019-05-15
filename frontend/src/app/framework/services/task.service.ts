@@ -6,6 +6,7 @@ import { Task } from '../models/Task';
 import { TaskRecordList } from './../models/TaskRecordList';
 import { TaskList } from '../models/TaskList';
 import { GlobalService } from './global.service';
+import { TaskCalendarList } from '../models/TaskCalendarList';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class TaskService {
   getallTaskRecordByUser(id: number) {
     const path = this.url + '/getAllTaskRecordByUser/' + this.global.getCurrentProgramId() + '/' + this.global.getUid();
     return this.http.get<TaskRecordList>(path);
+  }
+  getAllTaskCalendar() {
+    const path = this.url + '/getTaskCalendar/' + this.global.getCurrentProgramId() + '/' + this.global.getUid();
+    return this.http.get<TaskCalendarList>(path);
   }
 }

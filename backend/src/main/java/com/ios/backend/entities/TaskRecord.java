@@ -1,14 +1,10 @@
 package com.ios.backend.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * 7 fields
@@ -28,6 +24,9 @@ public class TaskRecord {
   private double score;
   private double max;
   private String remarks;
+
+  @Column(length = 65450, columnDefinition = "text")
+  private String work;
 
   public long getProgram() {
     return program;
@@ -92,4 +91,13 @@ public class TaskRecord {
   public void setRemarks(String remarks) {
     this.remarks = remarks;
   }
+
+  public String getWork() {
+    return work;
+  }
+
+  public void setWork(String work) {
+    this.work = work;
+  }
+  
 }

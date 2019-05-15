@@ -15,8 +15,6 @@ import com.ios.backend.entities.User;
 import com.ios.backend.repositories.InvitesRepository;
 import com.ios.backend.repositories.PasscodeRepository;
 import com.ios.backend.repositories.ProgramRepository;
-import com.ios.backend.repositories.TaskRecordRepository;
-import com.ios.backend.repositories.TaskRespository;
 import com.ios.backend.repositories.UserRepository;
 import com.ios.backend.resources.ProgramListResource;
 import com.ios.backend.resources.ProgramResource;
@@ -25,11 +23,7 @@ import com.ios.backend.resources.ProgramResource;
 public class ProgramService {
 
   @Autowired
-  private TaskRespository taskRepository;
-  @Autowired
   private UserRepository userRepository;
-  @Autowired
-  private TaskRecordRepository taskRecordRepository;
   @Autowired
   private ProgramRepository programRepository;
   @Autowired

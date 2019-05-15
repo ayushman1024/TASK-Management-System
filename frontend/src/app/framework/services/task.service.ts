@@ -7,6 +7,7 @@ import { TaskRecordList } from './../models/TaskRecordList';
 import { TaskList } from '../models/TaskList';
 import { GlobalService } from './global.service';
 import { TaskCalendarList } from '../models/TaskCalendarList';
+import { Work } from '../models/work';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,16 @@ export class TaskService {
     return this.http.post<any>(this.url + '/createTask', newTask);
   }
 
+  getWork() {
+    const path = this.url + '/getTaskWork/' + this.global.getCurrentProgramId() + '/' +
+        this.global.getUid() + '/' + this.global.getSelectedTask().id.toString();
+    return this.http.get<Work>(path);
+  }
+  setWork(work: Work) {
+    const path = this.url + '/addTaskWork/' + this.global.getCurrentProgramId() + '/' +
+        this.global.getUid() + '/' + this.global.getSelectedTask().id;
+    return this.http.post<any>(path, work);
+  }
   getTaskById(id: number) {
     return this.http.get<Task>(this.url + '/getTaskById/' + id);
   }

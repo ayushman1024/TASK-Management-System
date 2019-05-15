@@ -1,5 +1,7 @@
 package com.ios.backend.dto;
 
+import javax.persistence.Column;
+
 public class TaskRecordDTO {
   private long id;
   private long user;
@@ -9,7 +11,8 @@ public class TaskRecordDTO {
   private double score;
   private double max;
   private String remarks;
-
+  private String work;
+  
   public long getProgram() {
     return program;
   }
@@ -73,4 +76,13 @@ public class TaskRecordDTO {
   public void setRemarks(String remarks) {
     this.remarks = remarks;
   }
+
+  public String getWork() {
+    return work;
+  }
+
+  public void setWork(String work) {
+    this.work = work;
+  }
+  
 }

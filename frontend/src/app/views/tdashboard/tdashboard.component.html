@@ -4,9 +4,10 @@
     [opened]="!(isHandset$ | async)">
     <mat-toolbar>Dashboard</mat-toolbar>
     <mat-nav-list class="nav-list">
-      <mat-list-item><a [routerLink]="['./myTasks']">My Tasks</a></mat-list-item>
-      <mat-list-item><a [routerLink]="['./taskCreate']">Create Task</a></mat-list-item>
-      <mat-list-item><a [routerLink]="['./cal']">My Calendar</a></mat-list-item>
+      <mat-list-item><a (click)="page = 'ALL TASKS'" [routerLink]="['./myTasks']">My Tasks</a></mat-list-item>
+      <mat-list-item><a (click)="page = 'CREATE TASK'" [routerLink]="['./taskCreate']">Create Task</a></mat-list-item>
+      <mat-list-item><a (click)="page = 'CALENDAR'" [routerLink]="['./cal']">My Calendar</a></mat-list-item>
+      <mat-list-item><a (click)="page = 'WORKING ON TASK'" [routerLink]="['./wrk']">Work with Task</a></mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -15,6 +16,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span class="title">[ {{data.prgmName | uppercase}} ] Dashboard</span>
+      <span class="title t2">{{page}}</span>
       <div matTooltip="LOGOUT"style="cursor:pointer; font-size: 25px;" class="topright" (click)="logout()"><mat-icon aria-label="Side nav toggle icon">input</mat-icon></div>
     </mat-toolbar>
     <router-outlet></router-outlet>

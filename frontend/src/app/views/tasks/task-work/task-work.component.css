@@ -1,0 +1,11 @@
+button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 5px;
+}
+
+#tn {
+  margin-left: 8%;
+  background-color: rgb(41, 127, 197);
+  color:rgb(252, 252, 252);
+}

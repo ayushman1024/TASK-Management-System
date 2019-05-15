@@ -11,6 +11,7 @@ import { SelectPrgmComponent } from './views/select-prgm/select-prgm.component';
 import { UdashboardComponent } from './views/udashboard/udashboard.component';
 import { EnterProgramComponent } from './views/enter-program/enter-program.component';
 import { TaskCalendarComponent } from './views/tasks/task-calendar/task-calendar.component';
+import { TaskWorkComponent } from './views/tasks/task-work/task-work.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -31,7 +32,8 @@ const routes: Routes = [
     children: [
       { path: 'taskCreate', component: TaskCreatorComponent },
       { path: 'myTasks', component: MyTasksComponent },
-      { path: 'cal', component: TaskCalendarComponent }
+      { path: 'cal', component: TaskCalendarComponent },
+      { path: 'wrk', component: TaskWorkComponent }
     ]
    }
 ];

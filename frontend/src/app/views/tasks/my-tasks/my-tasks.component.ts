@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { GlobalService } from 'src/app/framework/services/global.service';
 import { TaskRecord } from 'src/app/framework/models/TaskRecord';
 import { Task } from 'src/app/framework/models/Task';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-my-tasks',
@@ -22,7 +23,7 @@ export class MyTasksComponent implements OnInit {
   list = [];
   descDialogVisible = false;
   dialogDescData = '';
-  constructor(private service: TaskService,
+  constructor(private service: TaskService, private router: Router, private route: ActivatedRoute,
               private datePipe: DatePipe, private global: GlobalService) {
   }
 
@@ -62,5 +63,11 @@ export class MyTasksComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  taskWork(task: Task) {
+    this.global.setSelectedTask(task);
+    console.log(this.global.getSelectedTask());
+    this.router.navigate(['./t/wrk']);
   }
 }

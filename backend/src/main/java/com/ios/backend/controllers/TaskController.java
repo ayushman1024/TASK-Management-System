@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ios.backend.dto.NewTaskDTO;
+import com.ios.backend.dto.WorkDTO;
 import com.ios.backend.entities.Task;
 import com.ios.backend.resources.CalendarListResource;
 import com.ios.backend.resources.CalendarResource;
@@ -104,5 +105,23 @@ public class TaskController {
     clr.setEvents(cl);
     
     return new ResponseEntity<CalendarListResource>(clr, HttpStatus.OK);
+  }
+  
+  @PostMapping("/addTaskWork/{pid}/{uid}/{tid}")
+  @CrossOrigin(origins = clientUrl)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<?> addWork(@PathVariable("pid") Long pid, @PathVariable("uid") Long uid, @PathVariable("tid") Long tid, @RequestBody WorkDTO work) {
+    // service call
+    service.addWork(uid, pid, tid, work.getWork());
+    return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+  }
+  
+  @GetMapping("/getTaskWork/{pid}/{uid}/{tid}")
+  @CrossOrigin(origins = clientUrl)
+  @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+  public ResponseEntity<WorkDTO> getWork(@PathVariable("pid") Long pid, @PathVariable("uid") Long uid, @PathVariable("tid") Long tid) {
+    // service call
+    WorkDTO response = service.getWork(uid, pid, tid);
+    return new ResponseEntity<WorkDTO>(response, HttpStatus.OK);
   }
 }

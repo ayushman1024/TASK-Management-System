@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Task } from '../models/Task';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,10 @@ export class GlobalService {
   private currentProgramId: number;
   private token: string;
   private uid: number;
+  private suid: number;
   private programName: string;
   private logged = false;
+  private selectedTask: Task;
   getToken(): string {
     return this.token;
   }
@@ -30,6 +33,12 @@ export class GlobalService {
   setUid(uid: number) {
     this.uid = uid;
   }
+  getSUid(): number {
+    return this.suid;
+  }
+  setSUid(suid: number) {
+    this.suid = suid;
+  }
   getProgramName(): string {
     return this.programName;
   }
@@ -41,5 +50,12 @@ export class GlobalService {
   }
   getLogged(): boolean {
     return this.logged;
+  }
+
+  getSelectedTask(): Task {
+    return this.selectedTask;
+  }
+  setSelectedTask(task: Task) {
+    this.selectedTask = task;
   }
 }

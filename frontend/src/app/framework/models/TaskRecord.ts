@@ -6,4 +6,5 @@ export class TaskRecord {
   score: number;
   max: number;
   remarks: string;
+  work: string;
 }

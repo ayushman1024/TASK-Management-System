@@ -9,7 +9,7 @@ public class TaskRecordResource {
   private double score;
   private double max;
   private String remarks;
-
+  private String work;
   public long getProgram() {
     return program;
   }
@@ -73,4 +73,12 @@ public class TaskRecordResource {
   public void setRemarks(String remarks) {
     this.remarks = remarks;
   }
+  public String getWork() {
+    return work;
+  }
+
+  public void setWork(String work) {
+    this.work = work;
+  }
+  
 }

@@ -16,4 +16,6 @@ public interface TaskRecordRepository extends CrudRepository<TaskRecord, Long> {
   List<TaskRecord> getTaskRecordByUser(@Param("id") long user);
   
   List<TaskRecord> findByProgramAndUser(long program, long user);
+  
+  TaskRecord findByProgramAndUserAndTask(long program, long user, long task);
 }

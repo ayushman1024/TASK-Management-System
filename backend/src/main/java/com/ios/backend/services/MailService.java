@@ -33,7 +33,6 @@ public class MailService {
   }
   
   public String sendPasscode(String email, String passcode, Program prgm) {
-
     String text = "You are invited to join program:\n"+prgm.getName()+"\n\nUse passcode given below:\n"+ passcode;
     String subject = "Invitation to Join Program";
     try {

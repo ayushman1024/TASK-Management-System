@@ -25,6 +25,7 @@ import { EnterProgramComponent } from './views/enter-program/enter-program.compo
 import { AuthInterceptor, httpInterceptorProviders } from './framework/auth/auth-interceptor';
 import { HomeComponent } from './views/home/home.component';
 import { TaskCalendarComponent } from './views/tasks/task-calendar/task-calendar.component';
+import { TaskWorkComponent } from './views/tasks/task-work/task-work.component';
 
 @NgModule({
    declarations: [
@@ -42,6 +43,7 @@ import { TaskCalendarComponent } from './views/tasks/task-calendar/task-calendar
       EnterProgramComponent,
       HomeComponent,
       TaskCalendarComponent,
+      TaskWorkComponent,
    ],
    imports: [
       BrowserModule,

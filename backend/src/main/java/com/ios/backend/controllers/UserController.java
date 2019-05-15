@@ -49,5 +49,4 @@ public class UserController {
     BeanUtils.copyProperties(service.getUser(uid), ur);
     return new ResponseEntity<UserResource>(ur, HttpStatus.OK);
   }
-  
 }

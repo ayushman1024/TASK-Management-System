@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ios.backend.dto.WorkDTO;
 import com.ios.backend.entities.Task;
 import com.ios.backend.entities.TaskRecord;
 import com.ios.backend.repositories.ProgramRepository;
@@ -35,6 +36,7 @@ public class TaskService {
       taskRecord.setUser(id);
       taskRecord.setTask(taskId);
       taskRecord.setProgram(program);
+      taskRecord.setWork("NO WORK DONE YET !!");
       taskRecordRepository.save(taskRecord);
     }
   }
@@ -80,5 +82,19 @@ public class TaskService {
     List<Task> tl = this.getTasksFromTaskRecord(taskRecordRepository.findByProgramAndUser(pid, uid));
     tlr.setTaskList(tl);
     return tlr;
+  }
+
+  public WorkDTO getWork(long uid, long pid, long tid) {
+    TaskRecord tr = taskRecordRepository.findByProgramAndUserAndTask(pid, uid, tid);
+    WorkDTO dto = new WorkDTO();
+    dto.setWork(tr.getWork() != null ? tr.getWork() : "");
+    
+    return dto;
+  }
+
+  public void addWork(long uid, long pid, long tid, String work) {
+    TaskRecord tr = taskRecordRepository.findByProgramAndUserAndTask(pid, uid, tid);
+    tr.setWork(work);
+    taskRecordRepository.save(tr);
   }
 }

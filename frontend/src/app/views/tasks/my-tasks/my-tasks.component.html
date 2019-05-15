@@ -20,13 +20,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="task-row" (click)="descHover(t)" *ngFor="let t of taskList;let i = index" [ngClass]="{ 'table-danger' : isLate(t) }">
-        <th scope="row">{{i+1}}</th>
+      <tr class="task-row" (click)="taskWork(t)" (mouseenter)="descHover(t)" *ngFor="let t of taskList;let i = index" [ngClass]="{ 'table-danger' : isLate(t) }">
+        <th scope="row"><mat-icon>create</mat-icon> {{i+1}}</th>
         <th >{{t.id}}</th>
         <td>{{t.name}}</td>
         <td>{{t.startTime}}</td>
         <td>{{t.deadline}}</td>
         <td>{{t.status}}</td>
+
       </tr>
     </tbody>
   </table>

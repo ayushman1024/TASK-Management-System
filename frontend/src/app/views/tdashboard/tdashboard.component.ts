@@ -13,7 +13,7 @@ import { GlobalService } from 'src/app/framework/services/global.service';
 export class TdashboardComponent implements OnInit {
 
   data = { prgmName: this.global.getProgramName()};
-
+  page = 'ALL TASKS';
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches)

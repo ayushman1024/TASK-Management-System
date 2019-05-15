@@ -22,5 +22,11 @@
 }
 .title {
   text-align: center;
-  font-size: 24px;
+  font-size: 18px;
+  color: rgb(202, 240, 142);
+}
+.t2 {
+  color: rgb(253, 197, 183);
+  font-size: 22px;
+  margin-left: 15%;
 }

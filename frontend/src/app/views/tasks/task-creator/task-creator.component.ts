@@ -6,11 +6,13 @@ import { DatePipe } from '@angular/common';
 import { GlobalService } from 'src/app/framework/services/global.service';
 import { User } from 'src/app/framework/models/user';
 import { UserService } from 'src/app/framework/services/user.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-task-creator',
   templateUrl: './task-creator.component.html',
-  styleUrls: ['./task-creator.component.css']
+  styleUrls: ['./task-creator.component.css'],
+  providers: [MessageService]
 })
 export class TaskCreatorComponent implements OnInit {
 
@@ -29,7 +31,7 @@ export class TaskCreatorComponent implements OnInit {
   assignIndex = 2;
 ///
   isLinear = true;
-  constructor(private service: TaskService, private userService: UserService,
+  constructor(private msg: MessageService, private service: TaskService, private userService: UserService,
               private datePipe: DatePipe, private global: GlobalService) {
   }
 
@@ -66,7 +68,26 @@ export class TaskCreatorComponent implements OnInit {
   }
 
   onPublish() {
-    this.service.create(this.newTaskModel).subscribe();
+    this.prepareForReview();
+    let valid = false;
+    if (this.newTaskModel.task.name.length > 0 && this.newTaskModel.task.description.length > 0
+        && this.newTaskModel.task.startTime.length > 0 && this.newTaskModel.task.deadline.length > 0) {
+          valid = true;
+    }
+
+    if (valid) {
+      this.service.create(this.newTaskModel).subscribe( data => {
+          this.msg.add({severity: 'success', summary: 'Task Created',
+          detail: 'New task has been created successfully'});
+        },
+        error => {
+          this.msg.add({severity: 'error', summary: 'Incomplete Form',
+          detail: 'New Task will be created after all neccessary fields are provided.'});
+        });
+    } else {
+      this.msg.add({severity: 'error', summary: 'Incomplete Form',
+      detail: 'New Task will be created after all neccessary fields are provided.'});
+    }
   }
 
   stepChange(ev) {
@@ -86,4 +107,3 @@ export class TaskCreatorComponent implements OnInit {
     }
   }
 }
-

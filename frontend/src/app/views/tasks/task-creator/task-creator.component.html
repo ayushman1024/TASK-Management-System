@@ -1,23 +1,30 @@
+<p-toast [modal]="true"></p-toast>
 <div id="page">
   <!-- 1 -->
   <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="stepChange($event)">
     <br><mat-divider></mat-divider>
     <mat-step>
       <ng-template matStepLabel>Create New Task</ng-template>
+      <div>
+        <button *ngIf="taskModel.name && taskModel.description" class="nxt-btn" mat-stroked-button color="primary" matStepperNext>Next</button>
+      </div>
       <div class="forms f1">
       <mat-form-field appearance="outline" id="tname">
         <input [(ngModel)]="taskModel.name" matInput type="text" name="name" id="name" placeholder="Task name">
       </mat-form-field><br>
-      <p-editor [(ngModel)]="taskModel.description" [style]="{'height':'320px'}"></p-editor>
       <div>
-        <button class="nxt-btn" mat-stroked-button color="primary" matStepperNext>Next</button>
+      <p-editor [(ngModel)]="taskModel.description" [style]="{'height':'320px'}"></p-editor>
       </div>
     </div>
+
     </mat-step>
     <!-- 2 -->
     <mat-step>
           <ng-template matStepLabel>Schedule Task</ng-template>
           <div class="forms f2">
+            <div>
+              <button *ngIf="taskModel.startTime && taskModel.deadline" class="nxt-btn" mat-stroked-button matStepperNext>Next</button>
+            </div>
             <span class="label-span">Task Start Date and Time</span>
             <mat-form-field class="date-time" appearance="outline">
               <mat-label>Task Start Date and Time</mat-label>
@@ -32,14 +39,14 @@
             <!--  -->
             <!--  -->
           </div>
-          <div>
-            <button mat-button matStepperNext>Next</button>
-          </div>
       </mat-step>
       <!-- 3 -->
       <mat-step>
         <form>
           <ng-template matStepLabel>Assign Task</ng-template>
+          <div>
+            <button *ngIf="assignedUser !== []" mat-stroked-button matStepperNext class="nxt-btn" >Done</button>
+          </div>
           <div class="forms f3">
             <p-pickList  [source]= "sourceUser" [target]="assignedUser" sourceHeader="All Users" targetHeader="Users Invited" [responsive]="true" filterBy="name"
             dragdrop="true" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" [sourceStyle]="{'height':'60vh'}" [targetStyle]="{'height':'60vh'}">
@@ -57,19 +64,16 @@
             </ng-template>
             </p-pickList>
           </div>
-          <div>
-            <button mat-button matStepperNext (click)="initialize()">Done</button>
-          </div>
         </form>
       </mat-step>
       <!-- 4 -->
       <mat-step>
-        <ng-template matStepLabel>Review Task</ng-template>
+        <ng-template matStepLabel>Review and Publish</ng-template>
         <div class="forms f3">
         <div>
-          <button class="btn btn-lg btn-info" mat-button matStepperNext><mat-icon>done</mat-icon>Correct</button>
+          <button (click)="onPublish()" class="nxt-btn" mat-stroked-button><mat-icon>done</mat-icon>PUBLISH TASK</button>
         </div>
-        <app-new-task-review *ngIf="showReview" [newTaskModel]="newTaskModel"></app-new-task-review>
+        <app-new-task-review *ngIf="showReview" [task]="taskModel"></app-new-task-review>
         <mat-card>
           <mat-card-title>Description</mat-card-title>
           <mat-card-content>
@@ -78,15 +82,6 @@
           </mat-card-content>
         </mat-card>
         </div>
-      </mat-step>
-      <!-- 5 -->
-      <mat-step>
-        <div class="forms f3">
-          <ng-template matStepLabel>Publish</ng-template>
-          <div>
-            <button (click)="onPublish()" mat-raised-button >Publish</button>
-          </div>
-          </div>
       </mat-step>
   </mat-horizontal-stepper>
 </div>

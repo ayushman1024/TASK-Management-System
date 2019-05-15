@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="task-row" (click)="descHover(t)" *ngFor="let t of taskList;let i = index">
+      <tr class="task-row" (click)="descHover(t)" *ngFor="let t of taskList;let i = index" [ngClass]="{ 'table-danger' : isLate(t) }">
         <th scope="row">{{i+1}}</th>
         <th >{{t.id}}</th>
         <td>{{t.name}}</td>

@@ -28,7 +28,6 @@ export class MyTasksComponent implements OnInit {
 
   ngOnInit() {
     this.service.getallTaskByUser().subscribe(tr => this.taskList = tr.taskList );
-    console.log(this.taskList);
   }
 
   descHover(t) {
@@ -56,5 +55,12 @@ export class MyTasksComponent implements OnInit {
     child.innerHTML = this.dialogDescData;
     this.dialog.nativeElement.innerHTML = '';
     this.dialog.nativeElement.appendChild(child);
+  }
+
+  isLate(t: Task): boolean {
+    if (new Date (t.deadline) < new Date()) {
+      return true;
+    }
+    return false;
   }
 }

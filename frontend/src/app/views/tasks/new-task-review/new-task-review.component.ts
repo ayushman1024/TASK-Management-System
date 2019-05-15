@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NewTask } from 'src/app/framework/models/NewTask';
+import { Task } from 'src/app/framework/models/Task';
 
 @Component({
   selector: 'app-new-task-review',
@@ -8,7 +9,7 @@ import { NewTask } from 'src/app/framework/models/NewTask';
 })
 export class NewTaskReviewComponent implements OnInit {
 
-  @Input() newTaskModel: NewTask;
+  @Input() task: Task;
   constructor() { }
 
   ngOnInit() {

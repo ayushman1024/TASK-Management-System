@@ -1,26 +1,27 @@
+<p-toast [modal]="true"></p-toast>
 <div id="page">
-  <!-- 1 -->
   <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="stepChange($event)">
     <br><mat-divider></mat-divider>
+    <!-- 1 -->
     <mat-step>
       <ng-template matStepLabel>Create New Program</ng-template>
+      <div>
+        <button *ngIf="newProgram.name && newProgram.description" class="nxt-btn" mat-stroked-button color="primary" matStepperNext>Next</button>
+      </div>
       <mat-form-field appearance="outline" id="pname">
         <input [(ngModel)]="newProgram.name" matInput type="text" name="name" id="name" placeholder="Program Name">
       </mat-form-field><br>
       <p-editor [(ngModel)]="newProgram.description" [style]="{'height':'320px'}"></p-editor>
-      <div>
-        <button class="nxt-btn" mat-stroked-button color="primary" matStepperNext>Next</button>
-      </div>
     </mat-step>
-
 
 <!-- 3 -->
 <mat-step>
   <form>
-    <div>
-      <button mat-raised-button matStepperNext (click)="onSubmit()">Done</button>
-    </div><br>
+    <br>
     <ng-template matStepLabel>Invite Users</ng-template>
+    <div>
+      <button class="nxt-btn" mat-stroked-button matStepperNext (click)="onSubmit()">Done</button>
+    </div><br>
     <div class="forms f3">
       <p-pickList  [source]= "sourceUser" [target]="assignedUser" sourceHeader="All Users" targetHeader="Users Invited" [responsive]="true" filterBy="name"
       dragdrop="true" sourceFilterPlaceholder="Search by name" targetFilterPlaceholder="Search by name" [sourceStyle]="{'height':'60vh'}" [targetStyle]="{'height':'60vh'}">
@@ -28,7 +29,7 @@
         <div class="ui-helper-clearfix " style="display: flex;flex-wrap: nowrap;">
           <div style="position: relative;display:flex;align-items:center;margin:2px 2px 2px 2px">
           <mat-icon style="font-size: 38px;">person</mat-icon></div>
-          <ul>
+          <ul class="u-list">
             <li matToolTip="User ID">{{u.id}}</li>
             <li matToolTip="User Name">{{u.name}}</li>
             <li matToolTip="User Email">{{u.email}}</li>

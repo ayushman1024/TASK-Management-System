@@ -4,7 +4,7 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .date-time {
-  width: 300px;
+  width: 30vw;
   font-size: 22px;
 }
 .topright {
@@ -20,3 +20,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-size: 12px;
   background-color: rgba(255, 210, 210, 0.603);
 }
+

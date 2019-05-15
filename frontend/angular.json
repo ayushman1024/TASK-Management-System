@@ -30,11 +30,19 @@
               "./node_modules/primeicons/primeicons.css",
               "./node_modules/primeng/resources/themes/nova-light/theme.css",
               "./node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeflex/primeflex.css",
+              "./node_modules/@fullcalendar/core/main.min.css",
+              "./node_modules/@fullcalendar/daygrid/main.min.css",
+              "./node_modules/@fullcalendar/timegrid/main.min.css",
+              "./node_modules/primeflex/primeflex.css",
               "./node_modules/quill/dist/quill.core.css",
               "./node_modules/quill/dist/quill.snow.css"
             ],
-            "scripts": ["./node_modules/quill/dist/quill.js"],
+            "scripts": [
+              "./node_modules/quill/dist/quill.js",
+              "./node_modules/@fullcalendar/core/main.js",
+              "./node_modules/@fullcalendar/daygrid/main.js",
+              "./node_modules/@fullcalendar/timegrid/main.js",
+              "./node_modules/@fullcalendar/interaction/main.js"],
             "es5BrowserSupport": true
           },
           "configurations": {

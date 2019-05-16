@@ -4,3 +4,7 @@
 label {
   margin-bottom: 0.3rem !important;
 }
+
+.auth {
+  background-color: rgb(255, 255, 255);
+}

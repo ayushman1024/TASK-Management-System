@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ios.backend.message.request.LoginForm;
 import com.ios.backend.message.request.SignUpForm;
 import com.ios.backend.message.response.JwtResponse;
-import com.ios.backend.message.response.ResponseMessage;
 import com.ios.backend.entities.Role;
 import com.ios.backend.entities.RoleName;
 import com.ios.backend.entities.User;
@@ -77,7 +76,7 @@ public class AuthController {
 	@PostMapping("/signup")
 	@CrossOrigin(origins = clientUrl)
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-//    s.sendPasscode("ayushman1024@gmail.com", "Demo-Program");
+
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
 		}
@@ -89,7 +88,6 @@ public class AuthController {
 		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()));
 
-//		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
 		if( signUpRequest.getUser().equalsIgnoreCase("U")) {
@@ -102,24 +100,6 @@ public class AuthController {
           .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
       roles.add(adminRole);
 		}
-//		strRoles.forEach(role -> {
-//			switch (role) {
-//			case "admin":
-//				Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-//						.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-//				roles.add(adminRole);
-//				break;
-//			case "user":
-//			  Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-//        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-//			  roles.add(userRole);
-//				break;
-//			default:
-//			  Role pmRole = roleRepository.findByName(RoleName.ROLE_PUBLIC)
-//        .orElseThrow(() -> new RuntimeException("Fail! -> Cause: Public Role not find."));
-//			  roles.add(pmRole);
-//			}
-//		});
 
 		user.setRoles(roles);
 		userRepository.save(user);

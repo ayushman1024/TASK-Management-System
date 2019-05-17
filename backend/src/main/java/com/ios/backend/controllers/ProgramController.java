@@ -32,7 +32,7 @@ public class ProgramController {
   @CrossOrigin(origins = clientUrl)
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   public ResponseEntity<Boolean> createProgram(@PathVariable("uid") Long uid, @RequestBody NewProgramDTO newProgramDto) {
-    long pid = service.createProgram(newProgramDto, uid);
+    service.createProgram(newProgramDto, uid);
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
   

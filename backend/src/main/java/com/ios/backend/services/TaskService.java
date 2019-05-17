@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.ios.backend.dto.WorkDTO;
 import com.ios.backend.entities.Task;
 import com.ios.backend.entities.TaskRecord;
-import com.ios.backend.repositories.ProgramRepository;
 import com.ios.backend.repositories.TaskRecordRepository;
 import com.ios.backend.repositories.TaskRespository;
 import com.ios.backend.resources.TaskListResource;
@@ -20,8 +19,6 @@ public class TaskService {
   private TaskRespository taskRepository;
   @Autowired
   private TaskRecordRepository taskRecordRepository;
-  @Autowired
-  private ProgramRepository programRepository;
 
   public void createTask(Task task, long[] trainees) {
     Task savedTask = taskRepository.save(task);

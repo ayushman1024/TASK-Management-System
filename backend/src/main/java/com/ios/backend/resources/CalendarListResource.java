@@ -13,6 +13,4 @@ public class CalendarListResource {
   public void setEvents(List<CalendarResource> events) {
     this.events = events;
   }
-  
-
 }

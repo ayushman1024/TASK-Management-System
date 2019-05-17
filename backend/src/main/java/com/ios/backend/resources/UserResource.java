@@ -20,20 +20,6 @@ public class UserResource {
     this.email = user.getEmail();
   }
 
-//  private String password;
-
-//  private Set<Role> roles = new HashSet<>();
-//
-//  private List<Program> program = new ArrayList<>();
-
-//  public List<Program> getProgram() {
-//    return program;
-//  }
-//
-//  public void setProgram(List<Program> program) {
-//    this.program = program;
-//  }
-
   public Long getId() {
       return id;
   }
@@ -65,20 +51,4 @@ public class UserResource {
   public void setEmail(String email) {
       this.email = email;
   }
-
-//  public String getPassword() {
-//      return password;
-//  }
-//
-//  public void setPassword(String password) {
-//      this.password = password;
-//  }
-
-//  public Set<Role> getRoles() {
-//      return roles;
-//  }
-//
-//  public void setRoles(Set<Role> roles) {
-//      this.roles = roles;
-//  }
 }

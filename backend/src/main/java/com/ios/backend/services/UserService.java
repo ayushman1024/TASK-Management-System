@@ -8,21 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.ios.backend.entities.User;
 import com.ios.backend.repositories.ProgramRepository;
-import com.ios.backend.repositories.TaskRecordRepository;
-import com.ios.backend.repositories.TaskRespository;
 import com.ios.backend.repositories.UserRepository;
 import com.ios.backend.resources.ProgramResource;
 import com.ios.backend.resources.UserResource;
 
 @Service
 public class UserService {
-
-  @Autowired
-  private TaskRecordRepository taskRecordRepository;
   @Autowired
   private ProgramRepository programRepository;
-  @Autowired
-  private TaskRespository taskRepository;
   @Autowired
   private UserRepository userRepository;
  

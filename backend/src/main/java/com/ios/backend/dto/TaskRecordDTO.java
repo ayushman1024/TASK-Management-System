@@ -1,7 +1,5 @@
 package com.ios.backend.dto;
 
-import javax.persistence.Column;
-
 public class TaskRecordDTO {
   private long id;
   private long user;

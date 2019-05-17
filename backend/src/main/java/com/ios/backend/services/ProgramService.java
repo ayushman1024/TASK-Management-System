@@ -73,7 +73,7 @@ public class ProgramService {
     program.setDescription(newProgramDto.getDescription());
     program.setAdmin(admin);
     User user = userRepository.findById(admin).get();
-    List<User> userList = new ArrayList();
+    List<User> userList = new ArrayList<User>();
     userList.add(user);
     program.setUsers(userList);
     Program savedProgram = programRepository.save(program);

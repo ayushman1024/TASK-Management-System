@@ -12,7 +12,7 @@ public class AuthUtils {
 	}
 
 	public static String OTP(int len) {
-	  RandomStringUtils.random(len, "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
+	  // RandomStringUtils.random(len, "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 	  String numbers = "0123456789#$&*!";
 	  String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return RandomStringUtils.random(8, numbers+alpha);

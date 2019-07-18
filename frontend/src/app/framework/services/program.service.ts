@@ -31,7 +31,6 @@ export class ProgramService {
     const dto = new CodeDTO();
     dto.code = code;
     dto.uid = this.global.getUid();
-    console.log(dto);
     return this.http.post<any>(this.url + '/enterPrg', dto);
   }
 }

@@ -24,7 +24,6 @@ export class RegisterComponent implements OnInit {
     this.signupInfo.user = 'U';
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
-        console.log(data);
         this.isSignedUp = true;
         this.isSignUpFailed = false;
         this.router.navigate(['./login']);

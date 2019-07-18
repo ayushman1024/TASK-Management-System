@@ -67,7 +67,6 @@ export class MyTasksComponent implements OnInit {
 
   taskWork(task: Task) {
     this.global.setSelectedTask(task);
-    console.log(this.global.getSelectedTask());
     this.router.navigate(['./t/wrk']);
   }
 }

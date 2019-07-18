@@ -17,20 +17,17 @@ import { MessageService } from 'primeng/api';
 export class TaskCreatorComponent implements OnInit {
 
   showReview = false;
-///
   sourceUser: User[];
   assignedUser: User[];
-///
   taskModel = new Task();
   newTaskModel = new NewTask();
   lastStepIndex: number;
   selectedIndex: number;
   stepSize: number;
-///
   reviewIndex = 3;
   assignIndex = 2;
-///
   isLinear = true;
+
   constructor(private msg: MessageService, private service: TaskService, private userService: UserService,
               private datePipe: DatePipe, private global: GlobalService) {
   }
@@ -44,10 +41,10 @@ export class TaskCreatorComponent implements OnInit {
 
   prepareForReview() {
     this.newTaskModel.user = [];
-    this.assignedUser.forEach(t => {console.log(this.newTaskModel.user); this.newTaskModel.user.push(t.id); });
+    this.assignedUser.forEach(t => { this.newTaskModel.user.push(t.id); });
     this.taskModel.createdBy = this.global.getUid();  // The same user
     this.taskModel.program = this.global.getCurrentProgramId();  // The program of this dashboard
-    this.taskModel.modifiedBy = this.global.getUid(); // The same user/ who created
+    this.taskModel.modifiedBy = this.global.getUid(); // The same user who created
     this.taskModel.status = 'created';
 
     this.taskModel.modifiedTime = this.datePipe.transform(Date.now(), 'yyyy-MM-dd HH:mm');

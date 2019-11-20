@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/ngxs-store-internals.umd.js",
+  "module": "../fesm5/ngxs-store-internals.js",
+  "es2015": "../fesm2015/ngxs-store-internals.js",
+  "esm5": "../esm5/internals/ngxs-store-internals.js",
+  "esm2015": "../esm2015/internals/ngxs-store-internals.js",
+  "fesm5": "../fesm5/ngxs-store-internals.js",
+  "fesm2015": "../fesm2015/ngxs-store-internals.js",
+  "typings": "ngxs-store-internals.d.ts",
+  "metadata": "ngxs-store-internals.metadata.json",
+  "sideEffects": false,
+  "name": "@ngxs/store/internals"
+}

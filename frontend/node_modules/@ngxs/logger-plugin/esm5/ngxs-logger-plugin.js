@@ -1,0 +1,10 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Generated bundle index. Do not edit.
+ */
+export { NgxsLoggerPluginModule, NgxsLoggerPlugin, NGXS_LOGGER_PLUGIN_OPTIONS } from './index';
+export { USER_OPTIONS as ɵa, loggerOptionsFactory as ɵb } from './src/logger.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibmd4cy1sb2dnZXItcGx1Z2luLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG5neHMvbG9nZ2VyLXBsdWdpbi8iLCJzb3VyY2VzIjpbIm5neHMtbG9nZ2VyLXBsdWdpbi50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEscUZBQWMsU0FBUyxDQUFDO0FBRXhCLE9BQU8sRUFBQyxZQUFZLElBQUksRUFBRSxFQUFDLG9CQUFvQixJQUFJLEVBQUUsRUFBQyxNQUFNLHFCQUFxQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBHZW5lcmF0ZWQgYnVuZGxlIGluZGV4LiBEbyBub3QgZWRpdC5cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2luZGV4JztcblxuZXhwb3J0IHtVU0VSX09QVElPTlMgYXMgybVhLGxvZ2dlck9wdGlvbnNGYWN0b3J5IGFzIMm1Yn0gZnJvbSAnLi9zcmMvbG9nZ2VyLm1vZHVsZSc7Il19

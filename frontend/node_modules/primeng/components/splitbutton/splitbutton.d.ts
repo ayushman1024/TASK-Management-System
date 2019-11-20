@@ -1,0 +1,52 @@
+import { ElementRef, OnDestroy, EventEmitter, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { AnimationEvent } from '@angular/animations';
+import { MenuItem } from '../common/menuitem';
+import { Router } from '@angular/router';
+export declare class SplitButton implements OnDestroy {
+    el: ElementRef;
+    renderer: Renderer2;
+    router: Router;
+    cd: ChangeDetectorRef;
+    model: MenuItem[];
+    icon: string;
+    iconPos: string;
+    label: string;
+    onClick: EventEmitter<any>;
+    onDropdownClick: EventEmitter<any>;
+    style: any;
+    styleClass: string;
+    menuStyle: any;
+    menuStyleClass: string;
+    disabled: boolean;
+    tabindex: number;
+    appendTo: any;
+    dir: string;
+    showTransitionOptions: string;
+    hideTransitionOptions: string;
+    containerViewChild: ElementRef;
+    buttonViewChild: ElementRef;
+    overlay: HTMLDivElement;
+    overlayVisible: boolean;
+    documentClickListener: any;
+    dropdownClick: boolean;
+    shown: boolean;
+    documentResizeListener: any;
+    constructor(el: ElementRef, renderer: Renderer2, router: Router, cd: ChangeDetectorRef);
+    onDefaultButtonClick(event: Event): void;
+    itemClick(event: Event, item: MenuItem): void;
+    show(): void;
+    onOverlayAnimationStart(event: AnimationEvent): void;
+    onDropdownButtonClick(event: Event): void;
+    alignOverlay(): void;
+    appendOverlay(): void;
+    restoreOverlayAppend(): void;
+    bindDocumentClickListener(): void;
+    unbindDocumentClickListener(): void;
+    bindDocumentResizeListener(): void;
+    unbindDocumentResizeListener(): void;
+    onWindowResize(): void;
+    onOverlayHide(): void;
+    ngOnDestroy(): void;
+}
+export declare class SplitButtonModule {
+}

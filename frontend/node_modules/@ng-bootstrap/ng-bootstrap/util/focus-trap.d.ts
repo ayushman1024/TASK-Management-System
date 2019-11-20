@@ -1,0 +1,17 @@
+import { Observable } from 'rxjs';
+/**
+ * Returns first and last focusable elements inside of a given element based on specific CSS selector
+ */
+export declare function getFocusableBoundaryElements(element: HTMLElement): HTMLElement[];
+/**
+ * Function that enforces browser focus to be trapped inside a DOM element.
+ *
+ * Works only for clicks inside the element and navigation with 'Tab', ignoring clicks outside of the element
+ *
+ * @param element The element around which focus will be trapped inside
+ * @param stopFocusTrap$ The observable stream. When completed the focus trap will clean up listeners
+ * and free internal resources
+ * @param refocusOnClick Put the focus back to the last focused element whenever a click occurs on element (default to
+ * false)
+ */
+export declare const ngbFocusTrap: (element: HTMLElement, stopFocusTrap$: Observable<any>, refocusOnClick?: boolean) => void;

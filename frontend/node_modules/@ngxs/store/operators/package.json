@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/ngxs-store-operators.umd.js",
+  "module": "../fesm5/ngxs-store-operators.js",
+  "es2015": "../fesm2015/ngxs-store-operators.js",
+  "esm5": "../esm5/operators/ngxs-store-operators.js",
+  "esm2015": "../esm2015/operators/ngxs-store-operators.js",
+  "fesm5": "../fesm5/ngxs-store-operators.js",
+  "fesm2015": "../fesm2015/ngxs-store-operators.js",
+  "typings": "ngxs-store-operators.d.ts",
+  "metadata": "ngxs-store-operators.metadata.json",
+  "sideEffects": false,
+  "name": "@ngxs/store/operators"
+}

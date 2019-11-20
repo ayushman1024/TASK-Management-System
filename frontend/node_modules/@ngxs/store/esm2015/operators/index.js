@@ -1,0 +1,18 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @module
+ * @description
+ * Entry point for all public APIs of this package.
+ */
+export { append } from './append';
+export { compose } from './compose';
+export { iif } from './iif';
+export { insertItem } from './insert-item';
+export { patch } from './patch';
+export { isStateOperator } from './utils';
+export { updateItem } from './update-item';
+export { removeItem } from './remove-item';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9Abmd4cy9zdG9yZS9vcGVyYXRvcnMvIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFLQSxPQUFPLEVBQUUsTUFBTSxFQUFFLE1BQU0sVUFBVSxDQUFDO0FBQ2xDLE9BQU8sRUFBRSxPQUFPLEVBQUUsTUFBTSxXQUFXLENBQUM7QUFDcEMsT0FBTyxFQUFFLEdBQUcsRUFBRSxNQUFNLE9BQU8sQ0FBQztBQUM1QixPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQzNDLE9BQU8sRUFBRSxLQUFLLEVBQUUsTUFBTSxTQUFTLENBQUM7QUFDaEMsT0FBTyxFQUFFLGVBQWUsRUFBRSxNQUFNLFNBQVMsQ0FBQztBQUMxQyxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQzNDLE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxlQUFlLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcclxuICogQG1vZHVsZVxyXG4gKiBAZGVzY3JpcHRpb25cclxuICogRW50cnkgcG9pbnQgZm9yIGFsbCBwdWJsaWMgQVBJcyBvZiB0aGlzIHBhY2thZ2UuXHJcbiAqL1xyXG5leHBvcnQgeyBhcHBlbmQgfSBmcm9tICcuL2FwcGVuZCc7XHJcbmV4cG9ydCB7IGNvbXBvc2UgfSBmcm9tICcuL2NvbXBvc2UnO1xyXG5leHBvcnQgeyBpaWYgfSBmcm9tICcuL2lpZic7XHJcbmV4cG9ydCB7IGluc2VydEl0ZW0gfSBmcm9tICcuL2luc2VydC1pdGVtJztcclxuZXhwb3J0IHsgcGF0Y2ggfSBmcm9tICcuL3BhdGNoJztcclxuZXhwb3J0IHsgaXNTdGF0ZU9wZXJhdG9yIH0gZnJvbSAnLi91dGlscyc7XHJcbmV4cG9ydCB7IHVwZGF0ZUl0ZW0gfSBmcm9tICcuL3VwZGF0ZS1pdGVtJztcclxuZXhwb3J0IHsgcmVtb3ZlSXRlbSB9IGZyb20gJy4vcmVtb3ZlLWl0ZW0nO1xyXG4iXX0=

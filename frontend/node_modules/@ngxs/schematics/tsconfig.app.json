@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/utils",
+    "src/factories"
+  ],
+  "exclude": [
+    "node_modules",
+    "test",
+    "src/templates"
+  ]
+}

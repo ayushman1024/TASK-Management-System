@@ -1,0 +1,24 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+import { NgModule } from '@angular/core';
+import { NgbDropdown, NgbDropdownAnchor, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownItem } from './dropdown';
+export { NgbDropdown, NgbDropdownAnchor, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownItem } from './dropdown';
+export { NgbDropdownConfig } from './dropdown-config';
+/** @type {?} */
+const NGB_DROPDOWN_DIRECTIVES = [NgbDropdown, NgbDropdownAnchor, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownItem];
+export class NgbDropdownModule {
+    /**
+     * Importing with '.forRoot()' is no longer necessary, you can simply import the module.
+     * Will be removed in 4.0.0.
+     *
+     * @deprecated 3.0.0
+     * @return {?}
+     */
+    static forRoot() { return { ngModule: NgbDropdownModule }; }
+}
+NgbDropdownModule.decorators = [
+    { type: NgModule, args: [{ declarations: NGB_DROPDOWN_DIRECTIVES, exports: NGB_DROPDOWN_DIRECTIVES },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZHJvcGRvd24ubW9kdWxlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG5nLWJvb3RzdHJhcC9uZy1ib290c3RyYXAvIiwic291cmNlcyI6WyJkcm9wZG93bi9kcm9wZG93bi5tb2R1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUFBLE9BQU8sRUFBQyxRQUFRLEVBQXNCLE1BQU0sZUFBZSxDQUFDO0FBQzVELE9BQU8sRUFBQyxXQUFXLEVBQUUsaUJBQWlCLEVBQUUsaUJBQWlCLEVBQUUsZUFBZSxFQUFFLGVBQWUsRUFBQyxNQUFNLFlBQVksQ0FBQztBQUUvRyxPQUFPLEVBQUMsV0FBVyxFQUFFLGlCQUFpQixFQUFFLGlCQUFpQixFQUFFLGVBQWUsRUFBRSxlQUFlLEVBQUMsTUFBTSxZQUFZLENBQUM7QUFDL0csT0FBTyxFQUFDLGlCQUFpQixFQUFDLE1BQU0sbUJBQW1CLENBQUM7O01BRTlDLHVCQUF1QixHQUFHLENBQUMsV0FBVyxFQUFFLGlCQUFpQixFQUFFLGlCQUFpQixFQUFFLGVBQWUsRUFBRSxlQUFlLENBQUM7QUFHckgsTUFBTSxPQUFPLGlCQUFpQjs7Ozs7Ozs7SUFPNUIsTUFBTSxDQUFDLE9BQU8sS0FBMEIsT0FBTyxFQUFDLFFBQVEsRUFBRSxpQkFBaUIsRUFBQyxDQUFDLENBQUMsQ0FBQzs7O1lBUmhGLFFBQVEsU0FBQyxFQUFDLFlBQVksRUFBRSx1QkFBdUIsRUFBRSxPQUFPLEVBQUUsdUJBQXVCLEVBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQge05nTW9kdWxlLCBNb2R1bGVXaXRoUHJvdmlkZXJzfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7TmdiRHJvcGRvd24sIE5nYkRyb3Bkb3duQW5jaG9yLCBOZ2JEcm9wZG93blRvZ2dsZSwgTmdiRHJvcGRvd25NZW51LCBOZ2JEcm9wZG93bkl0ZW19IGZyb20gJy4vZHJvcGRvd24nO1xuXG5leHBvcnQge05nYkRyb3Bkb3duLCBOZ2JEcm9wZG93bkFuY2hvciwgTmdiRHJvcGRvd25Ub2dnbGUsIE5nYkRyb3Bkb3duTWVudSwgTmdiRHJvcGRvd25JdGVtfSBmcm9tICcuL2Ryb3Bkb3duJztcbmV4cG9ydCB7TmdiRHJvcGRvd25Db25maWd9IGZyb20gJy4vZHJvcGRvd24tY29uZmlnJztcblxuY29uc3QgTkdCX0RST1BET1dOX0RJUkVDVElWRVMgPSBbTmdiRHJvcGRvd24sIE5nYkRyb3Bkb3duQW5jaG9yLCBOZ2JEcm9wZG93blRvZ2dsZSwgTmdiRHJvcGRvd25NZW51LCBOZ2JEcm9wZG93bkl0ZW1dO1xuXG5ATmdNb2R1bGUoe2RlY2xhcmF0aW9uczogTkdCX0RST1BET1dOX0RJUkVDVElWRVMsIGV4cG9ydHM6IE5HQl9EUk9QRE9XTl9ESVJFQ1RJVkVTfSlcbmV4cG9ydCBjbGFzcyBOZ2JEcm9wZG93bk1vZHVsZSB7XG4gIC8qKlxuICAgKiBJbXBvcnRpbmcgd2l0aCAnLmZvclJvb3QoKScgaXMgbm8gbG9uZ2VyIG5lY2Vzc2FyeSwgeW91IGNhbiBzaW1wbHkgaW1wb3J0IHRoZSBtb2R1bGUuXG4gICAqIFdpbGwgYmUgcmVtb3ZlZCBpbiA0LjAuMC5cbiAgICpcbiAgICogQGRlcHJlY2F0ZWQgMy4wLjBcbiAgICovXG4gIHN0YXRpYyBmb3JSb290KCk6IE1vZHVsZVdpdGhQcm92aWRlcnMgeyByZXR1cm4ge25nTW9kdWxlOiBOZ2JEcm9wZG93bk1vZHVsZX07IH1cbn1cbiJdfQ==

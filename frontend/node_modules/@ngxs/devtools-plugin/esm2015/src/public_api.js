@@ -1,0 +1,8 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+export { NgxsReduxDevtoolsPluginModule } from './devtools.module';
+export { NgxsReduxDevtoolsPlugin } from './devtools.plugin';
+export { NGXS_DEVTOOLS_OPTIONS } from './symbols';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BuZ3hzL2RldnRvb2xzLXBsdWdpbi8iLCJzb3VyY2VzIjpbInNyYy9wdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFBQSxPQUFPLEVBQUUsNkJBQTZCLEVBQUUsTUFBTSxtQkFBbUIsQ0FBQztBQUNsRSxPQUFPLEVBQUUsdUJBQXVCLEVBQUUsTUFBTSxtQkFBbUIsQ0FBQztBQUM1RCxzQ0FBYyxXQUFXLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBOZ3hzUmVkdXhEZXZ0b29sc1BsdWdpbk1vZHVsZSB9IGZyb20gJy4vZGV2dG9vbHMubW9kdWxlJztcclxuZXhwb3J0IHsgTmd4c1JlZHV4RGV2dG9vbHNQbHVnaW4gfSBmcm9tICcuL2RldnRvb2xzLnBsdWdpbic7XHJcbmV4cG9ydCAqIGZyb20gJy4vc3ltYm9scyc7XHJcbiJdfQ==

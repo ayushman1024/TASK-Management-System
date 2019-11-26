@@ -8,3 +8,28 @@
 - “User” can be member of more than “Program” simultaneously. And one program can have any number of “User” member associated with it.
 - This web application is very secure and robust. We have implemented JWT based Authentication technique in our application. The password is encrypted using public and private keys then is stored in database.
 - Using Relation database MySQL is very easy to deploy on any server with best performance.
+## Dependencies
+- JAVA 8
+- Tomcat 9 server
+- Eclipse (Java IDE)
+- MySQL Database
+- Node.js
+## Installation
+### Backend
+ - In Eclipse import the folder named "backend" with option "import existing maven project".
+ - Now build the maven project. It will install all the necessary dependencies from Internet.
+ - To setup database, install MySQL in your system. Make any database.
+ - Update the below three variables present in file **aplication.properties** in **resources** folder
+>
+
+    spring.datasource.url=jdbc:mysql://localhost:3306/onboarding
+    spring.datasource.username=root
+    spring.datasource.password=root
+
+- Install Tomcat 9 and configure it with your project.
+- Run the project from **BackendApplication.java**, it will automatically create all the tables in your database.
+- Now execute **roles.sql** on your database.
+
+### Frontend
+- You should have node.js installed on your system.
+- GOTO the path of **frontend** folder in comand-prompt and run `npm start`  instead of `ng serve` because i have configured different port number for frontend.

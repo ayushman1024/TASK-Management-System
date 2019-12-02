@@ -1,7 +1,7 @@
 # TASK-Management-System
-### Spring Boot and Angular 7 web application for task management .
-#### [Frontend Documentation (Angular 7)](https://ayushman1024.github.io/documentation/)
-
+#### *Spring Boot and Angular 7 web application for task management .*
+>  [Frontend Documentation](https://ayushman1024.github.io/documentation/)
+## Synopsis
 - Task management system is a web application which is build for team project works where one can manage various task within team.
 - Task management system is developed Spring Boot Application with Angular as a front-end  framework.
 - Task management system focuses mainly on handling document based projects. For example , a group of student decided to prepare number of speeches for a college event. Here this task management is very useful.
@@ -19,12 +19,21 @@
  - In Eclipse import the folder named "backend" with option "import existing maven project".
  - Now build the maven project. It will install all the necessary dependencies from Internet.
  - To setup database, install MySQL in your system. Make any database.
- - Update the below three variables present in file **aplication.properties** in **resources** folder
+ - Update the below three variables present in file **application.properties** present in **resources** folder
 >
 
     spring.datasource.url=jdbc:mysql://localhost:3306/onboarding
     spring.datasource.username=root
     spring.datasource.password=root
+- For email services you need to use email via SMTP. For that you need to update **application.properties** below fields. 
+
+`spring.mail.host=smtp.gmail.com
+spring.mail.smtp.ssl.trust=smtp.gmail.com
+spring.mail.port=587
+spring.mail.transport.protocol=smtp
+spring.mail.username=your.email@gmail.com
+spring.mail.password=password`
+Read [Google SMTP common issues](https://help.dreamhost.com/hc/en-us/articles/115001719551-Troubleshooting-GMAIL-SMTP-authentication-errors)
 
 - Install Tomcat 9 and configure it with your project.
 - Run the project from **BackendApplication.java**, it will automatically create all the tables in your database.

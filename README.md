@@ -27,12 +27,13 @@
     spring.datasource.password=root
 - For email services you need to use email via SMTP. For that you need to update **application.properties** below fields. 
 
-`spring.mail.host=smtp.gmail.com
-spring.mail.smtp.ssl.trust=smtp.gmail.com
-spring.mail.port=587
-spring.mail.transport.protocol=smtp
-spring.mail.username=your.email@gmail.com
-spring.mail.password=password`
+>
+    spring.mail.host=smtp.gmail.com
+	spring.mail.smtp.ssl.trust=smtp.gmail.com
+	spring.mail.port=587
+	spring.mail.transport.protocol=smtp
+	spring.mail.username=your.email@gmail.com
+	spring.mail.password=password`
 Read [Google SMTP common issues](https://help.dreamhost.com/hc/en-us/articles/115001719551-Troubleshooting-GMAIL-SMTP-authentication-errors)
 
 - Install Tomcat 9 and configure it with your project.

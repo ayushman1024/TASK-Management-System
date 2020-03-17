@@ -6,4 +6,5 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import * as ts from 'typescript';
+/** @deprecated Since version 8 */
 export declare function getFoldFileTransformer(program: ts.Program): ts.TransformerFactory<ts.SourceFile>;

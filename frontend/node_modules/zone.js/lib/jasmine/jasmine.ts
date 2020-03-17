@@ -40,7 +40,39 @@
   const symbol = Zone.__symbol__;
 
   // whether patch jasmine clock when in fakeAsync
-  const enableClockPatch = _global[symbol('fakeAsyncPatchLock')] === true;
+  const disablePatchingJasmineClock = _global[symbol('fakeAsyncDisablePatchingClock')] === true;
+  // the original variable name fakeAsyncPatchLock is not accurate, so the name will be
+  // fakeAsyncAutoFakeAsyncWhenClockPatched and if this enablePatchingJasmineClock is false, we also
+  // automatically disable the auto jump into fakeAsync feature
+  const enableAutoFakeAsyncWhenClockPatched = !disablePatchingJasmineClock &&
+      ((_global[symbol('fakeAsyncPatchLock')] === true) ||
+       (_global[symbol('fakeAsyncAutoFakeAsyncWhenClockPatched')] === true));
+
+  const ignoreUnhandledRejection = _global[symbol('ignoreUnhandledRejection')] === true;
+
+  if (!ignoreUnhandledRejection) {
+    const globalErrors = (jasmine as any).GlobalErrors;
+    if (globalErrors && !(jasmine as any)[symbol('GlobalErrors')]) {
+      (jasmine as any)[symbol('GlobalErrors')] = globalErrors;
+      (jasmine as any).GlobalErrors = function() {
+        const instance = new globalErrors();
+        const originalInstall = instance.install;
+        if (originalInstall && !instance[symbol('install')]) {
+          instance[symbol('install')] = originalInstall;
+          instance.install = function() {
+            const originalHandlers = process.listeners('unhandledRejection');
+            const r = originalInstall.apply(this, arguments);
+            process.removeAllListeners('unhandledRejection');
+            if (originalHandlers) {
+              originalHandlers.forEach(h => process.on('unhandledRejection', h));
+            }
+            return r;
+          };
+        }
+        return instance;
+      };
+    }
+  }
 
   // Monkey patch all of the jasmine DSL so that each function runs in appropriate zone.
   const jasmineEnv: any = jasmine.getEnv();
@@ -68,51 +100,52 @@
     };
   });
 
-  // need to patch jasmine.clock().mockDate and jasmine.clock().tick() so
-  // they can work properly in FakeAsyncTest
-  const originalClockFn: Function = ((jasmine as any)[symbol('clock')] = jasmine['clock']);
-  (jasmine as any)['clock'] = function() {
-    const clock = originalClockFn.apply(this, arguments);
-    if (!clock[symbol('patched')]) {
-      clock[symbol('patched')] = symbol('patched');
-      const originalTick = (clock[symbol('tick')] = clock.tick);
-      clock.tick = function() {
-        const fakeAsyncZoneSpec = Zone.current.get('FakeAsyncTestZoneSpec');
-        if (fakeAsyncZoneSpec) {
-          return fakeAsyncZoneSpec.tick.apply(fakeAsyncZoneSpec, arguments);
+  if (!disablePatchingJasmineClock) {
+    // need to patch jasmine.clock().mockDate and jasmine.clock().tick() so
+    // they can work properly in FakeAsyncTest
+    const originalClockFn: Function = ((jasmine as any)[symbol('clock')] = jasmine['clock']);
+    (jasmine as any)['clock'] = function() {
+      const clock = originalClockFn.apply(this, arguments);
+      if (!clock[symbol('patched')]) {
+        clock[symbol('patched')] = symbol('patched');
+        const originalTick = (clock[symbol('tick')] = clock.tick);
+        clock.tick = function() {
+          const fakeAsyncZoneSpec = Zone.current.get('FakeAsyncTestZoneSpec');
+          if (fakeAsyncZoneSpec) {
+            return fakeAsyncZoneSpec.tick.apply(fakeAsyncZoneSpec, arguments);
+          }
+          return originalTick.apply(this, arguments);
+        };
+        const originalMockDate = (clock[symbol('mockDate')] = clock.mockDate);
+        clock.mockDate = function() {
+          const fakeAsyncZoneSpec = Zone.current.get('FakeAsyncTestZoneSpec');
+          if (fakeAsyncZoneSpec) {
+            const dateTime = arguments.length > 0 ? arguments[0] : new Date();
+            return fakeAsyncZoneSpec.setCurrentRealTime.apply(
+                fakeAsyncZoneSpec,
+                dateTime && typeof dateTime.getTime === 'function' ? [dateTime.getTime()] :
+                                                                     arguments);
+          }
+          return originalMockDate.apply(this, arguments);
+        };
+        // for auto go into fakeAsync feature, we need the flag to enable it
+        if (enableAutoFakeAsyncWhenClockPatched) {
+          ['install', 'uninstall'].forEach(methodName => {
+            const originalClockFn: Function = (clock[symbol(methodName)] = clock[methodName]);
+            clock[methodName] = function() {
+              const FakeAsyncTestZoneSpec = (Zone as any)['FakeAsyncTestZoneSpec'];
+              if (FakeAsyncTestZoneSpec) {
+                (jasmine as any)[symbol('clockInstalled')] = 'install' === methodName;
+                return;
+              }
+              return originalClockFn.apply(this, arguments);
+            };
+          });
         }
-        return originalTick.apply(this, arguments);
-      };
-      const originalMockDate = (clock[symbol('mockDate')] = clock.mockDate);
-      clock.mockDate = function() {
-        const fakeAsyncZoneSpec = Zone.current.get('FakeAsyncTestZoneSpec');
-        if (fakeAsyncZoneSpec) {
-          const dateTime = arguments.length > 0 ? arguments[0] : new Date();
-          return fakeAsyncZoneSpec.setCurrentRealTime.apply(
-              fakeAsyncZoneSpec,
-              dateTime && typeof dateTime.getTime === 'function' ? [dateTime.getTime()] :
-                                                                   arguments);
-        }
-        return originalMockDate.apply(this, arguments);
-      };
-      // for auto go into fakeAsync feature, we need the flag to enable it
-      if (enableClockPatch) {
-        ['install', 'uninstall'].forEach(methodName => {
-          const originalClockFn: Function = (clock[symbol(methodName)] = clock[methodName]);
-          clock[methodName] = function() {
-            const FakeAsyncTestZoneSpec = (Zone as any)['FakeAsyncTestZoneSpec'];
-            if (FakeAsyncTestZoneSpec) {
-              (jasmine as any)[symbol('clockInstalled')] = 'install' === methodName;
-              return;
-            }
-            return originalClockFn.apply(this, arguments);
-          };
-        });
       }
-    }
-    return clock;
-  };
-
+      return clock;
+    };
+  }
   /**
    * Gets a function wrapping the body of a Jasmine `describe` block to execute in a
    * synchronous-only zone.
@@ -128,7 +161,7 @@
     const testProxyZoneSpec = queueRunner.testProxyZoneSpec;
     const testProxyZone = queueRunner.testProxyZone;
     let lastDelegate;
-    if (isClockInstalled && enableClockPatch) {
+    if (isClockInstalled && enableAutoFakeAsyncWhenClockPatched) {
       // auto run a fakeAsync
       const fakeAsyncModule = (Zone as any)[Zone.__symbol__('fakeAsyncTest')];
       if (fakeAsyncModule && typeof fakeAsyncModule.fakeAsync === 'function') {
@@ -162,13 +195,13 @@
   }
   interface QueueRunnerAttrs {
     queueableFns: {fn: Function}[];
-    onComplete: () => void;
     clearStack: (fn: any) => void;
-    onException: (error: any) => void;
     catchException: () => boolean;
+    fail: () => void;
+    onComplete: () => void;
+    onException: (error: any) => void;
     userContext: any;
     timeout: {setTimeout: Function; clearTimeout: Function};
-    fail: () => void;
   }
 
   const QueueRunner = (jasmine as any).QueueRunner as {
@@ -176,12 +209,7 @@
   };
   (jasmine as any).QueueRunner = (function(_super) {
     __extends(ZoneQueueRunner, _super);
-    function ZoneQueueRunner(attrs: {
-      onComplete: Function;
-      userContext?: any;
-      timeout?: {setTimeout: Function; clearTimeout: Function};
-      onException?: (error: any) => void;
-    }) {
+    function ZoneQueueRunner(attrs: QueueRunnerAttrs) {
       attrs.onComplete = (fn => () => {
         // All functions are done, clear the test zone.
         this.testProxyZone = null;
@@ -224,7 +252,11 @@
           const proxyZoneSpec: any = this && this.testProxyZoneSpec;
           if (proxyZoneSpec) {
             const pendingTasksInfo = proxyZoneSpec.getAndClearPendingTasksInfo();
-            error.message += pendingTasksInfo;
+            try {
+              // try catch here in case error.message is not writable
+              error.message += pendingTasksInfo;
+            } catch (err) {
+            }
           }
         }
         if (onException) {

@@ -16,7 +16,7 @@ export interface R3InjectableMetadata {
     name: string;
     type: o.Expression;
     typeArgumentCount: number;
-    ctorDeps: R3DependencyMetadata[] | null;
+    ctorDeps: R3DependencyMetadata[] | 'invalid' | null;
     providedIn: o.Expression;
     useClass?: o.Expression;
     useFactory?: o.Expression;

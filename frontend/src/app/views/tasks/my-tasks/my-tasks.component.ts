@@ -15,8 +15,8 @@ import { Router, ActivatedRoute } from '@angular/router';
  * This Component Lists all the Tasks Of Trainee.
  */
 export class MyTasksComponent implements OnInit {
-  @ViewChild('desc') desc: ElementRef;
-  @ViewChild('dialog') dialog: ElementRef;
+  @ViewChild('desc', { static: true }) desc: ElementRef;
+  @ViewChild('dialog', { static: true }) dialog: ElementRef;
 
   taskRecordList: TaskRecord[];
   taskList: Task[];

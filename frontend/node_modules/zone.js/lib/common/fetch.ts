@@ -5,16 +5,28 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+/**
+ * @fileoverview
+ * @suppress {missingRequire}
+ */
 
 Zone.__load_patch('fetch', (global: any, Zone: ZoneType, api: _ZonePrivate) => {
-  const fetch = global['fetch'];
+  interface FetchTaskData extends TaskData {
+    fetchArgs?: any[];
+  }
+  let fetch = global['fetch'];
+  if (typeof fetch !== 'function') {
+    return;
+  }
+  const originalFetch = global[api.symbol('fetch')];
+  if (originalFetch) {
+    // restore unpatched fetch first
+    fetch = originalFetch;
+  }
   const ZoneAwarePromise = global.Promise;
   const symbolThenPatched = api.symbol('thenPatched');
   const fetchTaskScheduling = api.symbol('fetchTaskScheduling');
   const fetchTaskAborting = api.symbol('fetchTaskAborting');
-  if (typeof fetch !== 'function') {
-    return;
-  }
   const OriginalAbortController = global['AbortController'];
   const supportAbort = typeof OriginalAbortController === 'function';
   let abortNative: Function|null = null;
@@ -41,7 +53,7 @@ Zone.__load_patch('fetch', (global: any, Zone: ZoneType, api: _ZonePrivate) => {
     const signal = options && options.signal;
     return new Promise((res, rej) => {
       const task = Zone.current.scheduleMacroTask(
-          'fetch', placeholder, args,
+          'fetch', placeholder, {fetchArgs: args} as FetchTaskData,
           () => {
             let fetchPromise;
             let zone = Zone.current;

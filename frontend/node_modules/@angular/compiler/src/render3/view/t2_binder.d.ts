@@ -36,10 +36,11 @@ export declare class R3BoundTarget<DirectiveT extends DirectiveMeta> implements 
     private exprTargets;
     private symbols;
     private nestingLevel;
+    private usedPipes;
     constructor(target: Target, directives: Map<Element | Template, DirectiveT[]>, bindings: Map<BoundAttribute | BoundEvent | TextAttribute, DirectiveT | Element | Template>, references: Map<BoundAttribute | BoundEvent | Reference | TextAttribute, {
         directive: DirectiveT;
         node: Element | Template;
-    } | Element | Template>, exprTargets: Map<AST, Reference | Variable>, symbols: Map<Reference | Variable, Template>, nestingLevel: Map<Template, number>);
+    } | Element | Template>, exprTargets: Map<AST, Reference | Variable>, symbols: Map<Reference | Variable, Template>, nestingLevel: Map<Template, number>, usedPipes: Set<string>);
     getDirectivesOfNode(node: Element | Template): DirectiveT[] | null;
     getReferenceTarget(ref: Reference): {
         directive: DirectiveT;
@@ -50,4 +51,5 @@ export declare class R3BoundTarget<DirectiveT extends DirectiveMeta> implements 
     getTemplateOfSymbol(symbol: Reference | Variable): Template | null;
     getNestingLevel(template: Template): number;
     getUsedDirectives(): DirectiveT[];
+    getUsedPipes(): string[];
 }

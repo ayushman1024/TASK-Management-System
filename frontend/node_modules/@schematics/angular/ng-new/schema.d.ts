@@ -14,9 +14,9 @@ export interface Schema {
      */
     directory?: string;
     /**
-     * EXPERIMENTAL: When true, creates a new app that uses the Ivy rendering engine.
+     * When true, creates a new app that uses the Ivy rendering engine.
      */
-    experimentalIvy?: boolean;
+    enableIvy?: boolean;
     /**
      * When true, includes styles inline in the component TS file. By default, an external
      * styles file is created and referenced in the component TS file.

@@ -5,10 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-interface Promise<T> {
-  finally<U>(onFinally?: () => U | PromiseLike<U>): Promise<T>;
-}
-
 Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePrivate) => {
   const ObjectGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
   const ObjectDefineProperty = Object.defineProperty;
@@ -146,7 +142,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       if (state !== REJECTED && value instanceof ZoneAwarePromise &&
           value.hasOwnProperty(symbolState) && value.hasOwnProperty(symbolValue) &&
           (value as any)[symbolState] !== UNRESOLVED) {
-        clearRejectedNoCatch(<Promise<any>>value);
+        clearRejectedNoCatch(<Promise<any>>value as any);
         resolvePromise(promise, (value as any)[symbolState], (value as any)[symbolValue]);
       } else if (state !== REJECTED && typeof then === 'function') {
         try {
@@ -293,10 +289,10 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
         reject = rej;
       });
       function onResolve(value: any) {
-        promise && (promise = null || resolve(value));
+        resolve(value);
       }
       function onReject(error: any) {
-        promise && (promise = null || reject(error));
+        reject(error);
       }
 
       for (let value of values) {
@@ -365,6 +361,10 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       }
     }
 
+    get[Symbol.toStringTag]() {
+      return 'Promise' as any;
+    }
+
     then<TResult1 = R, TResult2 = never>(
         onFulfilled?: ((value: R) => TResult1 | PromiseLike<TResult1>)|undefined|null,
         onRejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>)|undefined|
@@ -375,7 +375,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       if ((this as any)[symbolState] == UNRESOLVED) {
         (<any[]>(this as any)[symbolValue]).push(zone, chainPromise, onFulfilled, onRejected);
       } else {
-        scheduleResolveOrReject(this, zone, chainPromise, onFulfilled, onRejected);
+        scheduleResolveOrReject(this, zone, chainPromise as any, onFulfilled, onRejected);
       }
       return chainPromise;
     }
@@ -393,7 +393,7 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
       if ((this as any)[symbolState] == UNRESOLVED) {
         (<any[]>(this as any)[symbolValue]).push(zone, chainPromise, onFinally, onFinally);
       } else {
-        scheduleResolveOrReject(this, zone, chainPromise, onFinally, onFinally);
+        scheduleResolveOrReject(this, zone, chainPromise as any, onFinally, onFinally);
       }
       return chainPromise;
     }
@@ -489,6 +489,11 @@ Zone.__load_patch('ZoneAwarePromise', (global: any, Zone: ZoneType, api: _ZonePr
 
   if (NativePromise) {
     patchThen(NativePromise);
+    const fetch = global['fetch'];
+    if (typeof fetch == 'function') {
+      global[api.symbol('fetch')] = fetch;
+      global['fetch'] = zoneify(fetch);
+    }
   }
 
   // This is not part of public API, but it is useful for tests, so we expose it.

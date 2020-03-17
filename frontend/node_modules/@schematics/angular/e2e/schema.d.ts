@@ -3,14 +3,6 @@
  */
 export interface Schema {
     /**
-     * The name of the new e2e app.
-     */
-    name: string;
-    /**
-     * The root folder for the new test app.
-     */
-    projectRoot?: string;
-    /**
      * The name of the app being tested.
      */
     relatedAppName: string;

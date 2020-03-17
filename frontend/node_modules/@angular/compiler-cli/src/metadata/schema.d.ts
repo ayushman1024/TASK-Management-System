@@ -49,6 +49,7 @@ export interface MetadataMap {
 export interface MemberMetadata {
     __symbolic: 'constructor' | 'method' | 'property';
     decorators?: (MetadataSymbolicExpression | MetadataError)[];
+    parameters?: (MetadataSymbolicExpression | MetadataError | null | undefined)[];
 }
 export declare function isMemberMetadata(value: any): value is MemberMetadata;
 export interface MethodMetadata extends MemberMetadata {

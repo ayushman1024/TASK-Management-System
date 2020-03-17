@@ -12,17 +12,18 @@
 
 import {findEventTasks} from '../common/events';
 import {patchTimer} from '../common/timers';
-import {bindArguments, patchClass, patchMacroTask, patchMethod, patchOnProperties, patchPrototype, scheduleMacroTaskWithCurrentZone, ZONE_SYMBOL_ADD_EVENT_LISTENER, ZONE_SYMBOL_REMOVE_EVENT_LISTENER, zoneSymbol} from '../common/utils';
+import {patchClass, patchMethod, patchPrototype, scheduleMacroTaskWithCurrentZone, ZONE_SYMBOL_ADD_EVENT_LISTENER, ZONE_SYMBOL_REMOVE_EVENT_LISTENER, zoneSymbol} from '../common/utils';
 
+import {patchCustomElements} from './custom-elements';
 import {propertyPatch} from './define-property';
 import {eventTargetPatch, patchEvent} from './event-target';
 import {propertyDescriptorPatch} from './property-descriptor';
-import {patchCustomElements, registerElementPatch} from './register-element';
 
-Zone.__load_patch('util', (global: any, Zone: ZoneType, api: _ZonePrivate) => {
-  api.patchOnProperties = patchOnProperties;
-  api.patchMethod = patchMethod;
-  api.bindArguments = bindArguments;
+Zone.__load_patch('legacy', (global: any) => {
+  const legacyPatch = global[Zone.__symbol__('legacyPatch')];
+  if (legacyPatch) {
+    legacyPatch();
+  }
 });
 
 Zone.__load_patch('timers', (global: any) => {
@@ -52,12 +53,6 @@ Zone.__load_patch('blocking', (global: any, Zone: ZoneType) => {
 });
 
 Zone.__load_patch('EventTarget', (global: any, Zone: ZoneType, api: _ZonePrivate) => {
-  // load blackListEvents from global
-  const SYMBOL_BLACK_LISTED_EVENTS = Zone.__symbol__('BLACK_LISTED_EVENTS');
-  if (global[SYMBOL_BLACK_LISTED_EVENTS]) {
-    (Zone as any)[SYMBOL_BLACK_LISTED_EVENTS] = global[SYMBOL_BLACK_LISTED_EVENTS];
-  }
-
   patchEvent(global, api);
   eventTargetPatch(global, api);
   // patch XMLHttpRequestEventTarget's addEventListener/removeEventListener
@@ -77,18 +72,7 @@ Zone.__load_patch('on_property', (global: any, Zone: ZoneType, api: _ZonePrivate
 });
 
 Zone.__load_patch('customElements', (global: any, Zone: ZoneType, api: _ZonePrivate) => {
-  registerElementPatch(global);
-  patchCustomElements(global);
-});
-
-Zone.__load_patch('canvas', (global: any) => {
-  const HTMLCanvasElement = global['HTMLCanvasElement'];
-  if (typeof HTMLCanvasElement !== 'undefined' && HTMLCanvasElement.prototype &&
-      HTMLCanvasElement.prototype.toBlob) {
-    patchMacroTask(HTMLCanvasElement.prototype, 'toBlob', (self: any, args: any[]) => {
-      return {name: 'HTMLCanvasElement.toBlob', target: self, cbIdx: 0, args: args};
-    });
-  }
+  patchCustomElements(global, api);
 });
 
 Zone.__load_patch('XHR', (global: any, Zone: ZoneType) => {
@@ -110,6 +94,11 @@ Zone.__load_patch('XHR', (global: any, Zone: ZoneType) => {
   }
 
   function patchXHR(window: any) {
+    const XMLHttpRequest = window['XMLHttpRequest'];
+    if (!XMLHttpRequest) {
+      // XMLHttpRequest is not available in service worker
+      return;
+    }
     const XMLHttpRequestPrototype: any = XMLHttpRequest.prototype;
 
     function findPendingTask(target: any) {

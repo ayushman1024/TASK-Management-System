@@ -5,6 +5,7 @@ export interface Schema {
     /**
      * A named build target, as specified in the "configurations" section of angular.json.
      * Each named target is accompanied by a configuration of option defaults for that target.
+     * Setting this explicitly overrides the "--prod" flag
      */
     configuration?: string;
     /**
@@ -12,13 +13,14 @@ export interface Schema {
      */
     help?: HelpUnion;
     /**
+     * Shorthand for "--configuration=production".
      * When true, sets the build configuration to the production target.
-     * All builds make use of bundling and limited tree-shaking. A production build also runs
-     * limited dead code elimination.
+     * By default, the production target is set up in the workspace configuration such that all
+     * builds make use of bundling, limited tree-shaking, and also limited dead code elimination.
      */
     prod?: boolean;
     /**
-     * The name of the project to build. Can be an app or a library.
+     * The name of the project to build. Can be an application or a library.
      */
     project?: string;
 }

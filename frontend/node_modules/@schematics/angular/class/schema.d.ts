@@ -17,7 +17,7 @@ export interface Schema {
     /**
      * The name of the project.
      */
-    project: string;
+    project?: string;
     /**
      * When true, does not create "spec.ts" test files for the new class.
      */

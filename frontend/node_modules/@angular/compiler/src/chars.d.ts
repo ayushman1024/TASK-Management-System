@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 export declare const $EOF = 0;
+export declare const $BSPACE = 8;
 export declare const $TAB = 9;
 export declare const $LF = 10;
 export declare const $VTAB = 11;
@@ -34,6 +35,7 @@ export declare const $EQ = 61;
 export declare const $GT = 62;
 export declare const $QUESTION = 63;
 export declare const $0 = 48;
+export declare const $7 = 55;
 export declare const $9 = 57;
 export declare const $A = 65;
 export declare const $E = 69;
@@ -46,6 +48,7 @@ export declare const $RBRACKET = 93;
 export declare const $CARET = 94;
 export declare const $_ = 95;
 export declare const $a = 97;
+export declare const $b = 98;
 export declare const $e = 101;
 export declare const $f = 102;
 export declare const $n = 110;
@@ -67,3 +70,5 @@ export declare function isWhitespace(code: number): boolean;
 export declare function isDigit(code: number): boolean;
 export declare function isAsciiLetter(code: number): boolean;
 export declare function isAsciiHexDigit(code: number): boolean;
+export declare function isNewLine(code: number): boolean;
+export declare function isOctalDigit(code: number): boolean;

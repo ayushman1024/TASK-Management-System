@@ -4,6 +4,7 @@ export interface PostcssCliResourcesOptions {
     baseHref?: string;
     deployUrl?: string;
     resourcesOutputPath?: string;
+    rebaseRootRelative?: boolean;
     filename: string;
     loader: webpack.loader.LoaderContext;
 }

@@ -11,16 +11,30 @@ import * as o from '../output/output_ast';
 import { OutputContext } from '../util';
 import { R3DependencyMetadata } from './r3_factory';
 export interface R3PipeMetadata {
+    /**
+     * Name of the pipe type.
+     */
     name: string;
+    /**
+     * An expression representing a reference to the pipe itself.
+     */
     type: o.Expression;
+    /**
+     * Number of generic type parameters of the type itself.
+     */
+    typeArgumentCount: number;
+    /**
+     * Name of the pipe.
+     */
     pipeName: string;
+    /**
+     * Dependencies of the pipe's constructor.
+     */
     deps: R3DependencyMetadata[] | null;
+    /**
+     * Whether the pipe is marked as pure.
+     */
     pure: boolean;
-}
-export interface R3PipeDef {
-    expression: o.Expression;
-    type: o.Type;
-    statements: o.Statement[];
 }
 export declare function compilePipeFromMetadata(metadata: R3PipeMetadata): {
     expression: o.InvokeFunctionExpr;

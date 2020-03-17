@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { json, logging } from '@angular-devkit/core';
+import { analytics, json, logging } from '@angular-devkit/core';
 /**
  * Value type of arguments.
  */
@@ -46,6 +46,7 @@ export interface CommandWorkspace {
  */
 export interface CommandContext {
     workspace: CommandWorkspace;
+    analytics?: analytics.Analytics;
 }
 /**
  * Value types of an Option.
@@ -128,6 +129,11 @@ export interface Option {
      * Smart default object.
      */
     $default?: OptionSmartDefault;
+    /**
+     * Whether or not to report this option to the Angular Team, and which custom field to use.
+     * If this is falsey, do not report this option.
+     */
+    userAnalytics?: number;
 }
 /**
  * Scope of the command.

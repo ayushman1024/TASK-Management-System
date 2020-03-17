@@ -5,5 +5,5 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { NormalizedSourceMaps, SourceMapOptions } from '../browser/schema';
-export declare function normalizeSourceMaps(sourceMap: SourceMapOptions): NormalizedSourceMaps;
+import { SourceMapClass, SourceMapUnion } from '../browser/schema';
+export declare function normalizeSourceMaps(sourceMap: SourceMapUnion): SourceMapClass;

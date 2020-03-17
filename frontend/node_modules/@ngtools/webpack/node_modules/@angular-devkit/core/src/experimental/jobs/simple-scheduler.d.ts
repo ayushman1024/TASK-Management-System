@@ -8,6 +8,9 @@
 import { Observable } from 'rxjs';
 import { JsonValue, schema } from '../../json';
 import { Job, JobDescription, JobName, Registry, ScheduleJobOptions, Scheduler } from './api';
+export declare class JobArgumentSchemaValidationError extends schema.SchemaValidationException {
+    constructor(errors?: schema.SchemaValidatorError[]);
+}
 export declare class JobInboundMessageSchemaValidationError extends schema.SchemaValidationException {
     constructor(errors?: schema.SchemaValidatorError[]);
 }

@@ -29,6 +29,3 @@ export interface StreamCapabilities {
     columns: number | null;
 }
 export declare function getCapabilities(stream: Socket, isTerminalStream?: boolean): StreamCapabilities;
-export declare const stdin: StreamCapabilities;
-export declare const stdout: StreamCapabilities;
-export declare const stderr: StreamCapabilities;

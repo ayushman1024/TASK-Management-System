@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema",
   "title": "Karma Target",
   "description": "Karma target options for Build Facade.",
   "type": "object",
@@ -61,6 +62,13 @@
     "environment": {
       "type": "string",
       "description": "Defines the build environment."
+    },
+    "include": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Globs of files to include, relative to workspace or project root. \nThere are 2 special cases:\n - when a path to directory is provided, all spec files ending \".spec.@(ts|tsx)\" will be included\n - when a path to a file is provided, and a matching spec file exists it will be included instead"
     },
     "sourceMap": {
       "description": "Output sourcemaps.",
@@ -184,6 +192,10 @@
       "items": {
         "type": "string"
       }
+    },
+    "webWorkerTsConfig": {
+      "type": "string",
+      "description": "TypeScript configuration for Web Worker modules."
     }
   },
   "additionalProperties": false,
@@ -246,7 +258,13 @@
             "lazy": {
               "type": "boolean",
               "description": "If the bundle will be lazy loaded.",
-              "default": false
+              "default": false,
+              "x-deprecated": "Use 'inject' option with 'false' value instead."
+            },
+            "inject": {
+              "type": "boolean",
+              "description": "If the bundle will be referenced in the HTML file.",
+              "default": true
             }
           },
           "additionalProperties": false,

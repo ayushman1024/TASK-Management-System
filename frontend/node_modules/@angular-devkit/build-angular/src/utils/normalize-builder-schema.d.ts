@@ -5,9 +5,17 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { BuilderConfiguration } from '@angular-devkit/architect';
 import { Path, virtualFs } from '@angular-devkit/core';
-import { BrowserBuilderSchema, NormalizedBrowserBuilderSchema } from '../browser/schema';
-import { KarmaBuilderSchema, NormalizedKarmaBuilderSchema } from '../karma/schema';
-import { BuildWebpackServerSchema, NormalizedServerBuilderServerSchema } from '../server/schema';
-export declare function normalizeBuilderSchema<BuilderConfigurationT extends BuilderConfiguration<BrowserBuilderSchema | BuildWebpackServerSchema | KarmaBuilderSchema>, OptionsT = BuilderConfigurationT['options']>(host: virtualFs.Host<{}>, root: Path, builderConfig: BuilderConfigurationT): OptionsT extends BrowserBuilderSchema ? NormalizedBrowserBuilderSchema : OptionsT extends BuildWebpackServerSchema ? NormalizedServerBuilderServerSchema : OptionsT extends KarmaBuilderSchema ? NormalizedKarmaBuilderSchema : any;
+import { BuildOptions } from '../angular-cli-files/models/build-options';
+import { AssetPatternClass, OptimizationClass, Schema as BrowserBuilderSchema, SourceMapClass } from '../browser/schema';
+import { NormalizedFileReplacement } from './normalize-file-replacements';
+/**
+ * A normalized browser builder schema.
+ */
+export declare type NormalizedBrowserBuilderSchema = BrowserBuilderSchema & BuildOptions & {
+    sourceMap: SourceMapClass;
+    assets: AssetPatternClass[];
+    fileReplacements: NormalizedFileReplacement[];
+    optimization: OptimizationClass;
+};
+export declare function normalizeBrowserSchema(host: virtualFs.Host<{}>, root: Path, projectRoot: Path, sourceRoot: Path | undefined, options: BrowserBuilderSchema): NormalizedBrowserBuilderSchema;

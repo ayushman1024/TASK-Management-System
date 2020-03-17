@@ -16,6 +16,7 @@ export declare class VirtualFileSystemDecorator implements InputFileSystem {
     private _inputFileSystem;
     private _webpackCompilerHost;
     constructor(_inputFileSystem: InputFileSystem, _webpackCompilerHost: WebpackCompilerHost);
+    getWebpackCompilerHost(): WebpackCompilerHost;
     getVirtualFilesPaths(): string[];
     stat(path: string, callback: (err: Error, stats: Stats) => void): void;
     readdir(path: string, callback: Callback<string[]>): void;

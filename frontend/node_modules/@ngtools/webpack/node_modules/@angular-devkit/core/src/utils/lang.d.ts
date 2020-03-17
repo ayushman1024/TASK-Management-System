@@ -12,5 +12,6 @@ import { Observable } from 'rxjs';
 export declare function isPromise(obj: any): obj is Promise<any>;
 /**
  * Determine if the argument is an Observable
+ * @deprecated as of 8.0; use rxjs' built-in version
  */
 export declare function isObservable(obj: any | Observable<any>): obj is Observable<any>;

@@ -41,15 +41,15 @@
     "skipTests": {
       "type": "boolean",
       "description": "When true, does not create \"spec.ts\" test files for the new service.",
-      "default": false
+      "default": false,
+      "x-user-analytics": 12
     },
     "lintFix": {
       "type": "boolean",
       "default": false,
-      "description": "When true, applies lint fixes after generating the pipe."
+      "description": "When true, applies lint fixes after generating the service.",
+      "x-user-analytics": 15
     }
   },
-  "required": [
-    "name"
-  ]
+  "required": ["name"]
 }

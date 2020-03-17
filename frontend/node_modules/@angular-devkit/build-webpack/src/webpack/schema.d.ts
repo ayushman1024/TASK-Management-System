@@ -1,13 +1,9 @@
 /**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
+ * Webpack Builder schema for Architect.
  */
-export interface WebpackBuilderSchema {
-  /**
-   * The path to the Webpack configuration file.
-   */
-  webpackConfig: string;
+export interface Schema {
+    /**
+     * The path to the Webpack configuration file.
+     */
+    webpackConfig: string;
 }

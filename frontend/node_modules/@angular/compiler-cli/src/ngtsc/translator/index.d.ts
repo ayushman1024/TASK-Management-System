@@ -6,4 +6,4 @@
  * found in the LICENSE file at https://angular.io/license
  */
 /// <amd-module name="@angular/compiler-cli/src/ngtsc/translator" />
-export { ImportManager, translateExpression, translateStatement, translateType } from './src/translator';
+export { Import, ImportManager, NamedImport, translateExpression, translateStatement, translateType } from './src/translator';

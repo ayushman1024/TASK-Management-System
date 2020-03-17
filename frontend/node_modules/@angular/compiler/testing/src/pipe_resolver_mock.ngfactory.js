@@ -4,7 +4,7 @@
         if (v !== undefined) module.exports = v;
     }
     else if (typeof define === "function" && define.amd) {
-        define("@angular/compiler/testing/src/pipe_resolver_mock.ngfactory", ["require", "exports", "@angular/compiler/src/compiler"], factory);
+        define("@angular/compiler/testing/src/pipe_resolver_mock.ngfactory", ["require", "exports"], factory);
     }
 })(function (require, exports) {
     "use strict";
@@ -15,8 +15,5 @@
      * tslint:disable
      */ 
     Object.defineProperty(exports, "__esModule", { value: true });
-    var compiler_1 = require("@angular/compiler/src/compiler");
-    exports.PipeResolver_1 = compiler_1.PipeResolver;
-    exports.CompileReflector_2 = compiler_1.CompileReflector;
 });
 //# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGlwZV9yZXNvbHZlcl9tb2NrLm5nZmFjdG9yeS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2NvbXBpbGVyL3Rlc3Rpbmcvc3JjL3BpcGVfcmVzb2x2ZXJfbW9jay5uZ2ZhY3RvcnkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCAqIGFzIGkwIGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaTAuQ29tcG9uZW50RmFjdG9yeTtcbiJdfQ==

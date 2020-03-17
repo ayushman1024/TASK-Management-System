@@ -64,7 +64,7 @@ const timers = {
 
 class Scheduler {
   // Next scheduler id.
-  public nextId: number = 1;
+  public static nextId: number = 1;
 
   // Scheduler queue with the tuple of end time and callback function - sorted by end time.
   private _schedulerQueue: ScheduledFunction[] = [];
@@ -90,7 +90,7 @@ class Scheduler {
   scheduleFunction(
       cb: Function, delay: number, args: any[] = [], isPeriodic: boolean = false,
       isRequestAnimationFrame: boolean = false, id: number = -1): number {
-    let currentId: number = id < 0 ? this.nextId++ : id;
+    let currentId: number = id < 0 ? Scheduler.nextId++ : id;
     let endTime = this._currentTime + delay;
 
     // Insert so that scheduler queue remains sorted by end time.
@@ -143,7 +143,8 @@ class Scheduler {
         if (doTick) {
           doTick(this._currentTime - lastCurrentTime);
         }
-        let retval = current.func.apply(global, current.args);
+        let retval = current.func.apply(
+            global, current.isRequestAnimationFrame ? [this._currentTime] : current.args);
         if (!retval) {
           // Uncaught exception in the current scheduled function. Stop processing the queue.
           break;
@@ -292,7 +293,7 @@ class FakeAsyncTestZoneSpec implements ZoneSpec {
   }
 
   private _setTimeout(fn: Function, delay: number, args: any[], isTimer = true): number {
-    let removeTimerFn = this._dequeueTimer(this._scheduler.nextId);
+    let removeTimerFn = this._dequeueTimer(Scheduler.nextId);
     // Queue the callback and dequeue the timer on success and error.
     let cb = this._fnAndFlush(fn, {onSuccess: removeTimerFn, onError: removeTimerFn});
     let id = this._scheduler.scheduleFunction(cb, delay, args, false, !isTimer);
@@ -308,7 +309,7 @@ class FakeAsyncTestZoneSpec implements ZoneSpec {
   }
 
   private _setInterval(fn: Function, interval: number, args: any[]): number {
-    let id = this._scheduler.nextId;
+    let id = Scheduler.nextId;
     let completers = {onSuccess: null as any, onError: this._dequeuePeriodicTimer(id)};
     let cb = this._fnAndFlush(fn, completers);
 
@@ -346,6 +347,15 @@ class FakeAsyncTestZoneSpec implements ZoneSpec {
   }
 
   static patchDate() {
+    if (!!global[Zone.__symbol__('disableDatePatching')]) {
+      // we don't want to patch global Date
+      // because in some case, global Date
+      // is already being patched, we need to provide
+      // an option to let user still use their
+      // own version of Date.
+      return;
+    }
+
     if (global['Date'] === FakeDate) {
       // already patched
       return;

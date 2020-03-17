@@ -11,6 +11,7 @@ import { Schema as NewCommandSchema } from './new';
 export declare class NewCommand extends SchematicCommand<NewCommandSchema> {
     readonly allowMissingWorkspace = true;
     schematicName: string;
+    initialize(options: NewCommandSchema & Arguments): Promise<void>;
     run(options: NewCommandSchema & Arguments): Promise<number | void>;
     private parseCollectionName;
 }

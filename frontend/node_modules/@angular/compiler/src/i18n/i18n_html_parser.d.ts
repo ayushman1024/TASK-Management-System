@@ -7,7 +7,7 @@
  */
 import { MissingTranslationStrategy } from '../core';
 import { HtmlParser } from '../ml_parser/html_parser';
-import { InterpolationConfig } from '../ml_parser/interpolation_config';
+import { TokenizeOptions } from '../ml_parser/lexer';
 import { ParseTreeResult } from '../ml_parser/parser';
 import { Console } from '../util';
 export declare class I18NHtmlParser implements HtmlParser {
@@ -15,5 +15,5 @@ export declare class I18NHtmlParser implements HtmlParser {
     getTagDefinition: any;
     private _translationBundle;
     constructor(_htmlParser: HtmlParser, translations?: string, translationsFormat?: string, missingTranslation?: MissingTranslationStrategy, console?: Console);
-    parse(source: string, url: string, parseExpansionForms?: boolean, interpolationConfig?: InterpolationConfig): ParseTreeResult;
+    parse(source: string, url: string, options?: TokenizeOptions): ParseTreeResult;
 }

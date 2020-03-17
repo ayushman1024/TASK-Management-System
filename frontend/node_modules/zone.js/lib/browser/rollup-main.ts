@@ -6,8 +6,5 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import '../zone';
-import '../common/promise';
-import '../common/fetch';
-import '../common/to-string';
+import './rollup-common';
 import './browser';

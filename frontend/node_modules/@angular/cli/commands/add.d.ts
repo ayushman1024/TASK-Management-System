@@ -18,6 +18,14 @@ export interface Schema {
      * When false, disables interactive input prompts.
      */
     interactive?: boolean;
+    /**
+     * The NPM registry to use.
+     */
+    registry?: string;
+    /**
+     * Display additional details about internal operations during execution.
+     */
+    verbose?: boolean;
 }
 /**
  * Shows a help message for this command in the console.

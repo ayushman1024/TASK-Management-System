@@ -1,6 +1,7 @@
 import { BaseException } from '../src';
 /**
  * Exception thrown when a module could not be resolved.
+ * @deprecated since version 8. Use `MODULE_NOT_FOUND` Node error code instead.
  */
 export declare class ModuleNotFoundException extends BaseException {
     readonly moduleName: string;
@@ -8,6 +9,7 @@ export declare class ModuleNotFoundException extends BaseException {
     readonly code: string;
     constructor(moduleName: string, basePath: string);
 }
+/** @deprecated since version 8. Use `require.resolve` instead. */
 export interface ResolveOptions {
     /**
      * The basedir to use from which to resolve.
@@ -40,13 +42,15 @@ export interface ResolveOptions {
      */
     resolvePackageJson?: boolean;
 }
+/** @deprecated since version 8. Use `require.resolve` instead. */
 export declare function setResolveHook(hook: ((x: string, options: ResolveOptions) => string | null) | null): void;
 /**
  * Resolve a package using a logic similar to npm require.resolve, but with more options.
- * @param x The package name to resolve.
+ * @param packageName The package name to resolve.
  * @param options A list of options. See documentation of those options.
  * @returns {string} Path to the index to include, or if `resolvePackageJson` option was
  *                   passed, a path to that file.
  * @throws {ModuleNotFoundException} If no module with that name was found anywhere.
+ * @deprecated since version 8. Use `require.resolve` instead.
  */
-export declare function resolve(x: string, options: ResolveOptions): string;
+export declare function resolve(packageName: string, options: ResolveOptions): string;

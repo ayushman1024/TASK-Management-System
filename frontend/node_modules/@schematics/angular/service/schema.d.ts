@@ -7,7 +7,7 @@ export interface Schema {
      */
     flat?: boolean;
     /**
-     * When true, applies lint fixes after generating the pipe.
+     * When true, applies lint fixes after generating the service.
      */
     lintFix?: boolean;
     /**

@@ -9,6 +9,7 @@ import { CompileDirectiveMetadata, CompileDirectiveSummary, CompilePipeSummary, 
 import { CompileReflector } from '../compile_reflector';
 import { CompilerConfig } from '../config';
 import { SchemaMetadata } from '../core';
+import { AST } from '../expression_parser/ast';
 import { Parser } from '../expression_parser/parser';
 import { HtmlParser, ParseTreeResult } from '../ml_parser/html_parser';
 import { InterpolationConfig } from '../ml_parser/interpolation_config';
@@ -50,3 +51,4 @@ export declare function createElementCssSelector(elementName: string, attributes
 export declare function removeSummaryDuplicates<T extends {
     type: CompileTypeMetadata;
 }>(items: T[]): T[];
+export declare function isEmptyExpression(ast: AST): boolean;

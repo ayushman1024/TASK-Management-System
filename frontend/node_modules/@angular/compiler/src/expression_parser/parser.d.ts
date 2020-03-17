@@ -24,16 +24,16 @@ export declare class Parser {
     private _lexer;
     private errors;
     constructor(_lexer: Lexer);
-    parseAction(input: string, location: any, interpolationConfig?: InterpolationConfig): ASTWithSource;
-    parseBinding(input: string, location: any, interpolationConfig?: InterpolationConfig): ASTWithSource;
-    parseSimpleBinding(input: string, location: string, interpolationConfig?: InterpolationConfig): ASTWithSource;
+    parseAction(input: string, location: any, absoluteOffset: number, interpolationConfig?: InterpolationConfig): ASTWithSource;
+    parseBinding(input: string, location: any, absoluteOffset: number, interpolationConfig?: InterpolationConfig): ASTWithSource;
+    parseSimpleBinding(input: string, location: string, absoluteOffset: number, interpolationConfig?: InterpolationConfig): ASTWithSource;
     private _reportError;
     private _parseBindingAst;
     private _parseQuote;
-    parseTemplateBindings(tplKey: string, tplValue: string, location: any): TemplateBindingParseResult;
-    parseInterpolation(input: string, location: any, interpolationConfig?: InterpolationConfig): ASTWithSource | null;
+    parseTemplateBindings(tplKey: string, tplValue: string, location: any, absoluteOffset: number): TemplateBindingParseResult;
+    parseInterpolation(input: string, location: any, absoluteOffset: number, interpolationConfig?: InterpolationConfig): ASTWithSource | null;
     splitInterpolation(input: string, location: string, interpolationConfig?: InterpolationConfig): SplitInterpolation | null;
-    wrapLiteralPrimitive(input: string | null, location: any): ASTWithSource;
+    wrapLiteralPrimitive(input: string | null, location: any, absoluteOffset: number): ASTWithSource;
     private _stripComments;
     private _commentStart;
     private _checkNoInterpolation;
@@ -42,6 +42,7 @@ export declare class Parser {
 export declare class _ParseAST {
     input: string;
     location: any;
+    absoluteOffset: number;
     tokens: Token[];
     inputLength: number;
     parseAction: boolean;
@@ -51,7 +52,7 @@ export declare class _ParseAST {
     private rbracketsExpected;
     private rbracesExpected;
     index: number;
-    constructor(input: string, location: any, tokens: Token[], inputLength: number, parseAction: boolean, errors: ParserError[], offset: number);
+    constructor(input: string, location: any, absoluteOffset: number, tokens: Token[], inputLength: number, parseAction: boolean, errors: ParserError[], offset: number);
     peek(offset: number): Token;
     readonly next: Token;
     readonly inputIndex: number;

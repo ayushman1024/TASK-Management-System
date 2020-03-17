@@ -5,16 +5,30 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { CompileReflector } from '../compile_reflector';
 import * as o from '../output/output_ast';
 /**
- * JIT compiles an expression and returns the result of executing that expression.
+ * Implementation of `CompileReflector` which resolves references to @angular/core
+ * symbols at runtime, according to a consumer-provided mapping.
  *
- * @param def the definition which will be compiled and executed to get the value to patch
- * @param context an object map of @angular/core symbol names to symbols which will be available in
- * the context of the compiled expression
- * @param sourceUrl a URL to use for the source map of the compiled expression
- * @param constantPool an optional `ConstantPool` which contains constants used in the expression
+ * Only supports `resolveExternalReference`, all other methods throw.
  */
-export declare function jitExpression(def: o.Expression, context: {
-    [key: string]: any;
-}, sourceUrl: string, preStatements: o.Statement[]): any;
+export declare class R3JitReflector implements CompileReflector {
+    private context;
+    constructor(context: {
+        [key: string]: any;
+    });
+    resolveExternalReference(ref: o.ExternalReference): any;
+    parameters(typeOrFunc: any): any[][];
+    annotations(typeOrFunc: any): any[];
+    shallowAnnotations(typeOrFunc: any): any[];
+    tryAnnotations(typeOrFunc: any): any[];
+    propMetadata(typeOrFunc: any): {
+        [key: string]: any[];
+    };
+    hasLifecycleHook(type: any, lcProperty: string): boolean;
+    guards(typeOrFunc: any): {
+        [key: string]: any;
+    };
+    componentModuleUrl(type: any, cmpMetadata: any): string;
+}

@@ -1,5 +1,6 @@
 # TASK-Management-System
-<a href="https://www.buymeacoffee.com/ar7HQlZ" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W01JFRM)
+<a href="https://www.buymeacoffee.com/ar7HQlZ" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" style="height: 43px !important;width: 183px !important;" ></a>
 #### *Spring Boot and Angular 7 web application for task management .*
 >  [Frontend Documentation](https://ayushman1024.github.io/documentation/)
 ## Synopsis

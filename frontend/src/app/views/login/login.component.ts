@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit , AfterViewInit{
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getAuthorities();
+      this.router.navigate(['./u/prg']);
     }
   }
 

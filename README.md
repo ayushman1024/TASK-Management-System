@@ -1,6 +1,7 @@
 # TASK-Management-System
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W01JFRM)
 
+[![Linkedin](https://i.stack.imgur.com/gVE0j.png) **LinkedIn**](https://www.linkedin.com/in/ayushman1024/)
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W01JFRM) <a href="https://www.buymeacoffee.com/ar7HQlZ" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" width=15% height=15%></a>
 #### *Spring Boot and Angular 7 web application for task management .*
 >  [Frontend Documentation](https://ayushman1024.github.io/documentation/)
 ## Synopsis
@@ -46,5 +47,3 @@ Read [Google SMTP common issues](https://help.dreamhost.com/hc/en-us/articles/11
 - You should have node.js installed on your system.
 - GOTO the path of **frontend** folder in comand-prompt and run `npm start`  instead of ~~`ng serve`~~ because i have configured different port number for frontend.
 - Now your frontend will be hosted on http://localhost:8001 ,open this link in browser.(only for DEV)
-
-<a href="https://www.buymeacoffee.com/ar7HQlZ" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" style="width:300px;height:47px;" ></a>

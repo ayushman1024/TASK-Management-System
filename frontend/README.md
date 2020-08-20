@@ -1,6 +1,7 @@
-# Frontend
+# TMS - Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
+## **[Frontend Documentation](https://ayushman1024.github.io/documentation/)**
+This project was generated with version 7.3.0.
 
 ## Code scaffolding
 

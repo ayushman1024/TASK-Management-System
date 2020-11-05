@@ -26,3 +26,4 @@ hs_err_pid*
 /backend/mvnw.cmd
 /backend/.mvn/wrapper/
 /EER.mwb
+/ISSUES/*

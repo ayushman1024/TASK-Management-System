@@ -55,7 +55,6 @@ public class ProgramController {
   @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
   @CrossOrigin(origins = clientUrl)
   public ResponseEntity<ProgramListResource> getAllProgramByUser(@PathVariable("uid") Long uid) {
-    
     ProgramListResource dto = new ProgramListResource();
     dto.setProgramList(userService.getAllProgramByUser(uid));
     return new ResponseEntity<ProgramListResource>(dto, HttpStatus.OK);
@@ -68,5 +67,4 @@ public class ProgramController {
     service.addUser(code.getUid(), code.getCode());
     return new ResponseEntity<Boolean>(true,HttpStatus.OK);
   }
-  
 }

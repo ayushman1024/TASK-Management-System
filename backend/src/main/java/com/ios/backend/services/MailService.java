@@ -33,23 +33,25 @@ public class MailService {
   }
   
   public String sendPasscode(String email, String passcode, Program prgm) {
-    String text = "You are invited to join program:\n"+prgm.getName()+"\n\nUse passcode given below:\n"+ passcode;
-    String subject = "Invitation to Join Program";
+    String text = "<html><body>You are invited to join program:\n"+prgm.getId()+" | "+prgm.getName();
+    text = text + "\n\nUse passcode given below:\n"+ passcode + "\n\n";
+    text = text + prgm.getDescription()+ "</body></html>";
+    String subject = "Invitation to Join Program: "+ prgm.getId()+" | "+prgm.getName();
     try {
       sendMail(email, text, subject);
     } catch (MessagingException e) {
-      return "";
+      return ""; //no-use
     }
     return passcode;
   }
-  
+
   public boolean sendMail(String to, String text, String subject, String res) throws MessagingException {
     MimeMessage message = mailSender.createMimeMessage();
     MimeMessageHelper helper = new MimeMessageHelper(message,true);
     try {
       helper.setTo(to);
       helper.setSubject(subject);
-      helper.setText(text);
+      helper.setText(text,true);
       ClassPathResource file = new ClassPathResource(res);
       helper.addAttachment(res, file);
     } catch (MessagingException e) {
@@ -66,7 +68,7 @@ public class MailService {
     try {
       helper.setTo(to);
       helper.setSubject(subject);
-      helper.setText(text);
+      helper.setText(text,true);
     } catch (MessagingException e) {
       e.printStackTrace();
       return false;

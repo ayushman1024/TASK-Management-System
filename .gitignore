@@ -7,6 +7,7 @@ git commit push.bat
 
 # Log file
 *.log
+tasklog.txt
 
 # BlueJ files
 *.ctxt

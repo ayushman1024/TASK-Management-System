@@ -1,3 +1,7 @@
+# git scripts
+sync_script.bat
+git commit push.bat
+
 # Compiled class file
 *.class
 

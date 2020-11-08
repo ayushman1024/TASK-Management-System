@@ -7,7 +7,7 @@ git commit push.bat
 
 # Log file
 *.log
-tasklog.txt
+/tasklog.txt
 
 # BlueJ files
 *.ctxt
@@ -32,3 +32,4 @@ hs_err_pid*
 /backend/.mvn/wrapper/
 /EER.mwb
 /ISSUES/*
+

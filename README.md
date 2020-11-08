@@ -11,7 +11,7 @@
 ## Demo
 ![DEMO](misc/demo/tms_demo.gif)
 
-## Synopsis
+## Introduction
 - Task management system is a web application which is build for team project works where one can manage various task within team.
 - Task management system is developed Spring Boot Application with Angular as a front-end  framework.
 - Task management system focuses mainly on handling document based projects. For example , a group of student decided to prepare number of speeches for a college event. Here this task management is very useful.
@@ -19,20 +19,20 @@
 - This web application is very secure and robust. We have implemented JWT based Authentication technique in our application. The password is encrypted using public and private keys then is stored in database.
 - Using Relation database MySQL is very easy to deploy on any server with best performance.
 ## Dependencies
-- JAVA 8
-- Tomcat 9 server
+- Java 8 JDK
+- Embedded Tomcat 9 server
 - Eclipse (Java IDE)
 - MySQL Database
-- Node.js
+- Node.js NPM
 ## Installation
 ### Backend
- - In Eclipse import the folder named "backend" with option "import existing maven project".
- - Now build the maven project. It will install all the necessary dependencies from Internet.
- - To setup database, install MySQL in your system. Make any database.
- - Update the below three variables present in file **application.properties** present in **resources** folder
+ - In Eclipse or similar IDE import the "backend" from this repo with option "import existing maven project".
+ - Build the maven project to install all the required dependencies.
+ - To setup database, install MySQL. Make any database.
+ - Then update below three configuration fields in file **application.properties** inside **/resources** folder
 >
 
-    spring.datasource.url=jdbc:mysql://localhost:3306/onboarding
+    spring.datasource.url=jdbc:mysql://localhost:3306/tms
     spring.datasource.username=root
     spring.datasource.password=root
 - For email services you need to use email via SMTP. For that you need to update **application.properties** below fields. 
@@ -46,8 +46,7 @@
 	spring.mail.password=password`
 Read [Google SMTP common issues](https://help.dreamhost.com/hc/en-us/articles/115001719551-Troubleshooting-GMAIL-SMTP-authentication-errors)
 
-- Install Tomcat 9 and configure it with your project.
-- Run the project from **BackendApplication.java**, it will automatically create all the tables in your database.
+- Run the project from **BackendApplication.java**, all the tables will be initialised in database with its first run.
 - Now execute **roles.sql** on your database.
 
 ### Frontend

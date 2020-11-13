@@ -7,6 +7,7 @@ import { GlobalService } from 'src/app/framework/services/global.service';
 import { User } from 'src/app/framework/models/user';
 import { UserService } from 'src/app/framework/services/user.service';
 import { MessageService } from 'primeng/api';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-task-creator',
@@ -28,11 +29,29 @@ export class TaskCreatorComponent implements OnInit {
   assignIndex = 2;
   isLinear = true;
 
+  newtaskFormGroup: FormGroup;
+  scheduleFormGroup: FormGroup;
+  assignFormGroup: FormGroup;
+  reviewFormGroup: FormGroup;
   constructor(private msg: MessageService, private service: TaskService, private userService: UserService,
-              private datePipe: DatePipe, private global: GlobalService) {
+              private datePipe: DatePipe, private global: GlobalService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.newtaskFormGroup = this.formBuilder.group({
+      ctrl1: ['', Validators.required],
+      // ctrl2: ['', Validators.required]
+    });
+    this.scheduleFormGroup = this.formBuilder.group({
+      ctrl3: ['', Validators.required],
+      ctrl4: ['', Validators.required]
+    });
+    this.assignFormGroup = this.formBuilder.group({
+      // ctrl5: ['', Validators.required]
+    });
+    this.reviewFormGroup = this.formBuilder.group({
+      // ctrl6: ['', Validators.required]
+    });
     this.userService.getAllUserByProgram().subscribe( res => this.sourceUser = res.userList);
     this.assignedUser = [];
     this.lastStepIndex = 4;

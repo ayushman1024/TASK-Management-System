@@ -35,22 +35,21 @@ public class ProgramService {
   
   public boolean addUser(long uid, String code) {
     boolean invited = false;
-    User user = userRepository.findById(uid).get();
+    User user = userRepository.findById(uid).get();   // get
     Long pidv = passcodeRepository.getPidByCode(code);
     if(! Objects.isNull(pidv)) {
       long pid = pidv.longValue();
       boolean ifInvited = invitesRepository.existsByUid(uid);
-      List<Long> invitedPid = invitesRepository.findByUid(uid);
+      List<Long> invitedPid = invitesRepository.findByUid(uid); // All invited users
       boolean checked = false;
-      for(Long id: invitedPid) {
+      for(Long id: invitedPid) { //
         if(id == pid) {
           checked = true;
           break;
         }
       }
-      
+
       if( ifInvited && checked) {
-        System.out.println("###########");
         invited = true;
         Program p = programRepository.findById(pid).get();
         List<User> users = p.getUsers();

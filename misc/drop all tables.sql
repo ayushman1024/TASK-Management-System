@@ -1,0 +1,12 @@
+use tms1024;
+drop table hibernate_sequence;
+drop table invites;
+drop table passcode;
+drop table program_users;
+drop table program;
+drop table user_roles;
+drop table roles;
+drop table task;
+drop table task_record;
+drop table user_roles;
+drop table users;

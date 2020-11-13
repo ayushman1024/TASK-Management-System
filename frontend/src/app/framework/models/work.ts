@@ -1,3 +1,5 @@
 export class  Work {
-  work: string;
+  public work: string;
+  constructor() {
+  }
 }

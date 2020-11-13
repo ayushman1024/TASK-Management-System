@@ -16,30 +16,29 @@
       <p-editor [(ngModel)]="taskModel.description" [style]="{'height':'320px'}"></p-editor>
       </div>
     </div>
-
     </mat-step>
+
     <!-- 2 -->
     <mat-step>
-          <ng-template matStepLabel>Schedule Task</ng-template>
-          <div class="forms f2">
-            <div>
-              <button *ngIf="taskModel.startTime && taskModel.deadline" class="nxt-btn" mat-stroked-button matStepperNext>Next</button>
-            </div>
-            <span class="label-span">Task Start Date and Time</span>
-            <mat-form-field class="date-time" appearance="outline">
-              <mat-label>Task Start Date and Time</mat-label>
-              <input matInput [(ngModel)]="taskModel.startTime" matInput type="datetime-local" name="startTime" id="start">
-            </mat-form-field><br>
-            <span class="label-span">Task End Date and Time</span>
-            <mat-form-field class="date-time" appearance="outline">
-                <mat-label>Task End Date and Time</mat-label>
-              <input matInput [(ngModel)]="taskModel.deadline" matInput type="datetime-local" name="deadline" id="deadline">
-            </mat-form-field><br>
-            <hr>
-            <!--  -->
-            <!--  -->
+      <ng-template matStepLabel>Schedule Task</ng-template>
+        <div class="forms f2">
+          <div>
+            <button *ngIf="taskModel.startTime && taskModel.deadline" class="nxt-btn" mat-stroked-button matStepperNext>Next</button>
           </div>
+          <span class="label-span">Task Start Date and Time</span>
+          <mat-form-field class="date-time" appearance="outline">
+            <mat-label>Task Start Date and Time</mat-label>
+            <input matInput [(ngModel)]="taskModel.startTime" matInput type="datetime-local" name="startTime" id="start">
+          </mat-form-field><br>
+          <span class="label-span">Task End Date and Time</span>
+          <mat-form-field class="date-time" appearance="outline">
+              <mat-label>Task End Date and Time</mat-label>
+            <input matInput [(ngModel)]="taskModel.deadline" matInput type="datetime-local" name="deadline" id="deadline">
+          </mat-form-field><br>
+          <hr>
+        </div>
       </mat-step>
+
       <!-- 3 -->
       <mat-step>
         <form>

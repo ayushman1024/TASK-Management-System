@@ -1,12 +1,12 @@
+<div>
 <p-toast [modal]="true"></p-toast>
 <p-toolbar>
-    <div class="ui-toolbar-group-left">
-        <i class="pi pi-bars"></i>
-        <button class ="btn btn-md btn-primary" (click)="submit()" >
-          <mat-icon>publish</mat-icon> SAVE YOUR WORK</button>
-    </div>
-    <div class="ui-toolbar-group-right">
-      <p class="h4">TASK-NAME: {{taskName}}</p>
-    </div>
+  <div class="ui-toolbar-group-left">
+    <p>TASK: {{taskName}}</p>
+  </div>
+  <div class="ui-toolbar-group-right">
+    <button class ="btn btn-md btn-primary" (click)="submit()" >SAVE</button>
+  </div>
 </p-toolbar>
 <p-editor [(ngModel)]="workModel.work" [style]="{'height':'320px'}"></p-editor>
+</div>

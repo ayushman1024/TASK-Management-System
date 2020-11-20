@@ -12,18 +12,18 @@
 ![DEMO](misc/demo/tms_demo.gif)
 
 ## Introduction
-- Task management system is a web application which is build for team project works where one can manage various task within team.
-- Task management system is developed Spring Boot Application with Angular as a front-end  framework.
-- Task management system focuses mainly on handling document based projects. For example , a group of student decided to prepare number of speeches for a college event. Here this task management is very useful.
+- Task management system is a web application developed for team project works where users can manage various task within team easily.
+- It is developed using Spring Boot(backend) with Angular(front-end)  framework.
+- Project is focused mainly on handling document based projects.
 - “User” can be member of more than “Program” simultaneously. And one program can have any number of “User” member associated with it.
 - This web application is very secure and robust. We have implemented JWT based Authentication technique in our application. The password is encrypted using public and private keys then is stored in database.
-- Using Relation database MySQL is very easy to deploy on any server with best performance.
+- Using MySQL and Sring Data JPA for database management.
 ## Dependencies
 - Java 8 JDK
 - Embedded Tomcat 9 server
-- Eclipse (Java IDE)
 - MySQL Database
-- Node.js NPM
+- Node Package Manager NPM
+- Maven
 ## Installation
 ### Backend
  - In Eclipse or similar IDE import the "backend" from this repo with option "import existing maven project".

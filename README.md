@@ -1,9 +1,7 @@
 # TASK-Management-System
 
-[![Gitter](https://badges.gitter.im/TMS-Community/community.svg)](https://gitter.im/TMS-Community/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/TMS-Community/community.svg)](https://gitter.im/TMS-Community/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)  [![Linkedin](https://img.icons8.com/fluent/48/000000/linkedin.png)](https://www.linkedin.com/in/ayushman1024/)
 
-
-[![Linkedin](https://i.stack.imgur.com/gVE0j.png)**Linkedin**](https://www.linkedin.com/in/ayushman1024/)
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W01JFRM) <a href="https://www.buymeacoffee.com/ar7HQlZ" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" width=15% height=15%></a>
 #### *Spring Boot and Angular 7 web application for task management .*
 >  [Frontend Documentation](https://ayushman1024.github.io/documentation/)

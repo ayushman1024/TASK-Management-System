@@ -53,3 +53,6 @@ Read [Google SMTP common issues](https://help.dreamhost.com/hc/en-us/articles/11
 - You should have node.js installed on your system.
 - GOTO the path of **frontend** folder in comand-prompt and run `npm start`  instead of ~~`ng serve`~~ because i have configured different port number for frontend.
 - Now your frontend will be hosted on http://localhost:8001 ,open this link in browser.(only for DEV)
+
+
+<img src="https://github-pages-visitor.herokuapp.com/counterimg/githubDashboard_TMS" alt="" width="5"/>

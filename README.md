@@ -16,6 +16,10 @@
 - “User” can be member of more than “Program” simultaneously. And one program can have any number of “User” member associated with it.
 - This web application is very secure and robust. We have implemented JWT based Authentication technique in our application. The password is encrypted using public and private keys then is stored in database.
 - Using MySQL and Sring Data JPA for database management.
+
+### TODO:
+- Lots of UI/UX improvements.
+
 ## Dependencies
 - Java 8 JDK
 - Embedded Tomcat 9 server

@@ -10,15 +10,18 @@
 ![DEMO](misc/demo/tms_demo.gif)
 
 ## Introduction
-- Task management system is a web application developed for team project works where users can manage various task within team easily.
-- It is developed using Spring Boot(backend) with Angular(front-end)  framework.
-- Project is focused mainly on handling document based projects.
-- “User” can be member of more than “Program” simultaneously. And one program can have any number of “User” member associated with it.
-- This web application is very secure and robust. We have implemented JWT based Authentication technique in our application. The password is encrypted using public and private keys then is stored in database.
-- Using MySQL and Sring Data JPA for database management.
+- Task management system is a demonstration web application developed for team project works where users can manage various tasks within a team easily.
+- Developed on Spring Boot(backend) with Angular v7 (front-end) frameworks and MySql database.
+- Project is focused primarily on handling document-based projects.
+- “User” can be a member of more than Programs. And one program can have any number of User members associated with it.
+- This web application is made secure and robust. I have implemented JWT-based Authentication on every APIs.
+- The project is in an early stage of development and needs lots of work and bug fixing to make it usable in real life. Still, learners can use this as template and make it functinal application.
+- I would be happy to see people contribute and enhance this project.
 
 ### TODO:
 - Lots of UI/UX improvements.
+- New features like Program settings, custom project themes, use settings, and edit details.
+- UI improvements like pagination on task lists and user picker list.
 
 ## Dependencies
 - Java 8 JDK

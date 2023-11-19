@@ -4,8 +4,6 @@
 
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W01JFRM) <a href="https://www.buymeacoffee.com/ar7HQlZ" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-black.png" alt="Buy Me A Coffee" width=15% height=15%></a>
 #### *Spring Boot and Angular 7 web application for task management .*
->  [Frontend Documentation](https://ayushman1024.github.io/documentation/)
-
 ## Demo
 ![DEMO](misc/demo/tms_demo.gif)
 

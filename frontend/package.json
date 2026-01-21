@@ -36,7 +36,7 @@
     "primeflex": "^1.0.0-rc.1",
     "primeicons": "^1.0.0",
     "primeng": "^7.1.0",
-    "quill": "^1.3.6",
+    "quill": "^1.3.7",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
